@@ -460,15 +460,22 @@ table.table td a {
   margin: 0 5px;
 }
 
-table.table td a.view {
-  color: #03a9f4;
+table.table td .icons {
+  /* color: #a0a5b1; */
+  display: inline-block;
+  margin: 0 5px;
 }
 
-table.table td a.edit {
+table.table td .view i {
+  color: #03a9f4;
+  border: none;
+}
+
+table.table td .edit i {
   color: #ffc107;
 }
 
-table.table td a.delete {
+table.table td .delete i {
   color: #e34724;
 }
 

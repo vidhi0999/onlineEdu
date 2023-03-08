@@ -124,12 +124,22 @@ if (empty($adminuser)) {
                                 </td>
 
                                 <td>
-                                    <a href="#" class="view" title="View" data-toggle="tooltip"><i
-                                            class="fa fa-eye"></i></a>
-                                    <a href="#" class="edit" title="Edit" data-toggle="tooltip"><i
-                                            class="fa fa-edit "></i></a>
-                                    <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i
-                                            class="fa fa-trash"></i></a>
+                                    <div class="icons">
+                                        <button class="view" title="View" id="view" data-toggle="tooltip"
+                                            onclick="myFunction()">
+                                            <i class="fa fa-eye"></i>
+                                        </button>
+                                    </div>
+                                    <div class="icons">
+                                        <button class="edit" title="Edit" id="edit" data-toggle="tooltip"><i
+                                                class="fa fa-edit "></i>
+                                        </button>
+                                    </div>
+                                    <div class="icons">
+                                        <button class="delete" title="Delete" id="delete" data-toggle="tooltip"><i
+                                                class="fa fa-trash"></i>
+                                        </button>
+                                    </div>
                                 </td>
 
                             </tr>
@@ -156,6 +166,22 @@ if (empty($adminuser)) {
         <!-- MAIN -->
     </section>
     <!-- CONTENT -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     <script src="../js/script.js"></script>
