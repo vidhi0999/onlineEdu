@@ -1,9 +1,11 @@
 <?php
 session_start();
+include_once('../php/database.php');
 $adminuser = $_SESSION['adminuser'];
 if (empty($adminuser)) {
     header("location:admin-login.php");
 }
+
 
 ?>
 <!DOCTYPE html>
@@ -88,93 +90,52 @@ if (empty($adminuser)) {
 
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Fran Wilson</td>
-                            <td>C/ Araquil, 67</td>
-                            <td>Madrid</td>
-                            <td>28023</td>
-                            <td>Spain</td>
-                            <td>
-                                <a href="#" class="view" title="View" data-toggle="tooltip"><i
-                                        class="fa fa-eye"></i></a>
-                                <a href="#" class="edit" title="Edit" data-toggle="tooltip"><i
-                                        class="fa fa-edit "></i></a>
-                                <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i
-                                        class="fa fa-trash"></i></a>
-                            </td>
-                        </tr>
 
-                        <tr>
-                            <td>1</td>
-                            <td>Fran Wilson</td>
-                            <td>C/ Araquil, 67</td>
-                            <td>Madrid</td>
-                            <td>28023</td>
-                            <td>Spain</td>
-                            <td>
-                                <a href="#" class="view" title="View" data-toggle="tooltip"><i
-                                        class="fa fa-eye"></i></a>
-                                <a href="#" class="edit" title="Edit" data-toggle="tooltip"><i
-                                        class="fa fa-edit "></i></a>
-                                <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i
-                                        class="fa fa-trash"></i></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center">2</td>
-                            <td>Date</td>
-                            <td class="text-center">
-                                <img src="" alt="Course Logo"
-                                    class="img-thumbnail border border-dark p-0 rounded-0 course-logo">
-                            </td>
-                            <td>tutor-name</td>
-                            <td>name of course</td>
-                            <td class="text-center">
-                                <span
-                                    style=" background-color: red;color: white;  padding: 2px 4px; text-align: center; border-radius: 4px;">Inactive</span>
-                                <span
-                                    style=" background-color: green;color: white;  padding: 2px 4px; text-align: center; border-radius: 4px;">Active</span>
-                            </td>
-                            <td align="center">
+                        <?php
+                        $i = 1;
+                        $qry = $conn->query("SELECT c.*, concat(t.lastname,', ', t.firstname, COALESCE(concat(' ', t.middlename),'')) as `tutor` from `course_list` c inner join `tutor_list` t on c.tutor_id = t.id where c.delete_flag = 0  order by c.`name` asc ");
+                        while ($row = $qry->fetch_assoc()):
+                            ?>
+                            <tr>
+                                <td class="text-center">
+                                    <?php echo $i++; ?>
+                                </td>
+                                <td>
+                                    <?php echo date("Y-m-d H:i", strtotime($row['date_created'])) ?>
+                                </td>
+                                <td>
+                                    <img src="../images/girl.jpeg" alt="Course Logo" class="course-image">
+                                </td>
+                                <td>
+                                    <?php echo $row['tutor'] ?>
+                                </td>
+                                <td>
+                                    <?php echo $row['name'] ?>
+                                </td>
 
-                                <!-- <button type="button"
-                                        class="btn btn-flat p-1 btn-default btn-sm dropdown-toggle dropdown-icon"
-                                        data-toggle="dropdown">
-                                        Action
-                                        <span class="sr-only">Toggle Dropdown</span>
-                                    </button>
+                                <td class="text-center">
+                                    <?php if ($row['status'] == 0): ?>
+                                        <span
+                                            style=" background-color: red;color: white;  padding: 2px 4px; text-align: center; border-radius: 4px;">Inactive</span>
+                                    <?php else: ?>
+                                        <span
+                                            style=" background-color: green;color: white;  padding: 2px 4px; text-align: center; border-radius: 4px;">Active</span>
+                                    <?php endif; ?>
+                                </td>
 
-                                    <div class="dropdown-menu" role="menu">
-                                        <a class="dropdown-item view_data" href="javascript:void(0)" data-id=""><span
-                                                class="fa fa-eye text-dark"></span>
-                                            View</a>
+                                <td>
+                                    <a href="#" class="view" title="View" data-toggle="tooltip"><i
+                                            class="fa fa-eye"></i></a>
+                                    <a href="#" class="edit" title="Edit" data-toggle="tooltip"><i
+                                            class="fa fa-edit "></i></a>
+                                    <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i
+                                            class="fa fa-trash"></i></a>
+                                </td>
 
-                                        <div class="dropdown-divider"></div>
-
-                                        <a class="dropdown-item edit_data" href="javascript:void(0)" data-id=""><span
-                                                class="fa fa-edit text-primary"></span> Edit</a>
-
-                                        <div class="dropdown-divider"></div>
-
-                                        <a class="dropdown-item delete_data" href="javascript:void(0)" data-id=""><span
-                                                class="fa fa-trash text-danger"></span> Delete</a>
-                                    </div> -->
-
-                                <a href="#" class="view" title="View" data-toggle="tooltip"><i
-                                        class="fa fa-eye"></i></a>
-                                <a href="#" class="edit" title="Edit" data-toggle="tooltip"><i
-                                        class="fa fa-edit "></i></a>
-                                <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i
-                                        class="fa fa-trash"></i></a>
-                            </td>
-                        </tr>
-
-
+                            </tr>
+                        <?php endwhile; ?>
                     </tbody>
-
                 </table>
-
 
                 <div class="clearfix">
                     <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
