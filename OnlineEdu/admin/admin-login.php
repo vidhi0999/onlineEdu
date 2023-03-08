@@ -14,10 +14,10 @@ if (isset($_POST['submit'])) {
             $_SESSION['adminuser'] = $adminuser;
             header("location:admin-dashboard.php");
         } elseif ($row['email'] === $email && $row['pass'] !== $pass) {
-            header("location:admin-login.php?error=Enetr correct password");
+            header("location:admin-login.php?error=Enter correct password");
         }
     } else {
-        header("location:admin-login.php?error=You are not register");
+        header("location:admin-login.php?error=You are not registered");
     }
     // $conn->close();   
 }
@@ -47,8 +47,17 @@ if (isset($_POST['submit'])) {
 
     <div class="wrapper">
         <div class="container">
-            <form action="#" method="POST">
+            <form action="admin-login" method="POST">
                 <header>Admin Login</header>
+                <?php if (isset($_GET['error'])) { ?>
+                    <div class="error">
+                        <div class="sub-error">
+                            <h4>
+                                <?php echo $_GET['error']; ?>
+                            </h4>
+                        </div>
+                    </div>
+                <?php } ?>
                 <div class="field email">
                     <div class="input-area">
                         <input type="text" name="email" placeholder="Email Address" required>
@@ -61,11 +70,7 @@ if (isset($_POST['submit'])) {
                 </div>
                 <div class="pass-txt"><a href="#">Forgot password?</a></div>
                 <input type="submit" name="submit" value="Login">
-                <?php if (isset($_GET['error'])) { ?>
-                    <p style="color:red;">
-                        <?php echo $_GET['error']; ?>
-                    </p>
-                <?php } ?>
+
             </form>
         </div>
     </div>
