@@ -1,10 +1,11 @@
 <?php
 session_start();
-$username2 = $_SESSION['username'];
 include_once('./database.php');
 
 
 if (isset($_POST['submit'])) {
+
+    $username2 = $_SESSION['username'];
     $fullname = $_POST['fullname'];
     $username = $_POST['username'];
     $email = $_POST['email'];
@@ -66,13 +67,13 @@ if (isset($_POST['submit'])) {
         <div class="container">
             <div class="title">Student Registration</div>
             <?php if (isset($_GET['error'])) { ?>
-            <div class="error">
-                <div class="sub-error">
-                    <h4>
-                        <?php echo $_GET['error']; ?>
-                    </h4>
+                <div class="error">
+                    <div class="sub-error">
+                        <h4>
+                            <?php echo $_GET['error']; ?>
+                        </h4>
+                    </div>
                 </div>
-            </div>
             <?php } ?>
             <div class="content">
                 <form method="POST">
