@@ -5,9 +5,8 @@ $adminuser = $_SESSION['adminuser'];
 if (empty($adminuser)) {
     header("location:admin-login.php");
 }
-
-
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,13 +14,9 @@ if (empty($adminuser)) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
     <!-- My CSS -->
     <link rel="stylesheet" href="../css/dashboard.css">
     <title>Admin</title>
-
-
-
 </head>
 
 <body>
@@ -32,7 +27,6 @@ if (empty($adminuser)) {
 
     <!-- CONTENT -->
     <section id="content">
-
         <!-- MAIN -->
         <main>
             <div class="head-title">
@@ -76,8 +70,6 @@ if (empty($adminuser)) {
 
 
                     <thead>
-
-
                         <tr>
                             <th>#</th>
                             <th>Date Created<i class="fa fa-sort"></i></th>
@@ -87,7 +79,6 @@ if (empty($adminuser)) {
                             <th>Status<i class="fa fa-sort"></i></th>
                             <th>Action</th>
                         </tr>
-
                     </thead>
                     <tbody>
 
@@ -125,8 +116,7 @@ if (empty($adminuser)) {
 
                                 <td>
                                     <div class="icons">
-                                        <button class="view" title="View" id="view" data-toggle="tooltip"
-                                            onclick="myFunction()">
+                                        <button class="view" title="View" id="view" data-toggle="tooltip">
                                             <i class="fa fa-eye"></i>
                                         </button>
                                     </div>
@@ -167,24 +157,7 @@ if (empty($adminuser)) {
     </section>
     <!-- CONTENT -->
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <script src="../js/script.js"></script>
+    <!-- <script src="../js/script.js"></script> -->
 </body>
 
 </html>
