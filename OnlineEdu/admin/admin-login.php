@@ -47,7 +47,7 @@ if (isset($_POST['submit'])) {
 
     <div class="wrapper">
         <div class="container">
-            <form action="admin-login" method="POST">
+            <form action="admin-login.php" method="POST">
                 <header>Admin Login</header>
                 <?php if (isset($_GET['error'])) { ?>
                     <div class="error">
