@@ -136,7 +136,7 @@
                     <div class="info-sub-details">
                         <h1>Take the next step toward your personal and professional goals with OnlineEdu.</h1>
                         <p>Join now to receive personalized recommendations from the full OnlineEdu catalog.</p>
-                        <button>Join for Free</button>
+                        <!-- <button>Join for Free</button> -->
                     </div>
                 </div>
             </div>
@@ -146,7 +146,8 @@
 
     <!-- footer -->
     <footer>
-
+        <p>Copyright © OnlineEdu- 2023</p>
+        <p> Developed By: xyz </p>
     </footer>
 
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
