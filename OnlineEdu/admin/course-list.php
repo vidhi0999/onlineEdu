@@ -29,14 +29,22 @@ if (empty($adminuser)) {
     <section id="content">
         <!-- MAIN -->
         <main>
-            <div class="head-title">
-                <div class="left">
-                    <h1>List of Courses</h1>
-                </div>
-            </div>
 
-            <hr>
             <div class="courses">
+
+                <div class="head-title">
+                    <div class="left">
+                        <h3>List of Courses</h3>
+                    </div>
+                </div>
+
+                <div class="right-plus">
+                    <a href="" id="create_new" class="plus"><i class=" fa fa-plus"></i> Create
+                        New</a>
+                </div>
+
+                <hr>
+
                 <div class="table-title">
                     <div class="show-entries">
                         <span>Show</span>
@@ -87,52 +95,52 @@ if (empty($adminuser)) {
                         $qry = $conn->query("SELECT c.*, concat(t.lastname,', ', t.firstname, COALESCE(concat(' ', t.middlename),'')) as `tutor` from `course_list` c inner join `tutor_list` t on c.tutor_id = t.id where c.delete_flag = 0  order by c.`name` asc ");
                         while ($row = $qry->fetch_assoc()):
                             ?>
-                            <tr>
-                                <td class="text-center">
-                                    <?php echo $i++; ?>
-                                </td>
-                                <td>
-                                    <?php echo date("Y-m-d H:i", strtotime($row['date_created'])) ?>
-                                </td>
-                                <td>
-                                    <img src="../images/girl.jpeg" alt="Course Logo" class="course-image">
-                                </td>
-                                <td>
-                                    <?php echo $row['tutor'] ?>
-                                </td>
-                                <td>
-                                    <?php echo $row['name'] ?>
-                                </td>
+                        <tr>
+                            <td class="text-center">
+                                <?php echo $i++; ?>
+                            </td>
+                            <td>
+                                <?php echo date("Y-m-d H:i", strtotime($row['date_created'])) ?>
+                            </td>
+                            <td>
+                                <img src="../images/girl.jpeg" alt="Course Logo" class="course-image">
+                            </td>
+                            <td>
+                                <?php echo $row['tutor'] ?>
+                            </td>
+                            <td>
+                                <?php echo $row['name'] ?>
+                            </td>
 
-                                <td class="text-center">
-                                    <?php if ($row['status'] == 0): ?>
-                                        <span
-                                            style=" background-color: red;color: white;  padding: 2px 4px; text-align: center; border-radius: 4px;">Inactive</span>
-                                    <?php else: ?>
-                                        <span
-                                            style=" background-color: green;color: white;  padding: 2px 4px; text-align: center; border-radius: 4px;">Active</span>
-                                    <?php endif; ?>
-                                </td>
+                            <td class="text-center">
+                                <?php if ($row['status'] == 0): ?>
+                                <span
+                                    style=" background-color: red;color: white;  padding: 2px 4px; text-align: center; border-radius: 4px;">Inactive</span>
+                                <?php else: ?>
+                                <span
+                                    style=" background-color: green;color: white;  padding: 2px 4px; text-align: center; border-radius: 4px;">Active</span>
+                                <?php endif; ?>
+                            </td>
 
-                                <td>
-                                    <div class="icons">
-                                        <button class="view" title="View" id="view" data-toggle="tooltip">
-                                            <i class="fa fa-eye"></i>
-                                        </button>
-                                    </div>
-                                    <div class="icons">
-                                        <button class="edit" title="Edit" id="edit" data-toggle="tooltip"><i
-                                                class="fa fa-edit "></i>
-                                        </button>
-                                    </div>
-                                    <div class="icons">
-                                        <button class="delete" title="Delete" id="delete" data-toggle="tooltip"><i
-                                                class="fa fa-trash"></i>
-                                        </button>
-                                    </div>
-                                </td>
+                            <td>
+                                <div class="icons">
+                                    <button class="view" title="View" id="view" data-toggle="tooltip">
+                                        <i class="fa fa-eye"></i>
+                                    </button>
+                                </div>
+                                <div class="icons">
+                                    <button class="edit" title="Edit" id="edit" data-toggle="tooltip"><i
+                                            class="fa fa-edit "></i>
+                                    </button>
+                                </div>
+                                <div class="icons">
+                                    <button class="delete" title="Delete" id="delete" data-toggle="tooltip"><i
+                                            class="fa fa-trash"></i>
+                                    </button>
+                                </div>
+                            </td>
 
-                            </tr>
+                        </tr>
                         <?php endwhile; ?>
                     </tbody>
                 </table>
