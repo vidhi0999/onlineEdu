@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 include_once('../php/database.php');
 include('./student-sidebar.php');
 ?>
