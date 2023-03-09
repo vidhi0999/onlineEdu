@@ -383,6 +383,24 @@ body {
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
 }
 
+.courses .head-title .left h3 {
+  float: left;
+  display: flex;
+  font-size: 30px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: var(--dark);
+}
+
+.courses .head-title a {
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
+  cursor: pointer;
+  padding: 0.375rem 0.75rem;
+  border-radius: 0.25rem;
+}
+
 .table-title {
   padding-bottom: 60px;
   margin: 0 0 10px;
@@ -434,6 +452,7 @@ table.table th i {
   font-size: 13px;
   margin: 10px;
   cursor: pointer;
+  padding: 0.375rem 0.75rem;
 }
 
 table.table th {
@@ -461,14 +480,12 @@ table.table td a {
 }
 
 table.table td .icons {
-  /* color: #a0a5b1; */
   display: inline-block;
-  margin: 0 5px;
+  margin: 0 3px;
 }
 
 table.table td .view i {
   color: #03a9f4;
-  border: none;
 }
 
 table.table td .edit i {
@@ -480,7 +497,7 @@ table.table td .delete i {
 }
 
 table.table td i {
-  font-size: 17px;
+  font-size: 20px;
 }
 
 .pagination {

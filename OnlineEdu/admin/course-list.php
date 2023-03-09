@@ -36,11 +36,14 @@ if (empty($adminuser)) {
                     <div class="left">
                         <h3>List of Courses</h3>
                     </div>
-                </div>
 
-                <div class="right-plus">
-                    <a href="" id="create_new" class="plus"><i class=" fa fa-plus"></i> Create
-                        New</a>
+
+                    <!-- <div class="right-plus"> -->
+                    <a href="" id="create_new" class="plus">
+                        <div class="right-plus"><i class=" fa fa-plus"></i> Create
+                            New
+                        </div>
+                    </a>
                 </div>
 
                 <hr>
@@ -95,52 +98,55 @@ if (empty($adminuser)) {
                         $qry = $conn->query("SELECT c.*, concat(t.lastname,', ', t.firstname, COALESCE(concat(' ', t.middlename),'')) as `tutor` from `course_list` c inner join `tutor_list` t on c.tutor_id = t.id where c.delete_flag = 0  order by c.`name` asc ");
                         while ($row = $qry->fetch_assoc()):
                             ?>
-                        <tr>
-                            <td class="text-center">
-                                <?php echo $i++; ?>
-                            </td>
-                            <td>
-                                <?php echo date("Y-m-d H:i", strtotime($row['date_created'])) ?>
-                            </td>
-                            <td>
-                                <img src="../images/girl.jpeg" alt="Course Logo" class="course-image">
-                            </td>
-                            <td>
-                                <?php echo $row['tutor'] ?>
-                            </td>
-                            <td>
-                                <?php echo $row['name'] ?>
-                            </td>
+                            <tr>
+                                <td class="text-center">
+                                    <?php echo $i++; ?>
+                                </td>
+                                <td>
+                                    <?php echo date("Y-m-d H:i", strtotime($row['date_created'])) ?>
+                                </td>
+                                <td>
+                                    <img src="../images/girl.jpeg" alt="Course Logo" class="course-image">
+                                </td>
+                                <td>
+                                    <?php echo $row['tutor'] ?>
+                                </td>
+                                <td>
+                                    <?php echo $row['name'] ?>
+                                </td>
 
-                            <td class="text-center">
-                                <?php if ($row['status'] == 0): ?>
-                                <span
-                                    style=" background-color: red;color: white;  padding: 2px 4px; text-align: center; border-radius: 4px;">Inactive</span>
-                                <?php else: ?>
-                                <span
-                                    style=" background-color: green;color: white;  padding: 2px 4px; text-align: center; border-radius: 4px;">Active</span>
-                                <?php endif; ?>
-                            </td>
+                                <td class="text-center">
+                                    <?php if ($row['status'] == 0): ?>
+                                        <span
+                                            style=" background-color: red;color: white;  padding: 0.200rem 0.40rem;text-align: center; border-radius: 4px;">Inactive</span>
+                                    <?php else: ?>
+                                        <span
+                                            style=" background-color: green;color: white;  padding:0.200rem 0.40rem;  text-align: center; border-radius: 4px;">Active</span>
+                                    <?php endif; ?>
+                                </td>
 
-                            <td>
-                                <div class="icons">
-                                    <button class="view" title="View" id="view" data-toggle="tooltip">
-                                        <i class="fa fa-eye"></i>
-                                    </button>
-                                </div>
-                                <div class="icons">
-                                    <button class="edit" title="Edit" id="edit" data-toggle="tooltip"><i
-                                            class="fa fa-edit "></i>
-                                    </button>
-                                </div>
-                                <div class="icons">
-                                    <button class="delete" title="Delete" id="delete" data-toggle="tooltip"><i
-                                            class="fa fa-trash"></i>
-                                    </button>
-                                </div>
-                            </td>
+                                <td>
+                                    <div class="icons">
+                                        <button class="view" title="View" id="view" data-toggle="tooltip"
+                                            style="border:none; background-color:inherit">
+                                            <i style=" padding: 0.100rem 0.10rem;text-align:" class="fa fa-eye"></i>
+                                        </button>
+                                    </div>
+                                    <div class="icons">
+                                        <button class="edit" title="Edit" id="edit" data-toggle="tooltip"
+                                            style="border:none;background-color:inherit"><i style=" padding: 0.100rem
+                                        0.10rem;text-align:" class="fa fa-edit "></i>
+                                        </button>
+                                    </div>
+                                    <div class="icons">
+                                        <button class="delete" title="Delete" id="delete" data-toggle="tooltip"
+                                            style="border:none ;background-color:inherit"><i style=" padding: 0.100rem
+                                        0.10rem;text-align:" class="fa fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </td>
 
-                        </tr>
+                            </tr>
                         <?php endwhile; ?>
                     </tbody>
                 </table>
@@ -165,7 +171,7 @@ if (empty($adminuser)) {
     </section>
     <!-- CONTENT -->
 
-    <!-- <script src="../js/script.js"></script> -->
+    <script src="../js/script.js"></script>
 </body>
 
 </html>
