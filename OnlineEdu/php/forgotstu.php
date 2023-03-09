@@ -18,7 +18,6 @@
             // echo "Enter valid details";
             header("location:forgotstu.php?error=Enter valid details");
         }
-    //vrujal added
 
 ?>
 <!DOCTYPE html>
