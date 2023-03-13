@@ -52,6 +52,7 @@ if (empty($adminuser)) {
                             <i class=" fa fa-plus"></i> Create New
                         </div>
                     </button>
+
                     <div class="modal fade" id="form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                         aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -62,6 +63,7 @@ if (empty($adminuser)) {
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
+
                                 <form method="POST">
                                     <div class="modal-body">
                                         <div class="form-group">
@@ -194,32 +196,53 @@ if (empty($adminuser)) {
                                         onclick="ChangeOrderStatus('<?php $row['id'] ?>')">Active
                                     </button>
                                 </span>
-
-                                <!-- <span
-                                            style=" background-color: green;color: white;  padding:0.200rem 0.40rem;  text-align: center; border-radius: 4px;">Active</span> -->
                                 <?php endif; ?>
                             </td>
 
                             <td>
                                 <div class="icons">
-                                    <button class="view" title="View" id="view" data-toggle="tooltip"
+                                    <button class="view" title="View" id="view" data-toggle="modal" type="button"
+                                        data-id="<?php echo $row['id'] ?>" data-target=" #view"
                                         style="border:none; background-color:inherit">
                                         <i style=" padding: 0.100rem 0.10rem;" class="fa fa-eye"></i>
                                     </button>
+
                                 </div>
                                 <div class="icons">
-                                    <button class="edit" title="Edit" id="edit" data-toggle="tooltip"
-                                        style="border:none;background-color:inherit"><i style=" padding: 0.100rem
+                                    <button class="edit" title="Edit" id="edit" data-toggle="modal" type="button"
+                                        data-target="#edit" style=" border:none;background-color:inherit"><i style=" padding: 0.100rem
                                         0.10rem;" class="fa fa-edit "></i>
                                     </button>
                                 </div>
                                 <div class="icons">
-                                    <button class="delete" title="Delete" id="delete" data-toggle="tooltip"
-                                        style="border:none ;background-color:inherit"><i style=" padding: 0.100rem
+                                    <button class="delete" title="Delete" id="delete" data-toggle="modal" type="button"
+                                        data-target="#delete" style=" border:none ;background-color:inherit"><i style=" padding: 0.100rem
                                         0.10rem;" class="fa fa-trash"></i>
                                     </button>
                                 </div>
                             </td>
+
+
+                            <div class="modal fade" id="view" tabindex="-1" role="dialog"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header border-bottom-0">
+                                            <h5 class="modal-title" id="exampleModalLabel">Course Details</h5>
+                                        </div>
+                                        <form method="POST">
+                                            <div class="modal-body">
+                                                <div class="form-group">
+
+                                                    <?php
+                                                                        include('./course_view.php') 
+                                                                        ?>
+                                                </div>
+
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
 
                         </tr>
                         <?php endwhile; ?>
@@ -233,8 +256,6 @@ if (empty($adminuser)) {
                         <li class="page-item"><a href="#" class="page-link">1</a></li>
                         <li class="page-item active"><a href="#" class="page-link">2</a></li>
                         <li class="page-item "><a href=" #" class="page-link">3</a></li>
-                        <!-- <li class="page-item"><a href="#" class="page-link">4</a></li>
-                        <li class="page-item"><a href="#" class="page-link">5</a></li> -->
                         <li class="page-item"><a href="#" class="page-link">Next</a></li>
                     </ul>
                 </div>
@@ -246,7 +267,8 @@ if (empty($adminuser)) {
     </section>
     <!-- CONTENT -->
 
-    <script src="../js/script.js"></script>
+    <script src="../js/script.js">
+    </script>
 </body>
 
 </html>

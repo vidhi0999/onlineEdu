@@ -1,6 +1,13 @@
 <?php
-include_once('../php/database.php');
+require_once('../php/database.php');
+$adminuser = $_SESSION['adminuser'];
+if (empty($adminuser)) {
+    header("location:index.php");
+
+}
+
 if (isset($_GET['id']) && $_GET['id'] > 0) {
+
     $qry = $conn->query("SELECT c.*, concat(t.lastname,', ', t.firstname, COALESCE(concat(' ', t.middlename),'')) as `tutor` from `course_list` c inner join `tutor_list` t on c.tutor_id = t.id where c.id = '{$_GET['id']}' ");
     if ($qry->num_rows > 0) {
         foreach ($qry->fetch_assoc() as $k => $v) {
@@ -8,7 +15,9 @@ if (isset($_GET['id']) && $_GET['id'] > 0) {
         }
     }
 }
+
 ?>
+
 <style>
     #uni_modal .modal-footer {
         display: none;
@@ -21,30 +30,32 @@ if (isset($_GET['id']) && $_GET['id'] > 0) {
         object-position: center center;
     }
 </style>
+
 <div class="container-fluid">
     <center>
         <!-- validate_image(isset($logo_path) ? $logo_path : '') -->
         <img src="../images/girl.jpeg" alt=" Course=logo" class="img-thumbnail border border-dark bg-gradient-dark"
             id="course-logo">
     </center>
+
     <dl>
-        <dt class="text-muted">Tutor</dt>
+        <dt class="text-muted">Tutor :</dt>
         <dd class="pl-4">
-            <?= isset($tutor) ? strtoupper($tutor) : "" ?>
+            <?php isset($tutor) ? strtoupper($tutor) : "" ?>
         </dd>
-        <dt class="text-muted">Course</dt>
+        <dt class="text-muted">Course :</dt>
         <dd class="pl-4">
-            <?= isset($name) ? $name : "" ?>
+            <?php isset($name) ? $name : "" ?>
         </dd>
-        <dt class="text-muted">Description</dt>
+        <dt class="text-muted">Description :</dt>
         <dd class="pl-4">
-            <?= isset($description) ? str_replace(["\n\r", "\n", "\r"], "<br/>", $description) : '' ?>
+            <?php isset($description) ? str_replace(["\n\r", "\n", "\r"], "<br/>", $description) : '' ?>
         </dd>
-        <dt class="text-muted">Your Experience for this Course</dt>
+        <dt class="text-muted">Your Experience for this Course :</dt>
         <dd class="pl-4">
-            <?= isset($experience) ? $experience : "" ?>
+            <?php isset($experience) ? $experience : "" ?>
         </dd>
-        <dt class="text-muted">Status</dt>
+        <dt class="text-muted">Status :</dt>
         <dd class="pl-4">
             <?php if ($row['status'] == 0): ?>
                 <span
