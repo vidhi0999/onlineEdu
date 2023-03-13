@@ -56,3 +56,16 @@ $(document).ready(function () {
 //   var popup = document.getElementById("myPopup");
 //   popup.classList.toggle("show");
 // }
+
+function ChangeOrderStatus(id) {
+  $.ajax({
+    url: "./controller/updateCourseStatus.php",
+    method: "post",
+    data: { record: id },
+    success: function (data) {
+      alert("Course Status updated successfully");
+      $("form").trigger("reset");
+      showOrders();
+    },
+  });
+}

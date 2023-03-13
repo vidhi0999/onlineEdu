@@ -2,7 +2,7 @@
 session_start();
 $adminuser = $_SESSION['adminuser'];
 if (empty($adminuser)) {
-    header("location:admin-login.php");
+    header("location:index.php");
 }
 
 ?>

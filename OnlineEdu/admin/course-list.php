@@ -3,7 +3,7 @@ session_start();
 include_once('../php/database.php');
 $adminuser = $_SESSION['adminuser'];
 if (empty($adminuser)) {
-    header("location:admin-login.php");
+    header("location:index.php");
 }
 ?>
 
@@ -117,11 +117,23 @@ if (empty($adminuser)) {
 
                                 <td class="text-center">
                                     <?php if ($row['status'] == 0): ?>
-                                        <span
-                                            style=" background-color: red;color: white;  padding: 0.200rem 0.40rem;text-align: center; border-radius: 4px;">Inactive</span>
+                                        <span>
+                                            <button
+                                                style=" cursor:pointer; background-color:red; color: white; font-size: 17px;  padding:0.400rem 0.60rem;  text-align: center; border:none; border-radius: 4px;"
+                                                onclick="ChangeOrderStatus('<?php $row['id'] ?>')">Inactive
+                                            </button>
+                                        </span>
+
                                     <?php else: ?>
-                                        <span
-                                            style=" background-color: green;color: white;  padding:0.200rem 0.40rem;  text-align: center; border-radius: 4px;">Active</span>
+                                        <span>
+                                            <button
+                                                style=" cursor:pointer; background-color:green; color: white; font-size: 17px;  padding:0.400rem 0.60rem;  text-align: center; border:none; border-radius: 4px;"
+                                                onclick="ChangeOrderStatus('<?php $row['id'] ?>')">Active
+                                            </button>
+                                        </span>
+
+                                        <!-- <span
+                                            style=" background-color: green;color: white;  padding:0.200rem 0.40rem;  text-align: center; border-radius: 4px;">Active</span> -->
                                     <?php endif; ?>
                                 </td>
 
