@@ -14,10 +14,10 @@ if (isset($_POST['submit'])) {
             $_SESSION['adminuser'] = $adminuser;
             header("location:admin-dashboard.php");
         } elseif ($row['email'] === $email && $row['pass'] !== $pass) {
-            header("location:admin-login.php?error=Enter correct password");
+            header("location:index.php?error=Enter correct password");
         }
     } else {
-        header("location:admin-login.php?error=You are not registered");
+        header("location:index.php?error=You are not registered");
     }
     // $conn->close();   
 }
@@ -47,7 +47,7 @@ if (isset($_POST['submit'])) {
 
     <div class="wrapper">
         <div class="container">
-            <form action="admin-login.php" method="POST">
+            <form action="index.php" method="POST">
                 <header>Admin Login</header>
                 <?php if (isset($_GET['error'])) { ?>
                     <div class="error">
