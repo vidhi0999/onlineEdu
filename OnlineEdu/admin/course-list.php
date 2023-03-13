@@ -14,7 +14,6 @@ if (empty($adminuser)) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
@@ -163,88 +162,88 @@ if (empty($adminuser)) {
                         $qry = $conn->query("SELECT c.*, concat(t.lastname,', ', t.firstname, COALESCE(concat(' ', t.middlename),'')) as `tutor` from `course_list` c inner join `tutor_list` t on c.tutor_id = t.id where c.delete_flag = 0  order by c.`name` asc ");
                         while ($row = $qry->fetch_assoc()):
                             ?>
-                        <tr>
-                            <td class="text-center">
-                                <?php echo $i++; ?>
-                            </td>
-                            <td>
-                                <?php echo date("Y-m-d H:i", strtotime($row['date_created'])) ?>
-                            </td>
-                            <td>
-                                <img src="../images/girl.jpeg" alt="Course Logo" class="course-image">
-                            </td>
-                            <td>
-                                <?php echo $row['tutor'] ?>
-                            </td>
-                            <td>
-                                <?php echo $row['name'] ?>
-                            </td>
+                            <tr>
+                                <td class="text-center">
+                                    <?php echo $i++; ?>
+                                </td>
+                                <td>
+                                    <?php echo date("Y-m-d H:i", strtotime($row['date_created'])) ?>
+                                </td>
+                                <td>
+                                    <img src="../images/girl.jpeg" alt="Course Logo" class="course-image">
+                                </td>
+                                <td>
+                                    <?php echo $row['tutor'] ?>
+                                </td>
+                                <td>
+                                    <?php echo $row['name'] ?>
+                                </td>
 
-                            <td class="text-center">
-                                <?php if ($row['status'] == 0): ?>
-                                <span>
-                                    <button
-                                        style=" cursor:pointer; background-color:red; color: white; font-size: 17px;  padding:0.400rem 0.60rem;  text-align: center; border:none; border-radius: 4px;"
-                                        onclick="ChangeOrderStatus('<?php $row['id'] ?>')">Inactive
-                                    </button>
-                                </span>
+                                <td class="text-center">
+                                    <?php if ($row['status'] == 0): ?>
+                                        <span>
+                                            <button
+                                                style=" cursor:pointer; background-color:red; color: white; font-size: 17px;  padding:0.400rem 0.60rem;  text-align: center; border:none; border-radius: 4px;"
+                                                onclick="ChangeOrderStatus('<?php $row['id'] ?>')">Inactive
+                                            </button>
+                                        </span>
 
-                                <?php else: ?>
-                                <span>
-                                    <button
-                                        style=" cursor:pointer; background-color:green; color: white; font-size: 17px;  padding:0.400rem 0.60rem;  text-align: center; border:none; border-radius: 4px;"
-                                        onclick="ChangeOrderStatus('<?php $row['id'] ?>')">Active
-                                    </button>
-                                </span>
-                                <?php endif; ?>
-                            </td>
+                                    <?php else: ?>
+                                        <span>
+                                            <button
+                                                style=" cursor:pointer; background-color:green; color: white; font-size: 17px;  padding:0.400rem 0.60rem;  text-align: center; border:none; border-radius: 4px;"
+                                                onclick="ChangeOrderStatus('<?php $row['id'] ?>')">Active
+                                            </button>
+                                        </span>
+                                    <?php endif; ?>
+                                </td>
 
-                            <td>
-                                <div class="icons">
-                                    <button class="view" title="View" id="view" data-toggle="modal" type="button"
-                                        data-id="<?php echo $row['id'] ?>" data-target=" #view"
-                                        style="border:none; background-color:inherit">
-                                        <i style=" padding: 0.100rem 0.10rem;" class="fa fa-eye"></i>
-                                    </button>
+                                <td>
+                                    <div class="icons">
+                                        <button class="view" title="View" id="view" data-toggle="modal" type="button"
+                                            data-id="<?php echo $row['id'] ?>" data-target=" #view"
+                                            style="border:none; background-color:inherit">
+                                            <i style=" padding: 0.100rem 0.10rem;" class="fa fa-eye"></i>
+                                        </button>
 
-                                </div>
-                                <div class="icons">
-                                    <button class="edit" title="Edit" id="edit" data-toggle="modal" type="button"
-                                        data-target="#edit" style=" border:none;background-color:inherit"><i style=" padding: 0.100rem
+                                    </div>
+                                    <div class="icons">
+                                        <button class="edit" title="Edit" id="edit" data-toggle="modal" type="button"
+                                            data-target="#edit" style=" border:none;background-color:inherit"><i style=" padding: 0.100rem
                                         0.10rem;" class="fa fa-edit "></i>
-                                    </button>
-                                </div>
-                                <div class="icons">
-                                    <button class="delete" title="Delete" id="delete" data-toggle="modal" type="button"
-                                        data-target="#delete" style=" border:none ;background-color:inherit"><i style=" padding: 0.100rem
+                                        </button>
+                                    </div>
+                                    <div class="icons">
+                                        <button class="delete" title="Delete" id="delete" data-toggle="modal" type="button"
+                                            data-target="#delete" style=" border:none ;background-color:inherit"><i style=" padding: 0.100rem
                                         0.10rem;" class="fa fa-trash"></i>
-                                    </button>
-                                </div>
-                            </td>
+                                        </button>
+                                    </div>
+                                </td>
 
 
-                            <div class="modal fade" id="view" tabindex="-1" role="dialog"
-                                aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header border-bottom-0">
-                                            <h5 class="modal-title" id="exampleModalLabel">Course Details</h5>
+                                <div class="modal fade" id="view" tabindex="-1" role="dialog"
+                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header border-bottom-0">
+                                                <h5 class="modal-title" id="exampleModalLabel">Course Details</h5>
+                                            </div>
+                                            <form method="POST">
+                                                <div class="modal-body">
+                                                    <div class="form-group">
+
+                                                        <?php
+                                                        include('./course_view.php')
+                                                            ?>
+                                                    </div>
+
+                                            </form>
                                         </div>
-                                        <form method="POST">
-                                            <div class="modal-body">
-                                                <div class="form-group">
-
-                                                    <?php
-                                                                        include('./course_view.php') 
-                                                                        ?>
-                                                </div>
-
-                                        </form>
                                     </div>
                                 </div>
-                            </div>
 
-                        </tr>
+                            </tr>
                         <?php endwhile; ?>
                     </tbody>
                 </table>
