@@ -8,6 +8,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/indexsty.css">
+    <!-- maulik-->
 </head>
 
 <body>
@@ -18,6 +19,7 @@
             <div class="line"></div>
             <p>OnlineEdu</p>
         </div>
+        <h1>done karo ne maulik vastarpara</h1>
         <div class="logo-space">
         </div>
     </header>
