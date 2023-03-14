@@ -40,12 +40,7 @@ if (empty($adminuser)) {
                     <div class="left">
                         <h3>List of Courses</h3>
                     </div>
-                    <!-- <div class="right-plus"> -->
-                    <!-- <a href="" id="create_new" class="plus">
-                        <div class="right-plus" data-toggle="modal" data-target="#form"><i class=" fa fa-plus"></i> Create
-                            New
-                        </div>
-                    </a> -->
+
                     <button type="button" class="btn" data-toggle="modal" data-target="#form">
                         <div class="right-plus" data-toggle="modal" data-target="#form">
                             <i class=" fa fa-plus"></i> Create New
@@ -200,13 +195,14 @@ if (empty($adminuser)) {
 
                                 <td>
                                     <div class="icons">
-                                        <button class="view" title="View" id="view" data-toggle="modal" type="button"
-                                            data-id="<?php echo $row['id'] ?>" data-target=" #view"
+                                        <button class="view" class="btn" title="View" id="view" data-toggle="modal"
+                                            type="button" data-id="<?php echo $row['id'] ?>" data-target=" #view"
                                             style="border:none; background-color:inherit">
                                             <i style=" padding: 0.100rem 0.10rem;" class="fa fa-eye"></i>
                                         </button>
 
                                     </div>
+
                                     <div class="icons">
                                         <button class="edit" title="Edit" id="edit" data-toggle="modal" type="button"
                                             data-target="#edit" style=" border:none;background-color:inherit"><i style=" padding: 0.100rem
@@ -221,30 +217,32 @@ if (empty($adminuser)) {
                                     </div>
                                 </td>
 
-
                                 <div class="modal fade" id="view" tabindex="-1" role="dialog"
                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                         <div class="modal-content">
-                                            <div class="modal-header border-bottom-0">
-                                                <h5 class="modal-title" id="exampleModalLabel">Course Details</h5>
-                                            </div>
-                                            <form method="POST">
-                                                <div class="modal-body">
-                                                    <div class="form-group">
-
-                                                        <?php
-                                                        include('./course_view.php')
-                                                            ?>
-                                                    </div>
-
-                                            </form>
+                                            <?php
+                                            include("course_view.php");
+                                            ?>
                                         </div>
                                     </div>
                                 </div>
 
+
+
                             </tr>
+                            <div class="modal fade" id="edit" tabindex="-1" role="dialog"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <?php
+                                        include("course_edit.php");
+                                        ?>
+                                    </div>
+                                </div>
+                            </div>
                         <?php endwhile; ?>
+
                     </tbody>
                 </table>
 

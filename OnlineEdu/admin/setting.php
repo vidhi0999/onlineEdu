@@ -23,7 +23,6 @@ if (empty($adminuser)) {
 </head>
 
 <body>
-
     <?php
     include('./header.php');
     ?>

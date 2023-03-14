@@ -49,72 +49,13 @@ $(document).ready(function () {
     });
 });
 
-// for view in course list
+// course_view
 
-// change course status
-// function ChangeOrderStatus(id) {
-//   $.ajax({
-//     url: "./controller/updateCourseStatus.php",
-//     method: "post",
-//     data: { record: id },
-//     success: function (data) {
-//       alert("Course Status updated successfully");
-//       $("form").trigger("reset");
-//       showOrders();
-//     },
+// $(document).ready(function () {
+//   $(".view_data").click(function () {
+//     uni_modal(
+//       "<i class='fa fa-bars'></i> Course Details",
+//       "../course_view.php?id=" + $(this).attr("data-id")
+//     );
 //   });
-// }
-
-$(document).ready(function () {
-  // $(".delete_data").click(function () {
-  //   _conf("Are you sure to delete this Course permanently?", "delete_course", [
-  //     $(this).attr("data-id"),
-  //   ]);
-  // });
-
-  $(".view_data").click(function () {
-    uni_modal(
-      "<i class='fa fa-bars'></i> Course Details",
-      "../course_view.php?id=" + $(this).attr("data-id")
-    );
-  });
-  // $(".edit_data").click(function () {
-  //   uni_modal(
-  //     "<i class='fa fa-edit'></i> Update Course Details",
-  //     "courses/manage_course.php?id=" + $(this).attr("data-id")
-  //   );
-  // });
-  // $('.table').dataTable({
-  //     columnDefs: [{
-  //         orderable: false,
-  //         targets: [2, 6]
-  //     }],
-  //     order: [0, 'asc']
-  // });
-  // $('.dataTable td,.dataTable th').addClass('py-1 px-2 align-middle')
-});
-
-// function delete_course($id) {
-//     start_loader();
-//     $.ajax({
-//         url: _base_url_ + "classes/Master.php?f=delete_course",
-//         method: "POST",
-//         data: {
-//             id: $id
-//         },
-//         dataType: "json",
-//         error: err => {
-//             console.log(err)
-//             alert_toast("An error occured.", 'error');
-//             end_loader();
-//         },
-//         success: function(resp) {
-//             if (typeof resp == 'object' && resp.status == 'success') {
-//                 location.reload();
-//             } else {
-//                 alert_toast("An error occured.", 'error');
-//                 end_loader();
-//             }
-//         }
-//     })
-// }
+// });

@@ -1,11 +1,14 @@
 <?php
 session_start();
+include_once('../php/database.php');
 $adminuser = $_SESSION['adminuser'];
 if (empty($adminuser)) {
     header("location:index.php");
 }
-
 ?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,7 +16,10 @@ if (empty($adminuser)) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
     <!-- My CSS -->
     <link rel="stylesheet" href="../css/dashboard.css">
     <title>Admin</title>
@@ -33,14 +39,16 @@ if (empty($adminuser)) {
 
         <!-- MAIN -->
         <main>
-            <div class="head-title">
-                <div class="left">
-                    <h1>List of Tutors</h1>
-                </div>
-            </div>
-
-            <hr>
             <div class="courses">
+                <div class="head-title">
+                    <div class="left">
+                        <h3>List of Tutors</h3>
+                    </div>
+                </div>
+
+
+                <hr>
+
                 <div class="table-title">
                     <div class="show-entries">
                         <span>Show</span>
@@ -54,8 +62,8 @@ if (empty($adminuser)) {
                     </div>
 
                     <div class="search-box">
-                        <span class="input-group-addon"><i class="fa fa-search"></i></span>
-                        <input type="text" class="form-control" placeholder="Search&hellip;">
+                        <span class="input-group-addon"><i class="fa fa-search">
+                                <input type="text" placeholder="Search&hellip;"></i></span>
                     </div>
                 </div>
 
@@ -64,12 +72,12 @@ if (empty($adminuser)) {
                 <table class="table">
                     <colgroup>
                         <col width="5%">
-                        <col width="15%">
+                        <col width="17.5%">
                         <col width="10%">
-                        <col width="20%">
                         <col width="25%">
                         <col width="15%">
                         <col width="10%">
+                        <col width="15%">
                     </colgroup>
 
 
@@ -79,95 +87,92 @@ if (empty($adminuser)) {
                         <tr>
                             <th>#</th>
                             <th>Date Created<i class="fa fa-sort"></i></th>
-                            <th>Avatar<i class="fa fa-sort"></i></th>
+                            <th>Avatar</th>
                             <th>Name<i class="fa fa-sort"></i></th>
                             <th>Email<i class="fa fa-sort"></i></th>
-                            <th>Status<i class="fa fa-sort"></i></th>
+                            <th>Status</th>
                             <th>Action</th>
                         </tr>
 
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Fran Wilson</td>
-                            <td>C/ Araquil, 67</td>
-                            <td>Madrid</td>
-                            <td>28023</td>
-                            <td>Spain</td>
-                            <td>
-                                <a href="#" class="view" title="View" data-toggle="tooltip"><i
-                                        class="fa fa-eye"></i></a>
-                                <a href="#" class="edit" title="Edit" data-toggle="tooltip"><i
-                                        class="fa fa-edit "></i></a>
-                                <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i
-                                        class="fa fa-trash"></i></a>
-                            </td>
-                        </tr>
+                        <?php
+                        $i = 1;
+                        $qry = $conn->query("SELECT *, concat(firstname,' ', coalesce(concat(middlename,' '), '') , lastname) as `name` from `tutor_list` where delete_flag = 0 order by `name` asc ");
+                        while ($row = $qry->fetch_assoc()):
+                            ?>
+                            <tr>
+                                <td class="text-center">
+                                    <?php echo $i++; ?>
+                                </td>
+                                <td>
+                                    <?php echo date("Y-m-d H:i", strtotime($row['date_updated'])) ?>
+                                </td>
+                                <td class="text-center">
+                                    <img src="" alt="" class="img-thumbnail rounded-circle tutor-avatar">
+                                </td>
+                                <td>
+                                    <?php echo $row['name'] ?>
+                                </td>
+                                <td>
+                                    <?php echo $row['email'] ?>
+                                </td>
+                                <td class="text-center">
+                                    <?php if ($row['status'] == 0): ?>
+                                        <span class="badge badge-light bg-gradient-light border px-3 rounded-pill">Waiting For
+                                            Approval</span>
+                                    <?php elseif ($row['status'] == 1): ?>
+                                        <span class="badge badge-primary bg-gradient-primary px-3 rounded-pill">Verified</span>
+                                    <?php elseif ($row['status'] == 2): ?>
+                                        <span class="badge badge-danger bg-gradient-danger px-3 rounded-pill">Blocked</span>
+                                    <?php else: ?>
+                                        <span
+                                            class="badge badge-secondary bg-gradient-secondary px-3 rounded-pill">Inactive</span>
+                                    <?php endif; ?>
+                                </td>
+                                </td>
+                                <td align="center">
+                                    <div class="icons">
+                                        <button class="view" class="btn" title="View" id="view" data-toggle="modal"
+                                            type="button" data-id="<?php echo $row['id'] ?>" data-target=" #view"
+                                            style="border:none; background-color:inherit">
+                                            <i style=" padding: 0.100rem 0.10rem;" class="fa fa-eye"></i>
+                                        </button>
 
-                        <tr>
-                            <td>1</td>
-                            <td>Fran Wilson</td>
-                            <td>C/ Araquil, 67</td>
-                            <td>Madrid</td>
-                            <td>28023</td>
-                            <td>Spain</td>
-                            <td>
-                                <a href="#" class="view" title="View" data-toggle="tooltip"><i
-                                        class="fa fa-eye"></i></a>
-                                <a href="#" class="edit" title="Edit" data-toggle="tooltip"><i
-                                        class="fa fa-edit "></i></a>
-                                <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i
-                                        class="fa fa-trash"></i></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center">2</td>
-                            <td>Date</td>
-                            <td class="text-center">
-                                <img src="" alt="Course Logo"
-                                    class="img-thumbnail border border-dark p-0 rounded-0 course-logo">
-                            </td>
-                            <td>tutor-name</td>
-                            <td>email</td>
-                            <td class="text-center">
-                                <span
-                                    style=" background-color:blue;color: white;  padding: 2px 4px; text-align: center; border-radius: 4px;">Verified</span>
+                                    </div>
 
-                            </td>
-                            <td align="center">
+                                    <div class="icons">
+                                        <button class="edit" title="Edit" id="edit" data-toggle="modal" type="button"
+                                            data-target="#edit" style=" border:none;background-color:inherit"><i style=" padding: 0.100rem
+                                        0.10rem;" class="fa fa-edit "></i>
+                                        </button>
+                                    </div>
+                                </td>
+                                <div class="modal fade" id="view" tabindex="-1" role="dialog"
+                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <?php
+                                            include("course_view.php");
+                                            ?>
+                                        </div>
+                                    </div>
+                                </div>
 
-                                <!-- <button type="button"
-                                        class="btn btn-flat p-1 btn-default btn-sm dropdown-toggle dropdown-icon"
-                                        data-toggle="dropdown">
-                                        Action
-                                        <span class="sr-only">Toggle Dropdown</span>
-                                    </button>
 
-                                    <div class="dropdown-menu" role="menu">
-                                        <a class="dropdown-item view_data" href="javascript:void(0)" data-id=""><span
-                                                class="fa fa-eye text-dark"></span>
-                                            View</a>
 
-                                        <div class="dropdown-divider"></div>
-
-                                        <a class="dropdown-item edit_data" href="javascript:void(0)" data-id=""><span
-                                                class="fa fa-edit text-primary"></span> Edit</a>
-
-                                        <div class="dropdown-divider"></div>
-
-                                        <a class="dropdown-item delete_data" href="javascript:void(0)" data-id=""><span
-                                                class="fa fa-trash text-danger"></span> Delete</a>
-                                    </div> -->
-
-                                <a href="#" class="view" title="View" data-toggle="tooltip"><i
-                                        class="fa fa-eye"></i></a>
-                                <a href="#" class="edit" title="Edit" data-toggle="tooltip"><i
-                                        class="fa fa-edit "></i></a>
-                                <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i
-                                        class="fa fa-trash"></i></a>
-                            </td>
-                        </tr>
+                            </tr>
+                            <div class="modal fade" id="edit" tabindex="-1" role="dialog"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <?php
+                                        include("course_edit.php");
+                                        ?>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endwhile; ?>
 
 
                     </tbody>
