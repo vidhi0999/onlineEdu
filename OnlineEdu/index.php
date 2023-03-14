@@ -138,7 +138,9 @@
                     <div class="info-sub-details">
                         <h1>Take the next step toward your personal and professional goals with OnlineEdu.</h1>
                         <p>Join now to receive personalized recommendations from the full OnlineEdu catalog.</p>
-                        <!-- <button>Join for Free</button> -->
+                        <a href="php/loginstu.php">
+                            <button>Join for Free</button>
+                        </a>
                     </div>
                 </div>
             </div>
