@@ -434,8 +434,8 @@ table {
   width: 100%;
 }
 
-table.table tr th,
-table.table tr td {
+th,
+td {
   border: 2px solid #dee2e6;
   text-align: center;
 }
@@ -534,6 +534,14 @@ table.table td i {
   font-size: 13px;
 }
 
+.btn {
+  font-weight: 700;
+  height: 36px;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  cursor: default;
+}
 /* MAIN --- TUTOR LIST */
 
 /* create-new-course */
