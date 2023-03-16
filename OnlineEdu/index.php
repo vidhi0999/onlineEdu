@@ -43,11 +43,11 @@
                         </a>
                     </div> -->
                     <div class="portal1">
-                        <a href="">
+                        <a href="./php/viewcourses.php">
                             <h1>Faculty</h1>
                         </a>
-                        <a href=""><i class='fas fa-user-tie' style='font-size:9rem'></i></a>
-                        <a href="">
+                        <a href="./php/viewcourses.php"><i class='fas fa-user-tie' style='font-size:9rem'></i></a>
+                        <a href="./php/viewcourses.php">
                             <p style="font-style: italic;">click here to view faculties and their courses. </p>
                         </a>
                     </div>
