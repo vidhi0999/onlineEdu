@@ -58,7 +58,7 @@ if (empty($adminuser)) {
                                     </button>
                                 </div>
 
-                                <form action="code.php" method="POST">
+                                <form action="code.php" method="POST" enctype="multipart/form-data">
                                     <div class="modal-body">
                                         <div class="form-group">
                                             <label for="email1">Tutor</label>
@@ -72,11 +72,11 @@ if (empty($adminuser)) {
                                         </div>
                                         <div class="form-group">
                                             <label for="CourseName">Course Name</label>
-                                            <input type="text" class="form-control" id="courseName">
+                                            <input type="text" name="course_name" class="form-control" id="courseName">
                                         </div>
                                         <div class="form-group">
                                             <label for="desc">Description</label>
-                                            <input type="text" class="form-control" id="desc">
+                                            <input type="text" name="descrp" class="form-control" id="desc">
                                         </div>
                                         <div class="form-group">
                                             <label for="exp">Experience</label>
@@ -92,12 +92,12 @@ if (empty($adminuser)) {
                                             </select>
                                         </div>
                                         <div class="form-group">
-                                            <label for="courseImg">Logo</label>
-                                            <input type="file" class="form-control" id="CourseImg">
+                                            <label for="courseImg">Tutor's image</label>
+                                            <input type="file" name="faculty_image" id="faculty_image" class="form-control">
                                         </div>
                                     </div>
                                     <div class="modal-footer border-top-0 d-flex justify-content-center">
-                                        <button type="submit" class="btn btn-success">Submit</button>
+                                        <button type="submit" name="save_course" class="btn btn-success">Submit</button>
                                     </div>
                                 </form>
                             </div>
