@@ -58,7 +58,7 @@ if (empty($adminuser)) {
                                     </button>
                                 </div>
 
-                                <form method="POST">
+                                <form action="code.php" method="POST">
                                     <div class="modal-body">
                                         <div class="form-group">
                                             <label for="email1">Tutor</label>
