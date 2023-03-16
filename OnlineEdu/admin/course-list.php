@@ -198,7 +198,13 @@ if (empty($adminuser)) {
                                         <button class="view" class="btn" title="View" id="view" data-toggle="modal"
                                             type="button" data-id="<?php echo $row['id'] ?>" data-target=" #view"
                                             style="border:none; background-color:inherit">
-                                            <i style=" padding: 0.100rem 0.10rem;" class="fa fa-eye"></i>
+                                            <a href="course_view.php?id=<?php 
+                                            // session_start(); 
+                                            echo $row['id'];
+                                            // $_SESSION['id'] = $row['id'];
+                                            ?>">
+                                                <i style=" padding: 0.100rem 0.10rem;" class="fa fa-eye"></i>
+                                        </a>
                                         </button>
 
                                     </div>
@@ -217,16 +223,17 @@ if (empty($adminuser)) {
                                     </div>
                                 </td>
 
-                                <div class="modal fade" id="view" tabindex="-1" role="dialog"
+                                 <!-- <div class="modal fade" id="view" tabindex="-1" role="dialog"
                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                         <div class="modal-content">
                                             <?php
-                                            include("course_view.php");
+                                            // include("course_view.php");
                                             ?>
+                                            
                                         </div>
                                     </div>
-                                </div>
+                                </div>  -->
 
 
 
