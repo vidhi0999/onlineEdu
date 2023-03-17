@@ -5,7 +5,6 @@ if (isset($_POST['save_course'])) {
     $description = $_POST['descrp'];
     $exp = $_POST['experience'];
     $images = $_POST["faculty_image"]['name'];
-    $tutorname = $_POST['tutor'];
     if (file_exists("upload/" . $_FILES["faculty_image"]["name"])) 
     {
         $store=$_FILES["faculty_image"]["name"];
@@ -15,7 +14,7 @@ if (isset($_POST['save_course'])) {
     } 
     
     else {
-        $query = "INSERT INTO course_list('name','description','experience','logo_path','tutor_name') VALUES('$coursename',' $description','$exp','$images', '$tutorname')";
+        $query = "INSERT INTO course_list('name','description','experience','logo_path') VALUES('$coursename',' $description','$exp','$images')";
         $query_run = mysqli_query($conn, $query);
         if ($query_run) {
             move_uploaded_file($_FILES["faculty_image"]["tmp_name"], "upload/" . $_FILES["faculty_image"]["name"]);
