@@ -34,12 +34,12 @@ if (isset($_GET['id']) && $_GET['id'] > 0) {
 
 
     <style>
-        #course-logo {
-            max-width: 100%;
-            max-height: 15em;
-            object-fit: scale-down;
-            object-position: center center;
-        }
+    #course-logo {
+        max-width: 100%;
+        max-height: 15em;
+        object-fit: scale-down;
+        object-position: center center;
+    }
     </style>
 </head>
 
@@ -97,11 +97,11 @@ if (isset($_GET['id']) && $_GET['id'] > 0) {
                             <dt class="text-muted">Status:</dt>
                             <dd class="pl-4">
                                 <?php if ($row1['status'] == 0): ?>
-                                    <span
-                                        style=" background-color: red;color: white;  padding: 2px 4px; text-align: center; border-radius: 4px;">Inactive</span>
+                                <span
+                                    style=" background-color: red;color: white;  padding: 2px 4px; text-align: center; border-radius: 4px;">Inactive</span>
                                 <?php else: ?>
-                                    <span
-                                        style=" background-color: green;color: white;  padding: 2px 4px; text-align: center; border-radius: 4px;">Active</span>
+                                <span
+                                    style=" background-color: green;color: white;  padding: 2px 4px; text-align: center; border-radius: 4px;">Active</span>
                                 <?php endif; ?>
                             </dd>
                         </dl>
