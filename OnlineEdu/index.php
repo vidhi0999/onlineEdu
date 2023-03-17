@@ -155,7 +155,7 @@
                         <p>Instructors from around the world teach students on OnlineEdu. We provide the tools
                             and skills to teach what you love.
                         </p>
-                        <a href="php/loginstu.php">
+                        <a href="">
                             <button>Contact Us</button>
                         </a>
                     </div>
