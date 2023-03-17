@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 08, 2023 at 04:26 PM
+-- Generation Time: Mar 17, 2023 at 06:48 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.1
 
@@ -65,9 +65,9 @@ CREATE TABLE `course_list` (
 --
 
 INSERT INTO `course_list` (`id`, `tutor_id`, `name`, `description`, `experience`, `status`, `logo_path`, `delete_flag`, `date_created`, `date_updated`) VALUES
-(1, 1, 'PHP', 'lets begin withe course', '5 Years', 1, 'uploads/courses/1.png?v=1652760072', 0, '2022-05-17 12:01:12', '2022-05-17 12:01:12'),
-(2, 1, 'MySQL', 'MySQL is an open-source relational database management system. Its name is a combination of \"My\", the name of co-founder Michael Widenius\'s daughter, and \"SQL\", the abbreviation for Structured Query Language.', '5 Years', 1, 'uploads/courses/2.png?v=1652760330', 0, '2022-05-17 12:05:30', '2022-05-17 12:05:30'),
-(3, 3, 'DBMS', 'Database management system', '5 Years', 0, 'uploads/courses/1.png?v=1652760072', 0, '2023-03-08 14:50:12', '2023-03-08 15:37:21');
+(1, 1, 'PHP', 'lets begin withe course', '5 Years', 0, './images/girl.jpeg', 0, '2022-05-17 12:01:12', '2023-03-17 09:45:56'),
+(2, 1, 'MySQL', 'MySQL is an open-source relational database management system. Its name is a combination of \"My\", the name of co-founder Michael Widenius\'s daughter, and \"SQL\", the abbreviation for Structured Query Language.', '5 Years', 1, 'uploads/courses/2.png?v=1652760330', 0, '2022-05-17 12:05:30', '2023-03-17 09:45:29'),
+(3, 3, 'DBMS', 'Database management system', '5 Years', 1, 'uploads/courses/1.png', 0, '2023-03-08 14:50:12', '2023-03-17 09:45:45');
 
 -- --------------------------------------------------------
 
@@ -119,9 +119,45 @@ CREATE TABLE `tutor_list` (
 --
 
 INSERT INTO `tutor_list` (`id`, `firstname`, `middlename`, `lastname`, `email`, `password`, `avatar`, `status`, `delete_flag`, `date_created`, `date_updated`) VALUES
-(1, 'Mark', 'D', 'Cooper', 'mcooper@gmail.com', 'c7162ff89c647f444fcaa5c635dac8c3', '', 1, 0, '2022-05-17 10:22:51', '2023-03-08 16:09:31'),
-(2, 'Claire', 'C', 'Blake', 'cblake@sample.com', '4744ddea876b11dcb1d169fadf494418', 'uploads/tutors/3.png?v=1652770108', 1, 0, '2022-05-17 14:48:28', '2023-03-08 16:06:46'),
+(1, 'Mark', 'D', 'Cooper', 'mcooper@gmail.com', 'c7162ff89c647f444fcaa5c635dac8c3', '', 0, 0, '2022-05-17 10:22:51', '2023-03-17 09:40:26'),
+(2, 'Claire', 'C', 'Blake', 'cblake@sample.com', '4744ddea876b11dcb1d169fadf494418', 'uploads/tutors/3.png?v=1652770108', 2, 0, '2022-05-17 14:48:28', '2023-03-17 09:40:03'),
 (3, 'Samantha Jane', 'C', 'Miller', 'sam23@gmail.com', 'b60367cae35de6594b1a09bf44a3a68b', 'uploads/tutors/4.png?v=1652836335', 1, 0, '2022-05-18 09:12:15', '2023-03-08 16:06:52');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tutor_meta`
+--
+
+CREATE TABLE `tutor_meta` (
+  `tutor_id` int(20) NOT NULL,
+  `meta_field` text CHARACTER SET utf8 NOT NULL,
+  `meta_value` text CHARACTER SET utf8 NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tutor_meta`
+--
+
+INSERT INTO `tutor_meta` (`tutor_id`, `meta_field`, `meta_value`) VALUES
+(1, 'dob', '1997-06-23'),
+(1, 'gender', 'Male'),
+(1, 'contact', '09123456789'),
+(1, 'address', '518 Evangelista, Manila, Metro Manila'),
+(1, 'specialty', 'HTML, CSS, JS, Python, PHP, MYSQL, SQLite, AngularJS, and Node.JS'),
+(1, 'description', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean blandit leo vel quam ultricies ultrices. Nam sit amet arcu diam. Cras in augue tempor, imperdiet ligula scelerisque, aliquet dolor. Nulla interdum mi at justo condimentum, ac euismod tellus sollicitudin. Ut interdum augue non arcu tincidunt tincidunt.\r\n\r\nDonec cursus nulla orci, in condimentum metus egestas in. Curabitur rhoncus tincidunt quam. Aliquam erat volutpat.'),
+(3, 'dob', '1997-10-14'),
+(3, 'gender', 'Female'),
+(3, 'contact', '09654789123 / 098785466'),
+(3, 'address', '469 Gen. Luna St., Hulong Duhat, Malabon, Metro Manila'),
+(3, 'specialty', 'Grammar, English, Science, and Mathematics'),
+(3, 'description', 'Integer a mi quam. Vivamus et purus sed velit laoreet maximus. Suspendisse erat metus, efficitur sit amet blandit a, imperdiet sed sapien. Praesent lacinia, metus vitae mollis pharetra, enim ex laoreet erat, sit amet egestas nisi diam quis nisi. Praesent luctus eleifend varius. Quisque ut pulvinar quam, vel tempor ipsum. Morbi id dapibus tellus. Praesent vitae libero aliquam, consequat eros a, efficitur sapien. Maecenas ullamcorper velit at purus porttitor, in fermentum orci suscipit. Fusce venenatis blandit vehicula. Quisque non ex eu sapien placerat lobortis nec vitae magna. Aliquam erat volutpat. In at purus erat.'),
+(2, 'dob', '1997-06-23'),
+(2, 'gender', 'Male'),
+(2, 'contact', '09789654123'),
+(2, 'address', 'Sample Address only'),
+(2, 'specialty', 'PHP, HTML, CSS, JS, and Python.'),
+(2, 'description', 'This is a sample description about myself.');
 
 --
 -- Indexes for dumped tables
@@ -154,6 +190,12 @@ ALTER TABLE `student`
 --
 ALTER TABLE `tutor_list`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tutor_meta`
+--
+ALTER TABLE `tutor_meta`
+  ADD KEY `tutor_id` (`tutor_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
