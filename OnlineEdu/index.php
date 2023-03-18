@@ -23,7 +23,7 @@
         <div class="logo-space">
         </div>
     </header>
-<!-- hgshbaaa -->
+    <!-- hgshbaaa -->
     <!-- main section -->
 
     <div class="main-container">
@@ -139,9 +139,28 @@
                         <h1>Take the next step toward your personal and professional goals with OnlineEdu.</h1>
                         <p>Join now to receive personalized recommendations from the full OnlineEdu catalog.</p>
                         <a href="php/loginstu.php">
-                            <button>Join for Free</button>
+                            <button>Explore more</button>
                         </a>
                     </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sub-container4">
+            <div class="sub-container4-1">
+                
+                <div class="in-details">
+                    <div class="in-sub-details">
+                        <h1>Become an instructor</h1>
+                        <p>Instructors from around the world teach students on OnlineEdu. We provide the tools
+                            and skills to teach what you love.
+                        </p>
+                        <a href="">
+                            <button>Contact Us</button>
+                        </a>
+                    </div>
+                </div>
+                <div class="in-photo">
                 </div>
             </div>
         </div>
@@ -151,7 +170,7 @@
     <!-- footer -->
     <footer>
         <p>Copyright © OnlineEdu- 2023</p>
-        <p> Developed By: xyz </p>
+        <p>Contact us: onlineedu12@gmail.com </p>
     </footer>
 
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>

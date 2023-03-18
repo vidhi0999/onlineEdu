@@ -138,7 +138,7 @@ html {
 }
 .info-photo {
   /* background-color: #80849c; */
-  height: 40vh;
+  height: 50vh;
   width: 70vh;
   background: url(../images/joinus.jpeg);
   /* background: url(./images/joinus.jpeg); */
@@ -160,6 +160,9 @@ html {
 .info-details button {
   margin: 2rem;
 }
+.info-details p{
+  font-size: 13px;
+}
 .info-details button {
   padding: 1.5rem;
   border-radius: 10rem;
@@ -171,6 +174,54 @@ html {
   transform: scale(1.05);
 }
 
+.sub-container4 {
+  /* background-color: antiquewhite; */
+  height: max-content;
+}
+.sub-container4-1 {
+  /* background-color: aliceblue; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 5rem;
+}
+.in-photo {
+  /* background-color: #80849c; */
+  height: 50vh;
+  width: 70vh;
+  background: url(../images/m1.jpg);
+  /* background: url(./images/joinus.jpeg); */
+}
+.in-details {
+  height: 40vh;
+  width: 70vh;
+  margin: 5rem;
+  /* background-color: aquamarine; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem;
+  color: #1a214d;
+}
+.in-details h1,
+.in-details p,.in-details button{
+  margin: 2rem;
+  
+}
+.in-details p{
+  font-size: 13px;
+}
+.in-details button {
+  padding: 1.5rem;
+  border-radius: 10rem;
+  background-color: #1264fa;
+  color: white;
+  transition: all 0.3s linear;
+}
+.in-details button:hover {
+  transform: scale(1.05);
+}
 /* choose us */
 .chooseUs {
   height: max-content;
