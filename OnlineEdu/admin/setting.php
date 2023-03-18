@@ -26,6 +26,11 @@ if (empty($adminuser)) {
     <?php
     include('./header.php');
     ?>
+    <section id="content">
+        <main>
+        </main>
+    </section>
+    <script src="../js/script.js"></script>
 </body>
 
 </html>

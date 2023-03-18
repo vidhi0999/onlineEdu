@@ -7,6 +7,7 @@ $adminuser = $_SESSION['adminuser'];
 // }
 if (isset($_GET['id']) && $_GET['id'] > 0) {
     $qry = $conn->query("SELECT *, CONCAT(lastname,', ',firstname , COALESCE(concat(' ', middlename), '')) as `name` FROM `tutor_list` where id = '{$_GET['id']}'");
+
     if ($qry->num_rows > 0) {
         foreach ($qry->fetch_array() as $k => $v) {
             if (!is_numeric($k))
@@ -154,18 +155,18 @@ if (isset($_GET['id']) && $_GET['id'] > 0) {
                                                 <label for="description" class="control-label text-muted">Status</label>
                                                 <div class="pl-4">
                                                     <?php if ($status == 0): ?>
-                                                        <span
-                                                            class="badge badge-light bg-gradient-light border px-3 rounded-pill">Waiting
-                                                            For Approval</span>
+                                                    <span
+                                                        class="badge badge-light bg-gradient-light border px-3 rounded-pill">Waiting
+                                                        For Approval</span>
                                                     <?php elseif ($status == 1): ?>
-                                                        <span
-                                                            class="badge badge-primary bg-gradient-primary px-3 rounded-pill">Verified</span>
+                                                    <span
+                                                        class="badge badge-primary bg-gradient-primary px-3 rounded-pill">Verified</span>
                                                     <?php elseif ($status == 2): ?>
-                                                        <span
-                                                            class="badge badge-danger bg-gradient-danger px-3 rounded-pill">Blocked</span>
+                                                    <span
+                                                        class="badge badge-danger bg-gradient-danger px-3 rounded-pill">Blocked</span>
                                                     <?php else: ?>
-                                                        <span
-                                                            class="badge badge-secondary bg-gradient-secondary px-3 rounded-pill">Inactive</span>
+                                                    <span
+                                                        class="badge badge-secondary bg-gradient-secondary px-3 rounded-pill">Inactive</span>
                                                     <?php endif; ?>
                                                 </div>
                                             </div>
@@ -179,10 +180,17 @@ if (isset($_GET['id']) && $_GET['id'] > 0) {
                                         class="fa fa-edit"></i>
                                     Edit
                                     Profile</a>
+
                                 <button id="delete_tutor" class="btn btn-danger btn-flat bg-gradient-danger btn-sm"
                                     type="button"><i class="fa fa-trash"></i> Delete</button>
+                                <!-- <a href="../controller/updatetutor.php?id=">
+                                    <button id="update_status" class="btn btn-navy btn-flat bg-gradient-navy btn-sm"
+                                        type="button"><i class="fa fa-check-square"></i> Update Status</button> -->
+
                                 <button id="update_status" class="btn btn-navy btn-flat bg-gradient-navy btn-sm"
-                                    type="button"><i class="fa fa-check-square"></i> Update Status</button>
+                                    data-toggle="modal" type="button" data-target="#update" type="button"><i
+                                        class="fa fa-check-square"></i> Update Status</button>
+
                                 <a class="btn btn-light btn-flat bg-gradient-light border btn-sm"
                                     href="./tutor-list.php"><i class="fa fa-angle-left"></i> Back to List</a>
                             </div>
@@ -193,6 +201,18 @@ if (isset($_GET['id']) && $_GET['id'] > 0) {
         <!-- MAIN -->
     </section>
 
+    <div class="modal fade" id="update" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <!-- <div class="modal-content"> -->
+            <?php
+                include("../controller/updatetutor.php");
+                ?>
+        </div>
+        <!-- </div> -->
+    </div>
+
+    <script src="../js/script.js"></script>
 </body>
 
 </html>

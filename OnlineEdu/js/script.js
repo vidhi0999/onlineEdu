@@ -59,27 +59,3 @@ $(document).ready(function () {
 //     );
 //   });
 // });
-
-function ChangeCourseStatus(id) {
-  $.ajax({
-    url: "./controller/updateCourseStatus.php",
-    method: "post",
-    data: { record: id },
-    success: function (data) {
-      alert("Order Status updated successfully");
-      $("form").trigger("reset");
-      showOrders();
-    },
-  });
-}
-
-function showOrders() {
-  $.ajax({
-    url: "./admin/course-list.php",
-    method: "post",
-    data: { record: 1 },
-    success: function (data) {
-      $(".section").html(data);
-    },
-  });
-}

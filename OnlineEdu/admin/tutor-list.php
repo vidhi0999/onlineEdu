@@ -95,80 +95,74 @@ if (empty($adminuser)) {
                         </tr>
 
                     </thead>
+
                     <tbody>
                         <?php
                         $i = 1;
                         $qry = $conn->query("SELECT *, concat(firstname,' ', coalesce(concat(middlename,' '), '') , lastname) as `name` from `tutor_list` where delete_flag = 0 order by `name` asc ");
                         while ($row = $qry->fetch_assoc()):
                             ?>
-                        <tr>
-                            <td class="text-center">
-                                <?php echo $i++; ?>
-                            </td>
-                            <td>
-                                <?php echo date("Y-m-d H:i", strtotime($row['date_updated'])) ?>
-                            </td>
-                            <td>
-                                <img src="../images/girl.jpeg" alt="" class="img-thumbnail rounded-circle tutor-avatar">
-                            </td>
-                            <td>
-                                <?php echo $row['name'] ?>
-                            </td>
-                            <td>
-                                <?php echo $row['email'] ?>
-                            </td>
+                            <tr>
+                                <td class="text-center">
+                                    <?php echo $i++; ?>
+                                </td>
+                                <td>
+                                    <?php echo date("Y-m-d H:i", strtotime($row['date_updated'])) ?>
+                                </td>
+                                <td>
+                                    <img src="../images/girl.jpeg" alt="" class="img-thumbnail rounded-circle tutor-avatar">
+                                </td>
+                                <td>
+                                    <?php echo $row['name'] ?>
+                                </td>
+                                <td>
+                                    <?php echo $row['email'] ?>
+                                </td>
 
-                            <td>
-                                <?php if ($row['status'] == 0): ?>
-                                <a href="../controller/updateInactive.php?id=<?php
-                                        echo $row['id'];
-                                        ?>">
-                                    <span class="badge badge-light bg-gradient-light border px-3 rounded-pill">Waiting
-                                        For
-                                        Approval</span></a>
-                                <?php elseif ($row['status'] == 1): ?>
-                                <span class="badge badge-primary bg-gradient-primary px-3 rounded-pill">Verified</span>
-                                <?php elseif ($row['status'] == 2): ?>
-                                <span class="badge badge-danger bg-gradient-danger px-3 rounded-pill">Blocked</span>
-                                <?php else: ?>
-                                <span
-                                    class="badge badge-secondary bg-gradient-secondary px-3 rounded-pill">Inactive</span>
-                                <?php endif; ?>
-                            </td>
+                                <td>
+                                    <?php if ($row['status'] == 1): ?>
+                                        <span class="badge badge-primary bg-gradient-primary px-3 rounded-pill">Verified</span>
+                                    <?php elseif ($row['status'] == 0): ?>
+                                        <span class="badge badge-secondary bg-gradient-secondary px-3 rounded-pill">Waiting for
+                                            approval</span>
+                                    <?php else: ?>
+                                        <span class="badge badge-danger bg-gradient-danger px-3 rounded-pill">Blocked</span>
+                                    <?php endif; ?>
+                                </td>
 
-                            <td>
-                                <div class="icons">
-                                    <button class="view" class="btn" title="View" id="view" data-toggle="modal"
-                                        type="button" data-id="<?php echo $row['id'] ?>"
-                                        style="border:none; background-color:inherit">
-                                        <a href="tutor_view.php?id=<?php
+                                <td>
+                                    <div class="icons">
+                                        <button class="view" class="btn" title="View" id="view" data-toggle="modal"
+                                            type="button" data-id="<?php echo $row['id'] ?>"
+                                            style="border:none; background-color:inherit">
+                                            <a href="tutor_view.php?id=<?php
                                             // session_start(); 
                                             echo $row['id'];
                                             // $_SESSION['id'] = $row['id'];
                                             ?>">
-                                            <i style=" padding: 0.100rem 0.10rem;" class="fa fa-eye"></i>
-                                        </a>
-                                    </button>
+                                                <i style=" padding: 0.100rem 0.10rem;" class="fa fa-eye"></i>
+                                            </a>
+                                        </button>
 
-                                </div>
+                                    </div>
 
-                                <div class="icons">
-                                    <button class="edit" class="btn" title="edit" id="edit" data-toggle="modal"
-                                        type="button" data-id="<?php echo $row['id'] ?>"
-                                        style="border:none; background-color:inherit">
-                                        <a href="tutor_edit.php?id=<?php
+                                    <div class="icons">
+                                        <button class="edit" class="btn" title="edit" id="edit" data-toggle="modal"
+                                            type="button" data-id="<?php echo $row['id'] ?>"
+                                            style="border:none; background-color:inherit">
+                                            <a href="tutor_edit.php?id=<?php
                                             // session_start(); 
                                             echo $row['id'];
                                             // $_SESSION['id'] = $row['id'];
                                             ?>">
-                                            <i style=" padding: 0.100rem 0.10rem;" class="fa fa-edit"></i>
-                                        </a>
-                                    </button>
-                                </div>
-                            </td>
+                                                <i style=" padding: 0.100rem 0.10rem;" class="fa fa-edit"></i>
+                                            </a>
+                                        </button>
+                                    </div>
+                                </td>
 
 
-                        </tr>
+                            </tr>
                         <?php endwhile; ?>
 
 

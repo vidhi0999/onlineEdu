@@ -24,11 +24,16 @@ li {
   /* #eee; */
   --dark-grey: #aaaaaa;
   --dark: #342e37;
-  --red: #db504a;
+  --red: #c33338;
   --yellow: #ffce26;
   --light-yellow: #fff2c6;
   --orange: #fd7238;
   --light-orange: #ffe0d3;
+
+  --blue2: #3c91e6 linear-gradient(180deg, #539de7, #406890);
+  --violet: #001f3f linear-gradient(180deg, #26415c, #001f3f);
+  --pink: #d81b60 linear-gradient(180deg, #de5889, #a23a60);
+  --grey2: #ccced76c linear-gradient(180deg, #aaaaaa, #504c52);
 }
 
 html {
@@ -314,17 +319,38 @@ body {
   align-items: center;
 }
 #content main .box-info li:nth-child(1) .fa {
-  background: var(--light-blue);
-  color: var(--blue);
+  background: var(--violet);
+  color: var(--light-blue);
 }
 #content main .box-info li:nth-child(2) .fa {
-  background: var(--light-yellow);
-  color: var(--yellow);
-}
-#content main .box-info li:nth-child(3) .fa {
   background: var(--light-orange);
   color: var(--orange);
 }
+#content main .box-info li:nth-child(3) .fa {
+  background: var(--blue2);
+  color: var(--light-blue);
+}
+#content main .box-info li:nth-child(4) .fa {
+  background: var(--grey2);
+  color: var(--light);
+}
+#content main .box-info li:nth-child(5) .fa {
+  background: var(--red);
+  color: var(--light-orange);
+}
+#content main .box-info li:nth-child(6) .fa {
+  background: var(--light-blue);
+  color: var(--blue);
+}
+#content main .box-info li:nth-child(7) .fa {
+  background: var(--light-yellow);
+  color: var(--yellow);
+}
+#content main .box-info li:nth-child(8) .fa {
+  background: var(--pink);
+  color: var(--light);
+}
+
 #content main .box-info li .text h3 {
   font-size: 24px;
   font-weight: 600;
