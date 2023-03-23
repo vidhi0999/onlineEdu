@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 17, 2023 at 06:48 AM
+-- Generation Time: Mar 23, 2023 at 06:41 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.1
 
@@ -51,10 +51,10 @@ CREATE TABLE `course_list` (
   `id` int(30) NOT NULL,
   `tutor_id` int(30) NOT NULL,
   `name` text NOT NULL,
+  `logo` varchar(255) NOT NULL,
   `description` text NOT NULL,
   `experience` varchar(150) NOT NULL,
   `status` tinyint(1) NOT NULL DEFAULT 1,
-  `logo_path` text DEFAULT NULL,
   `delete_flag` tinyint(1) NOT NULL DEFAULT 0,
   `date_created` datetime NOT NULL DEFAULT current_timestamp(),
   `date_updated` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
@@ -64,10 +64,36 @@ CREATE TABLE `course_list` (
 -- Dumping data for table `course_list`
 --
 
-INSERT INTO `course_list` (`id`, `tutor_id`, `name`, `description`, `experience`, `status`, `logo_path`, `delete_flag`, `date_created`, `date_updated`) VALUES
-(1, 1, 'PHP', 'lets begin withe course', '5 Years', 0, './images/girl.jpeg', 0, '2022-05-17 12:01:12', '2023-03-17 09:45:56'),
-(2, 1, 'MySQL', 'MySQL is an open-source relational database management system. Its name is a combination of \"My\", the name of co-founder Michael Widenius\'s daughter, and \"SQL\", the abbreviation for Structured Query Language.', '5 Years', 1, 'uploads/courses/2.png?v=1652760330', 0, '2022-05-17 12:05:30', '2023-03-17 09:45:29'),
-(3, 3, 'DBMS', 'Database management system', '5 Years', 1, 'uploads/courses/1.png', 0, '2023-03-08 14:50:12', '2023-03-17 09:45:45');
+INSERT INTO `course_list` (`id`, `tutor_id`, `name`, `logo`, `description`, `experience`, `status`, `delete_flag`, `date_created`, `date_updated`) VALUES
+(1, 1, 'PHP', 'php.png', 'lets begin withe course', '5 Years', 1, 0, '2022-05-17 12:01:12', '2023-03-23 11:02:36'),
+(2, 1, 'MySQL', 'mysql.png', 'MySQL is an open-source relational database management system. Its name is a combination of \"My\", the name of co-founder Michael Widenius\'s daughter, and \"SQL\", the abbreviation for Structured Query Language.', '5 Years', 1, 0, '2022-05-17 12:05:30', '2023-03-23 11:02:28'),
+(3, 3, 'DBMS', 'girl.jpeg', 'Database management system', '5 Years', 1, 0, '2023-03-08 14:50:12', '2023-03-23 10:59:15');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `inquiry_list`
+--
+
+CREATE TABLE `inquiry_list` (
+  `id` int(30) NOT NULL,
+  `tutor_id` int(30) NOT NULL,
+  `course_id` int(30) NOT NULL,
+  `fullname` text NOT NULL,
+  `email` text NOT NULL,
+  `contact` text NOT NULL,
+  `message` text NOT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT 0,
+  `date_created` datetime NOT NULL DEFAULT current_timestamp(),
+  `date_updated` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `inquiry_list`
+--
+
+INSERT INTO `inquiry_list` (`id`, `tutor_id`, `course_id`, `fullname`, `email`, `contact`, `message`, `status`, `date_created`, `date_updated`) VALUES
+(1, 1, 1, 'Michael Williams', 'mcooper@gmail.com', '09123456789', 'Mauris sit amet facilisis mi. Suspendisse potenti. Cras a accumsan lacus, ut vehicula felis. Aliquam suscipit, odio at varius euismod, lorem erat commodo urna, non consectetur justo lectus nec nunc. In ullamcorper, dui quis convallis volutpat, metus nulla rutrum ex, sed tempus nisl turpis id odio. Proin sit amet tincidunt tellus. In hac habitasse platea dictumst. In vitae nisl in felis consequat interdum. Ut semper velit sed magna placerat molestie. Maecenas varius posuere elit, vitae gravida nunc auctor sed. \r\n\r\nDonec molestie turpis vel massa malesuada, a fermentum diam aliquam. Aenean dolor leo, elementum a vulputate et, cursus eget ligula. Maecenas varius accumsan nisl viverra commodo. Etiam ac neque consectetur, placerat neque non, feugiat tellus. Proin eu auctor mauris. Aliquam gravida elit a velit ultrices hendrerit a eget tortor.', 0, '2022-05-17 16:11:49', '2022-05-17 16:11:49');
 
 -- --------------------------------------------------------
 
@@ -107,8 +133,8 @@ CREATE TABLE `tutor_list` (
   `lastname` text NOT NULL,
   `email` text NOT NULL,
   `password` text NOT NULL,
-  `avatar` text DEFAULT NULL,
-  `status` tinyint(1) NOT NULL DEFAULT 0 COMMENT '0 = Not Validated,\\r\\n1 = Validated,\\r\\n2 = Inactive,\\r\\n3 = Blocked',
+  `avtar` varchar(255) NOT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT 0 COMMENT '0 = inactive,\\r\\n1 = active,\\r\\n2 = Blocked\r\n',
   `delete_flag` tinyint(1) NOT NULL DEFAULT 0,
   `date_created` datetime NOT NULL DEFAULT current_timestamp(),
   `date_updated` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
@@ -118,10 +144,10 @@ CREATE TABLE `tutor_list` (
 -- Dumping data for table `tutor_list`
 --
 
-INSERT INTO `tutor_list` (`id`, `firstname`, `middlename`, `lastname`, `email`, `password`, `avatar`, `status`, `delete_flag`, `date_created`, `date_updated`) VALUES
-(1, 'Mark', 'D', 'Cooper', 'mcooper@gmail.com', 'c7162ff89c647f444fcaa5c635dac8c3', '', 0, 0, '2022-05-17 10:22:51', '2023-03-17 09:40:26'),
-(2, 'Claire', 'C', 'Blake', 'cblake@sample.com', '4744ddea876b11dcb1d169fadf494418', 'uploads/tutors/3.png?v=1652770108', 2, 0, '2022-05-17 14:48:28', '2023-03-17 09:40:03'),
-(3, 'Samantha Jane', 'C', 'Miller', 'sam23@gmail.com', 'b60367cae35de6594b1a09bf44a3a68b', 'uploads/tutors/4.png?v=1652836335', 1, 0, '2022-05-18 09:12:15', '2023-03-08 16:06:52');
+INSERT INTO `tutor_list` (`id`, `firstname`, `middlename`, `lastname`, `email`, `password`, `avtar`, `status`, `delete_flag`, `date_created`, `date_updated`) VALUES
+(1, 'Mark', 'D', 'Cooper', 'mcooper@gmail.com', 'c7162ff89c647f444fcaa5c635dac8c3', '1.png', 2, 0, '2022-05-17 10:22:51', '2023-03-23 11:09:26'),
+(2, 'Claire', 'C', 'Blake', 'cblake@sample.com', '4744ddea876b11dcb1d169fadf494418', '2.png', 1, 0, '2022-05-17 14:48:28', '2023-03-23 11:09:34'),
+(3, 'Samantha Jane', 'C', 'Miller', 'sam23@gmail.com', 'b60367cae35de6594b1a09bf44a3a68b', '3.jpeg', 0, 0, '2022-05-18 09:12:15', '2023-03-23 11:10:04');
 
 -- --------------------------------------------------------
 
