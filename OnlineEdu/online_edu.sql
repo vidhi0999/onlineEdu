@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 23, 2023 at 06:41 AM
+-- Generation Time: Mar 23, 2023 at 10:34 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.1
 
@@ -65,9 +65,9 @@ CREATE TABLE `course_list` (
 --
 
 INSERT INTO `course_list` (`id`, `tutor_id`, `name`, `logo`, `description`, `experience`, `status`, `delete_flag`, `date_created`, `date_updated`) VALUES
-(1, 1, 'PHP', 'php.png', 'lets begin withe course', '5 Years', 1, 0, '2022-05-17 12:01:12', '2023-03-23 11:02:36'),
-(2, 1, 'MySQL', 'mysql.png', 'MySQL is an open-source relational database management system. Its name is a combination of \"My\", the name of co-founder Michael Widenius\'s daughter, and \"SQL\", the abbreviation for Structured Query Language.', '5 Years', 1, 0, '2022-05-17 12:05:30', '2023-03-23 11:02:28'),
-(3, 3, 'DBMS', 'girl.jpeg', 'Database management system', '5 Years', 1, 0, '2023-03-08 14:50:12', '2023-03-23 10:59:15');
+(1, 1, 'PHP', 'php.png', 'lets begin withe course', '5 Years', 1, 0, '2022-05-17 12:01:12', '2023-03-23 12:02:17'),
+(2, 1, 'MySQL', 'mysql.png', 'MySQL is an open-source relational database management system. Its name is a combination of \"My\", the name of co-founder Michael Widenius\'s daughter, and \"SQL\", the abbreviation for Structured Query Language.', '5 Years', 1, 0, '2022-05-17 12:05:30', '2023-03-23 12:02:16'),
+(3, 3, 'DBMS', 'girl.jpeg', 'Database management system', '5 Years', 0, 0, '2023-03-08 14:50:12', '2023-03-23 12:02:19');
 
 -- --------------------------------------------------------
 
@@ -108,17 +108,20 @@ CREATE TABLE `student` (
   `email` varchar(255) NOT NULL,
   `phonenumber` varchar(255) NOT NULL,
   `pass` varchar(255) NOT NULL,
-  `gender` varchar(255) NOT NULL
+  `gender` varchar(255) NOT NULL,
+  `filename` varchar(100) NOT NULL,
+  `qualify` varchar(255) NOT NULL,
+  `dob` date NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `student`
 --
 
-INSERT INTO `student` (`id`, `fullname`, `username`, `email`, `phonenumber`, `pass`, `gender`) VALUES
-(1, 'Maulik Vastarpara', 'maulik7332', 'maulikvastarpara63@gmail.com', '9737277332', '123', 'Male'),
-(2, 'Vrujal Laheri', 'vrujal30', 'vrujal30@gmail.com', '9074628476', '123', 'Female'),
-(3, 'Vidhi Thummar', 'vidhi54', 'vidhi54@gmail.com', '9737465789', '123', 'Female');
+INSERT INTO `student` (`id`, `fullname`, `username`, `email`, `phonenumber`, `pass`, `gender`, `filename`, `qualify`, `dob`) VALUES
+(1, 'Maulik Vastarpara', 'maulik7332', 'maulikvastarpara63@gmail.com', '9737277332', '123', 'Male', '', '', '2023-03-23'),
+(2, 'Vrujal Laheri', 'vrujal30', 'vrujal30@gmail.com', '9074628476', '123', 'Female', '', '', '2023-03-23'),
+(3, 'Vidhi Thummar', 'vidhi54', 'vidhi54@gmail.com', '9737465789', '123', 'Female', 'f1.jpg', 'Btech', '2023-03-10');
 
 -- --------------------------------------------------------
 
