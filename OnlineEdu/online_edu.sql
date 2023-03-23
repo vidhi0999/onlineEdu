@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 23, 2023 at 12:06 PM
+-- Generation Time: Mar 23, 2023 at 12:19 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.1
 
@@ -65,9 +65,10 @@ CREATE TABLE `course_list` (
 --
 
 INSERT INTO `course_list` (`id`, `tutor_id`, `name`, `logo`, `description`, `experience`, `status`, `delete_flag`, `date_created`, `date_updated`) VALUES
-(1, 1, 'PHP', 'cooper.png', 'Learn all PHP Fundamental and building blocks-Complete php course.Make web pages dynamic with variety of concepts including form validation.', '5 Years', 1, 0, '2022-05-17 12:01:12', '2023-03-23 16:30:46'),
+(1, 3, 'PHP', 'f1.jpg', 'Learn all PHP Fundamental and building blocks-Complete php course.Make web pages dynamic with variety of concepts including form validation.', '5 Years', 1, 0, '2022-05-17 12:01:12', '2023-03-23 16:48:03'),
 (2, 1, 'MySQL', 'm2.png', 'Introduction to Structured Query language. Learn about the basic syntax of the SQL language, as well as database design with multiple table,etc  ', '5 Years', 1, 0, '2022-05-17 12:05:30', '2023-03-23 16:32:43'),
-(3, 3, 'DBMS', 'f1.jpg', 'Learn database management system(DBMS).Gain DBMS skills such as data creation ,queryingand manipulation and many more concepts.', '5 Years', 0, 0, '2023-03-08 14:50:12', '2023-03-23 16:33:54');
+(3, 3, 'DBMS', 'f1.jpg', 'Learn database management system(DBMS).Gain DBMS skills such as data creation ,queryingand manipulation and many more concepts.', '5 Years', 0, 0, '2023-03-08 14:50:12', '2023-03-23 16:33:54'),
+(4, 2, 'Data Structure', 'f2.jpeg', 'Learn basics of Data Structure , its algorithms and  data solving techniques.', '4 years', 0, 0, '0000-00-00 00:00:00', '2023-03-23 16:46:33');
 
 -- --------------------------------------------------------
 
