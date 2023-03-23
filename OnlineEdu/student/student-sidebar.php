@@ -12,7 +12,8 @@ include_once('../php/database.php');
 $currentUser = $_SESSION['username'];
 $sql = "SELECT * from student where username='$currentUser' ";
 $query = mysqli_query($conn, $sql);
-$result=mysqli_fetch_assoc($query);
+$result = mysqli_fetch_assoc($query);
+$row = mysqli_fetch_array($query);
 ?>
 <!-- SIDEBAR -->
 <!DOCTYPE html>
@@ -96,10 +97,11 @@ $result=mysqli_fetch_assoc($query);
             <input type="checkbox" id="switch-mode" hidden>
             <label for="switch-mode" class="switch-mode"></label>
 
-            <?php echo $result['username'];?>
+            <?php echo $result['username']; ?>
 
             <a href="#" class="profile">
-                <img src="img/people.png">
+                <!-- <img src="img/people.png"> -->
+                <img src="../images/student/<?php echo $result['filename']; ?>">
             </a>
         </nav>
 
