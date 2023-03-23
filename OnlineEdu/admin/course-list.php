@@ -167,7 +167,7 @@ if (empty($adminuser)) {
                                     <?php echo date("Y-m-d H:i", strtotime($row['date_created'])) ?>
                                 </td>
                                 <td>
-                                    z
+                                <img src="../images/courses/<?php echo $row['logo']; ?>" alt="">
                                     <!-- <img src="../images/girl.jpeg" alt="Course Logo" class="course-image"> -->
                                 </td>
                                 <td>

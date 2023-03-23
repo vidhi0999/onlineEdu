@@ -38,7 +38,7 @@
                     ?>
                     <div class="col-md-4 mt-3">
                         <div class="card">
-                        <img src="" class="card-img-top" width="150px" height="150px" alt="Faculty images">
+                        <img src="../images/courses/<?php echo $row['logo']; ?>" class="card-img-top" width="200px" height="240px" alt="Faculty images">
                             <div class="card-body">
                                  <h2 class="card-title"><?php echo $row['name'];?></h2>
                                 <h5 class="card-title"><?php echo $row['description'];?></h5>
