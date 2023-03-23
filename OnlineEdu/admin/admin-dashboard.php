@@ -163,7 +163,18 @@ if (isset($_POST['id']) && $_POST['id'] > 0) {
                 <li>
                     <i class='fa fa-user'></i>
                     <span class="text">
-                        <h3>3</h3>
+                        <h3>
+                            <?php
+                            $count = 0;
+                            $student = $conn->query("SELECT * FROM student");
+                            if ($student->num_rows > 0) {
+                                while ($row = $student->fetch_assoc()) {
+                                    $count = $count + 1;
+                                }
+                            }
+                            echo $count;
+                            ?>
+                        </h3>
                         <p>Students</p>
                     </span>
                 </li>
