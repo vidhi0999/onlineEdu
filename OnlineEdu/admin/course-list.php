@@ -156,6 +156,7 @@ if (empty($adminuser)) {
                         <?php
                         $i = 1;
                         $qry = $conn->query("SELECT c.*, concat(t.lastname,', ', t.firstname, COALESCE(concat(' ', t.middlename),'')) as `tutor` from `course_list` c inner join `tutor_list` t on c.tutor_id = t.id where c.delete_flag = 0  order by c.`name` asc ");
+
                         while ($row = $qry->fetch_assoc()):
                             ?>
                             <tr>
@@ -166,7 +167,7 @@ if (empty($adminuser)) {
                                     <?php echo date("Y-m-d H:i", strtotime($row['date_created'])) ?>
                                 </td>
                                 <td>
-                                    <img src="../images/courses/<?php echo $row['logo']; ?>">
+                                    z
                                     <!-- <img src="../images/girl.jpeg" alt="Course Logo" class="course-image"> -->
                                 </td>
                                 <td>
