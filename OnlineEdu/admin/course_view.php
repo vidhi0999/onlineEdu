@@ -65,7 +65,7 @@ if (isset($_GET['id']) && $_GET['id'] > 0) {
                         <!-- <form method="POST"> -->
 
                         <center>
-                            <img src="../images/girl.jpeg" alt=" Course=logo"
+                            <img src="../images/courses/<?php echo $row1['logo']; ?>" alt=" Course=logo"
                                 class="img-thumbnail border border-dark bg-gradient-dark" id="course-logo">
                         </center>
 
