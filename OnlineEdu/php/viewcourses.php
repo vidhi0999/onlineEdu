@@ -35,6 +35,10 @@
             $check_course = mysqli_num_rows($query_run) > 0;
             if ($check_course) {
                 while ($row = mysqli_fetch_array($query_run)) {
+                    $sql1 = $row['tutor_id'];
+                    $query1 ="SELECT * FROM tutor_list WHERE id = '$sql1'";
+                    $query_run2=mysqli_query($conn,$query1);
+                    $row1 = mysqli_fetch_array($query_run2);
                     ?>
                     <div class="col-md-4 mt-3">
                         <div class="card">
@@ -42,6 +46,7 @@
                             <div class="card-body">
                                  <h2 class="card-title"><?php echo $row['name'];?></h2>
                                 <h5 class="card-title"><?php echo $row['description'];?></h5>
+                                <h6><?php echo $row1['lastname'].",".$row1['firstname'].$row1['middlename']?></h6>
                                 <p class="card-text"><b>₹449</b></p>
                                 <button class="btn btn-success">View Details</button>
                             </div>
