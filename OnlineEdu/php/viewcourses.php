@@ -48,6 +48,7 @@
                             <div class="card-body">
                                  <h2 class="card-title"><?php echo $row['name'];?></h2>
                                 <h7 class="card-title"><?php echo $row['description'];?></h7>
+                                <hr>
                                 <h6><?php echo $row1['lastname'].",".$row1['firstname'].$row1['middlename']?></h6>
                                 <p class="card-text"><b>₹449</b></p>
                                 <button class="btn btn-success">View Details</button>
