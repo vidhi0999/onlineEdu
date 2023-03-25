@@ -158,26 +158,26 @@ if (empty($adminuser)) {
                         $qry = $conn->query("SELECT c.*, concat(t.lastname,', ', t.firstname, COALESCE(concat(' ', t.middlename),'')) as `tutor` from `course_list` c inner join `tutor_list` t on c.tutor_id = t.id where c.delete_flag = 0  order by c.`name` asc ");
                         while ($row = $qry->fetch_assoc()):
                             ?>
-                            <tr>
-                                <td class="text-center">
-                                    <?php echo $i++; ?>
-                                </td>
-                                <td>
-                                    <?php echo date("Y-m-d H:i", strtotime($row['date_created'])) ?>
-                                </td>
-                                <td>
-                                    <img src="../images/courses/<?php echo $row['logo']; ?>">
+                        <tr>
+                            <td class="text-center">
+                                <?php echo $i++; ?>
+                            </td>
+                            <td>
+                                <?php echo date("Y-m-d ", strtotime($row['date_created'])) ?>
+                            </td>
+                            <td>
+                                <img src="../images/courses/<?php echo $row['logo']; ?>">
 
-                                </td>
-                                <td>
-                                    <?php echo $row['tutor'] ?>
-                                </td>
-                                <td>
-                                    <?php echo $row['name'] ?>
-                                </td>
+                            </td>
+                            <td>
+                                <?php echo $row['tutor'] ?>
+                            </td>
+                            <td>
+                                <?php echo $row['name'] ?>
+                            </td>
 
-                                <td>
-                                    <?php
+                            <td>
+                                <?php
                                     // if ($row['status'] == "1")
                                     //     echo
                                     //         "<a href=../controller/updateCourseStatus.php?id=" . $row['id'] . " class='btn btn-success'>Active</a>";
@@ -187,61 +187,61 @@ if (empty($adminuser)) {
                                     ?>
 
 
-                                    <?php if ($row['status'] == 1): ?>
-                                        <a href="../controller/updateInactive.php?id=<?php
+                                <?php if ($row['status'] == 1): ?>
+                                <a href="../controller/updateInactive.php?id=<?php
                                         echo $row['id'];
                                         ?>">
-                                            <span class="btn btn-success">Active</span> </a>
+                                    <span class="btn btn-success">Active</span> </a>
 
-                                    <?php elseif ($row['status'] == 0): ?>
-                                        <a href="../controller/updateActive.php?id=<?php
+                                <?php elseif ($row['status'] == 0): ?>
+                                <a href="../controller/updateActive.php?id=<?php
                                         echo $row['id'];
                                         ?>">
-                                            <span class="btn btn-danger">Inactive</span></a>
-                                    <?php endif; ?>
-                                </td>
+                                    <span class="btn btn-danger">Inactive</span></a>
+                                <?php endif; ?>
+                            </td>
 
-                                <td>
-                                    <div class="icons">
-                                        <button class="view" class="btn" title="View" id="view" data-toggle="modal"
-                                            type="button" data-id="<?php echo $row['id'] ?>" data-target=" #view"
-                                            style="border:none; background-color:inherit">
-                                            <a href="course_view.php?id=<?php
+                            <td>
+                                <div class="icons">
+                                    <button class="view" class="btn" title="View" id="view" data-toggle="modal"
+                                        type="button" data-id="<?php echo $row['id'] ?>" data-target=" #view"
+                                        style="border:none; background-color:inherit">
+                                        <a href="course_view.php?id=<?php
                                             // session_start(); 
                                             echo $row['id'];
                                             // $_SESSION['id'] = $row['id'];
                                             ?>">
-                                                <i style=" padding: 0.100rem 0.10rem;" class="fa fa-eye"></i>
-                                            </a>
-                                        </button>
+                                            <i style=" padding: 0.100rem 0.10rem;" class="fa fa-eye"></i>
+                                        </a>
+                                    </button>
 
-                                    </div>
+                                </div>
 
-                                    <div class="icons">
-                                        <button class="edit" title="Edit" id="edit" data-toggle="modal" type="button"
-                                            data-target="#edit" style=" border:none;background-color:inherit"><i style=" padding: 0.100rem
+                                <div class="icons">
+                                    <button class="edit" title="Edit" id="edit" data-toggle="modal" type="button"
+                                        data-target="#edit" style=" border:none;background-color:inherit"><i style=" padding: 0.100rem
                                         0.10rem;" class="fa fa-edit "></i>
-                                        </button>
-                                    </div>
-                                    <div class="icons">
-                                        <button class="delete" title="Delete" id="delete" data-toggle="modal" type="button"
-                                            data-target="#delete" style=" border:none ;background-color:inherit"><i style=" padding: 0.100rem
+                                    </button>
+                                </div>
+                                <div class="icons">
+                                    <button class="delete" title="Delete" id="delete" data-toggle="modal" type="button"
+                                        data-target="#delete" style=" border:none ;background-color:inherit"><i style=" padding: 0.100rem
                                         0.10rem;" class="fa fa-trash"></i>
-                                        </button>
-                                    </div>
-                                </td>
+                                    </button>
+                                </div>
+                            </td>
 
-                            </tr>
-                            <div class="modal fade" id="edit" tabindex="-1" role="dialog"
-                                aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered" role="document">
-                                    <div class="modal-content">
-                                        <?php
+                        </tr>
+                        <div class="modal fade" id="edit" tabindex="-1" role="dialog"
+                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <?php
                                         include("course_edit.php");
                                         ?>
-                                    </div>
                                 </div>
                             </div>
+                        </div>
                         <?php endwhile; ?>
 
                     </tbody>
