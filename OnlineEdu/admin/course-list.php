@@ -83,12 +83,12 @@ if (empty($adminuser)) {
                                             <!-- <input type="text" class="form-control" id="exp" placeholder="1 Years"> -->
                                             <select class="form-control" name="experience">
                                                 <option value="" selected> Select option </option>
-                                                <option value="1"> 1 Year </option>
-                                                <option value="2"> 2 Years </option>
-                                                <option value="3"> 3 Years </option>
-                                                <option value="4"> 4 Years </option>
-                                                <option value="5"> 5 Years </option>
-                                                <option value="6"> More than 5 Years </option>
+                                                <option value="1 Year"> 1 Year </option>
+                                                <option value="2 Year"> 2 Years </option>
+                                                <option value="3 Year"> 3 Years </option>
+                                                <option value="4 Year"> 4 Years </option>
+                                                <option value="5 Year"> 5 Years </option>
+                                                <option value="More than 5 Year"> More than 5 Years </option>
                                             </select>
                                         </div>
                                         <div class="form-group">
