@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 25, 2023 at 06:32 AM
+-- Generation Time: Mar 25, 2023 at 07:31 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.1
 
@@ -67,10 +67,11 @@ CREATE TABLE `course_list` (
 INSERT INTO `course_list` (`id`, `tutor_id`, `name`, `logo`, `description`, `experience`, `status`, `delete_flag`, `date_created`, `date_updated`) VALUES
 (1, 3, 'PHP', 'php.png', 'Learn all PHP Fundamental and building blocks-Complete php course.Make web pages dynamic with variety of concepts including form validation.', '5 Years', 1, 0, '2022-05-17', '2023-03-23'),
 (2, 1, 'MySQL', 'mysql.png', 'Introduction to Structured Query language. Learn about the basic syntax of the SQL language, as well as database design with multiple table,etc  ', '5 Years', 1, 0, '2022-05-17', '2023-03-23'),
-(3, 3, 'DBMS', 'dbms.jpeg', 'Learn database management system(DBMS).Gain DBMS skills such as data creation ,queryingand manipulation and many more concepts.', '5 Years', 0, 0, '2023-03-08', '2023-03-23'),
+(3, 3, 'DBMS', 'dbms.jpeg', 'Learn database management system(DBMS).Gain DBMS skills such as data creation ,queryingand manipulation and many more concepts.', '5 Years', 1, 0, '2023-03-08', '2023-03-23'),
 (4, 2, 'Data Structure', 'ds.png', 'Learn basics of Data Structure , its algorithms and  data solving techniques.', '4 years', 1, 0, '2023-03-08', '2023-03-23'),
-(5, 3, 'C++', 'c++.jfif', 'C++', '1 Year', 1, 0, '2023-03-24', '2023-03-24'),
-(6, 2, 'Data Mining', 'dm.png', 'Data Mining', '3 Year', 1, 0, '2023-03-24', '2023-03-24');
+(5, 3, 'C++', 'c++.jfif', 'C++', '1 Year', 0, 0, '2023-03-24', '2023-03-24'),
+(6, 2, 'Data Mining', 'dm.png', 'Data Mining', '3 Year', 0, 0, '2023-03-24', '2023-03-24'),
+(7, 1, 'Data Science', 'girl.jpeg', 'Data science is most popular course', 'More than 5 Year', 0, 0, '2023-03-25', '2023-03-25');
 
 -- --------------------------------------------------------
 
@@ -142,8 +143,8 @@ CREATE TABLE `tutor_list` (
   `avtar` varchar(255) NOT NULL,
   `status` tinyint(1) NOT NULL DEFAULT 0 COMMENT '0 = inactive,\\r\\n1 = active,\\r\\n2 = Blocked\r\n',
   `delete_flag` tinyint(1) NOT NULL DEFAULT 0,
-  `date_created` datetime NOT NULL DEFAULT current_timestamp(),
-  `date_updated` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `date_created` date NOT NULL,
+  `date_updated` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -151,9 +152,9 @@ CREATE TABLE `tutor_list` (
 --
 
 INSERT INTO `tutor_list` (`id`, `firstname`, `middlename`, `lastname`, `email`, `password`, `avtar`, `status`, `delete_flag`, `date_created`, `date_updated`) VALUES
-(1, 'Mark', 'D', 'Cooper', 'mcooper@gmail.com', 'c7162ff89c647f444fcaa5c635dac8c3', '1.png', 2, 0, '2022-05-17 10:22:51', '2023-03-23 11:09:26'),
-(2, 'Claire', 'C', 'Blake', 'cblake@sample.com', '4744ddea876b11dcb1d169fadf494418', '2.png', 1, 0, '2022-05-17 14:48:28', '2023-03-23 11:09:34'),
-(3, 'Samantha Jane', 'C', 'Miller', 'sam23@gmail.com', 'b60367cae35de6594b1a09bf44a3a68b', '3.jpeg', 0, 0, '2022-05-18 09:12:15', '2023-03-23 11:10:04');
+(1, 'Mark', 'D', 'Cooper', 'mcooper@gmail.com', 'c7162ff89c647f444fcaa5c635dac8c3', '1.png', 2, 0, '2022-05-17', '2023-03-23'),
+(2, 'Claire', 'C', 'Blake', 'cblake@sample.com', '4744ddea876b11dcb1d169fadf494418', '2.png', 1, 0, '2022-05-17', '2023-03-23'),
+(3, 'Samantha Jane', 'C', 'Miller', 'sam23@gmail.com', 'b60367cae35de6594b1a09bf44a3a68b', '3.jpeg', 0, 0, '2022-05-18', '2023-03-23');
 
 -- --------------------------------------------------------
 
@@ -243,7 +244,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `course_list`
 --
 ALTER TABLE `course_list`
-  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `student`
