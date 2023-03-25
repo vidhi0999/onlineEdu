@@ -6,16 +6,6 @@ if (empty($adminuser)) {
     header("location:index.php");
 }
 
-// if (isset($_GET['id']) && $_GET['id'] > 0) {
-//     $id = $_GET['id'];
-//     $qry = $conn->query("SELECT * from `course_list` where id = '{$_GET['id']}' ");
-//     if ($qry->num_rows > 0) {
-//         foreach ($qry->fetch_assoc() as $k => $v) {
-//             $$k = $v;
-//         }
-//     }
-// }
-
 if (isset($_GET['id']) && $_GET['id'] > 0) {
     $id = $_GET['id'];
     $sql1 = $conn->query("SELECT * FROM course_list WHERE id = '$id'");
@@ -57,10 +47,6 @@ if (isset($_GET['id']) && $_GET['id'] > 0) {
         <main>
             <div class="courses">
                 <div class="head-title">
-                    <!-- <div class="left">
-                        <h3>Update Course Details</h3>
-                    </div> -->
-
                     <div class="modal-header border-bottom-0">
                         <h5 class="modal-title" id="exampleModalLabel">Update Course Details</h5>
                     </div>
@@ -77,7 +63,11 @@ if (isset($_GET['id']) && $_GET['id'] > 0) {
                             <div class="card-body">
 
                                 <div class="container-fluid">
-                                    <form action="" id="manage-profile-form">
+                                    <form action="../controller/updateCourse.php" method="post"
+                                        enctype="multipart/form-data">
+
+                                        <input type="hidden" name="id" value="<?php echo $row1['id'] ?>">
+                                        <input type="hidden" name="tutor_id" value="<?php echo $row1['tutor_id'] ?>">
 
                                         <div class="form-group">
                                             <label for="" class="control-label">Name </label>
@@ -94,6 +84,7 @@ if (isset($_GET['id']) && $_GET['id'] > 0) {
                                                 class="form-control form-control-sm rounded-0"
                                                 required><?php echo $row1['description'] ?></textarea>
                                         </div>
+
                                         <div class="form-group">
                                             <label for="experience" class="control-label">Experience <em>(1 Year , 2
                                                     Years , 3 Years , 4 Years , 5 Years , More than 5 Years
@@ -117,28 +108,27 @@ if (isset($_GET['id']) && $_GET['id'] > 0) {
                                             </select>
                                         </div>
 
+
                                         <div class="form-group">
-                                            <label for="img" class="control-label">Course Logo</label>
-                                            <div class="custom-file rounded-0">
-                                                <input type="file" class="custom-file-input rounded-0" id="customFile1"
-                                                    name="img" onchange="displayImg(this)"
-                                                    accept="images/png, images.jpeg">
-                                                <label class="custom-file-label rounded-0" for="customFile1">Choose
-                                                    file</label>
-                                            </div>
+                                            <label for="courseImg">Course's Logo</label>
+                                            <input type="file" name="course_image" id="course_image"
+                                                class="form-control" required>
                                         </div>
 
+                                        <div class="card-footer py-1 text-center">
+                                            <button name="save"
+                                                class="btn btn-primary btn-flat btn-sm bg-gradient-primary">
+                                                <i class="fa fa-save"> </i>
+                                                Save
+                                            </button>
+
+                                            <a class="btn btn-light btn-flat bg-gradient-light border btn-sm"
+                                                href="../admin/course-list.php?"><i class="fa fa-times"></i>
+                                                Cancel</a>
+                                        </div>
+                                    </form>
                                 </div>
 
-                                </form>
-                            </div>
-                            <div class="card-footer py-1 text-center">
-                                <button class="btn btn-primary btn-flat btn-sm bg-gradient-primary"><i
-                                        class="fa fa-save"></i> Save</button>
-
-                                <a class="btn btn-light btn-flat bg-gradient-light border btn-sm"
-                                    href="../admin/course-list.php?"><i class="fa fa-times"></i>
-                                    Cancel</a>
                             </div>
                         </div>
                     </div>
