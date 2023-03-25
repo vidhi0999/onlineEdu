@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Mar 25, 2023 at 07:31 AM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 8.1.1
+-- Host: localhost
+-- Generation Time: Mar 25, 2023 at 07:44 AM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 8.1.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -32,7 +32,7 @@ CREATE TABLE `admin` (
   `email` varchar(255) NOT NULL,
   `username` varchar(255) NOT NULL,
   `pass` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `admin`
@@ -58,7 +58,7 @@ CREATE TABLE `course_list` (
   `delete_flag` tinyint(1) NOT NULL DEFAULT 0,
   `date_created` date NOT NULL DEFAULT current_timestamp(),
   `date_updated` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `course_list`
@@ -67,11 +67,10 @@ CREATE TABLE `course_list` (
 INSERT INTO `course_list` (`id`, `tutor_id`, `name`, `logo`, `description`, `experience`, `status`, `delete_flag`, `date_created`, `date_updated`) VALUES
 (1, 3, 'PHP', 'php.png', 'Learn all PHP Fundamental and building blocks-Complete php course.Make web pages dynamic with variety of concepts including form validation.', '5 Years', 1, 0, '2022-05-17', '2023-03-23'),
 (2, 1, 'MySQL', 'mysql.png', 'Introduction to Structured Query language. Learn about the basic syntax of the SQL language, as well as database design with multiple table,etc  ', '5 Years', 1, 0, '2022-05-17', '2023-03-23'),
-(3, 3, 'DBMS', 'dbms.jpeg', 'Learn database management system(DBMS).Gain DBMS skills such as data creation ,queryingand manipulation and many more concepts.', '5 Years', 1, 0, '2023-03-08', '2023-03-23'),
+(3, 3, 'DBMS', 'dbms.jpeg', 'Learn database management system(DBMS).Gain DBMS skills such as data creation ,queryingand manipulation and many more concepts.', '5 Years', 0, 0, '2023-03-08', '2023-03-23'),
 (4, 2, 'Data Structure', 'ds.png', 'Learn basics of Data Structure , its algorithms and  data solving techniques.', '4 years', 1, 0, '2023-03-08', '2023-03-23'),
-(5, 3, 'C++', 'c++.jfif', 'C++', '1 Year', 0, 0, '2023-03-24', '2023-03-24'),
-(6, 2, 'Data Mining', 'dm.png', 'Data Mining', '3 Year', 0, 0, '2023-03-24', '2023-03-24'),
-(7, 1, 'Data Science', 'girl.jpeg', 'Data science is most popular course', 'More than 5 Year', 0, 0, '2023-03-25', '2023-03-25');
+(5, 3, 'C++', 'c++.jfif', 'C++', '1 Year', 1, 0, '2023-03-24', '2023-03-24'),
+(6, 2, 'Data Mining', 'dm.png', 'Data Mining', '3 Year', 1, 0, '2023-03-24', '2023-03-24');
 
 -- --------------------------------------------------------
 
@@ -90,7 +89,7 @@ CREATE TABLE `inquiry_list` (
   `status` tinyint(1) NOT NULL DEFAULT 0,
   `date_created` datetime NOT NULL DEFAULT current_timestamp(),
   `date_updated` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `inquiry_list`
@@ -116,7 +115,7 @@ CREATE TABLE `student` (
   `filename` varchar(100) NOT NULL,
   `qualify` varchar(255) NOT NULL,
   `dob` date NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `student`
@@ -145,7 +144,7 @@ CREATE TABLE `tutor_list` (
   `delete_flag` tinyint(1) NOT NULL DEFAULT 0,
   `date_created` date NOT NULL,
   `date_updated` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tutor_list`
@@ -164,9 +163,9 @@ INSERT INTO `tutor_list` (`id`, `firstname`, `middlename`, `lastname`, `email`, 
 
 CREATE TABLE `tutor_meta` (
   `tutor_id` int(20) NOT NULL,
-  `meta_field` text CHARACTER SET utf8 NOT NULL,
-  `meta_value` text CHARACTER SET utf8 NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `meta_field` text CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `meta_value` text CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tutor_meta`
@@ -244,7 +243,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `course_list`
 --
 ALTER TABLE `course_list`
-  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `student`
