@@ -108,7 +108,7 @@ if (empty($adminuser)) {
 
                 <hr>
 
-                <div class="table-title">
+                <!-- <div class="table-title">
                     <div class="show-entries">
                         <span>Show</span>
                         <select>
@@ -124,7 +124,7 @@ if (empty($adminuser)) {
                         <span class="input-group-addon"><i class="fa fa-search">
                                 <input type="text" placeholder="Search&hellip;"></i></span>
                     </div>
-                </div>
+                </div> -->
 
 
 
@@ -177,15 +177,6 @@ if (empty($adminuser)) {
                             </td>
 
                             <td>
-                                <?php
-                                    // if ($row['status'] == "1")
-                                    //     echo
-                                    //         "<a href=../controller/updateCourseStatus.php?id=" . $row['id'] . " class='btn btn-success'>Active</a>";
-                                    // else
-                                    //     echo
-                                    //         "<a href=../controller/updateCourseStatus.php?id=" . $row['id'] . " class='btn btn-danger'>Deactive</a>";
-                                    ?>
-
 
                                 <?php if ($row['status'] == 1): ?>
                                 <a href="../controller/updateInactive.php?id=<?php
@@ -218,35 +209,35 @@ if (empty($adminuser)) {
                                 </div>
 
                                 <div class="icons">
-                                    <button class="edit" title="Edit" id="edit" data-toggle="modal" type="button"
-                                        data-target="#edit" style=" border:none;background-color:inherit"><i style=" padding: 0.100rem
-                                        0.10rem;" class="fa fa-edit "></i>
+                                    <button class="edit" class="btn" title="edit" id="edit" data-toggle="modal"
+                                        type="button" data-id="<?php echo $row['id'] ?>"
+                                        style="border:none; background-color:inherit">
+                                        <a href="course_edit.php?id=<?php
+                                            // session_start(); 
+                                            echo $row['id'];
+                                            // $_SESSION['id'] = $row['id'];
+                                            ?>">
+                                            <i style=" padding: 0.100rem 0.10rem;" class="fa fa-edit"></i>
+                                        </a>
                                     </button>
                                 </div>
-                                <div class="icons">
+
+
+                                <!-- <div class="icons">
                                     <button class="delete" title="Delete" id="delete" data-toggle="modal" type="button"
                                         data-target="#delete" style=" border:none ;background-color:inherit"><i style=" padding: 0.100rem
                                         0.10rem;" class="fa fa-trash"></i>
                                     </button>
-                                </div>
+                                </div> -->
                             </td>
 
                         </tr>
-                        <div class="modal fade" id="edit" tabindex="-1" role="dialog"
-                            aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                <div class="modal-content">
-                                    <?php
-                                        include("course_edit.php");
-                                        ?>
-                                </div>
-                            </div>
-                        </div>
+
                         <?php endwhile; ?>
 
                     </tbody>
                 </table>
-
+                <!-- 
                 <div class="clearfix">
                     <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
                     <ul class="pagination">
@@ -256,7 +247,7 @@ if (empty($adminuser)) {
                         <li class="page-item "><a href=" #" class="page-link">3</a></li>
                         <li class="page-item"><a href="#" class="page-link">Next</a></li>
                     </ul>
-                </div>
+                </div> -->
             </div>
 
 
