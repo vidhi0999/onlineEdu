@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Mar 25, 2023 at 07:44 AM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.1.12
+-- Host: 127.0.0.1
+-- Generation Time: Mar 25, 2023 at 11:26 AM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 8.1.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -32,7 +32,7 @@ CREATE TABLE `admin` (
   `email` varchar(255) NOT NULL,
   `username` varchar(255) NOT NULL,
   `pass` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `admin`
@@ -40,6 +40,28 @@ CREATE TABLE `admin` (
 
 INSERT INTO `admin` (`id`, `email`, `username`, `pass`) VALUES
 (1, 'admin@gmail.com', 'admin123', 'admin123');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `contactus`
+--
+
+CREATE TABLE `contactus` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `last_name` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `message` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_date` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `contactus`
+--
+
+INSERT INTO `contactus` (`id`, `name`, `last_name`, `email`, `message`, `created_date`) VALUES
+(1, 'shreya', '', 'shreya@yahoo.com', 'join', '2023-03-25');
 
 -- --------------------------------------------------------
 
@@ -58,7 +80,7 @@ CREATE TABLE `course_list` (
   `delete_flag` tinyint(1) NOT NULL DEFAULT 0,
   `date_created` date NOT NULL DEFAULT current_timestamp(),
   `date_updated` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `course_list`
@@ -89,7 +111,7 @@ CREATE TABLE `inquiry_list` (
   `status` tinyint(1) NOT NULL DEFAULT 0,
   `date_created` datetime NOT NULL DEFAULT current_timestamp(),
   `date_updated` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `inquiry_list`
@@ -115,7 +137,7 @@ CREATE TABLE `student` (
   `filename` varchar(100) NOT NULL,
   `qualify` varchar(255) NOT NULL,
   `dob` date NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `student`
@@ -144,7 +166,7 @@ CREATE TABLE `tutor_list` (
   `delete_flag` tinyint(1) NOT NULL DEFAULT 0,
   `date_created` date NOT NULL,
   `date_updated` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tutor_list`
@@ -163,9 +185,9 @@ INSERT INTO `tutor_list` (`id`, `firstname`, `middlename`, `lastname`, `email`, 
 
 CREATE TABLE `tutor_meta` (
   `tutor_id` int(20) NOT NULL,
-  `meta_field` text CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `meta_value` text CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `meta_field` text CHARACTER SET utf8 NOT NULL,
+  `meta_value` text CHARACTER SET utf8 NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tutor_meta`
@@ -204,6 +226,12 @@ ALTER TABLE `admin`
   ADD UNIQUE KEY `username` (`username`);
 
 --
+-- Indexes for table `contactus`
+--
+ALTER TABLE `contactus`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `course_list`
 --
 ALTER TABLE `course_list`
@@ -238,6 +266,12 @@ ALTER TABLE `tutor_meta`
 --
 ALTER TABLE `admin`
   MODIFY `id` int(6) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `contactus`
+--
+ALTER TABLE `contactus`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `course_list`

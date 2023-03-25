@@ -67,7 +67,7 @@
         <!-- welcome -->
         <div class="sub-container2">
             <h1>Welcome</h1>
-            <h1>done karo nee</h1>
+            
         </div>
 
         <!-- Why choose us -->
@@ -156,7 +156,7 @@
                         <p>Instructors from around the world teach students on OnlineEdu. We provide the tools
                             and skills to teach what you love.
                         </p>
-                        <a href="">
+                        <a href="php/contact.php">
                             <button>Contact Us</button>
                         </a>
                     </div>
