@@ -92,8 +92,8 @@ if (empty($adminuser)) {
                                             </select>
                                         </div>
                                         <div class="form-group">
-                                            <label for="courseImg">Tutor's image</label>
-                                            <input type="file" name="faculty_image" id="faculty_image"
+                                            <label for="courseImg">Course's Logo</label>
+                                            <input type="file" name="course_image" id="course_image"
                                                 class="form-control">
                                         </div>
                                     </div>
@@ -166,8 +166,8 @@ if (empty($adminuser)) {
                                     <?php echo date("Y-m-d H:i", strtotime($row['date_created'])) ?>
                                 </td>
                                 <td>
-                                <img src="../images/courses/<?php echo $row['logo']; ?>">
-                                    
+                                    <img src="../images/courses/<?php echo $row['logo']; ?>">
+
                                 </td>
                                 <td>
                                     <?php echo $row['tutor'] ?>

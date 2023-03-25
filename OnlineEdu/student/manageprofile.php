@@ -58,14 +58,14 @@ $row = mysqli_fetch_array($gotResults);
                         </div>
                         <div class="input-box">
                             <span class="details">Birthday</span>
-                            <input type="date" name="dob" placeholder="Enter your birthdate">
+                            <input type="date" name="dob" placeholder="Enter your birthdate" required>
                         </div>
                         <div class="input-box">
                             <span class="details">Qualification</span>
-                            <input type="text" name="qualify" placeholder="Enter your qualification">
+                            <input type="text" name="qualify" placeholder="Enter your qualification" required>
                         </div>
                     </div>
-                    <div class="gender-details">
+                    <div class="gender-details" required>
                         <input type="radio" name="gender" value="Male" id="dot-1" <?php
                         if ($row['gender'] == "Male") {
                             echo "checked";
@@ -94,7 +94,7 @@ $row = mysqli_fetch_array($gotResults);
                     <div class="image-upload">
                         <!-- <form action="upload.php" method="post" enctype="multipart/form-data"> -->
                         Select image to upload:
-                        <input type="file" name="file" id="fileToUpload">
+                        <input type="file" name="file" id="fileToUpload" required>
                         <!-- <input type="submit" value="Upload" name="submit"> -->
                         <!-- </form> -->
                     </div>
