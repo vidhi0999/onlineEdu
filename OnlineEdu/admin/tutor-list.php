@@ -49,7 +49,7 @@ if (empty($adminuser)) {
 
                 <hr>
 
-                <div class="table-title">
+                <!-- <div class="table-title">
                     <div class="show-entries">
                         <span>Show</span>
                         <select>
@@ -65,7 +65,7 @@ if (empty($adminuser)) {
                         <span class="input-group-addon"><i class="fa fa-search">
                                 <input type="text" placeholder="Search&hellip;"></i></span>
                     </div>
-                </div>
+                </div> -->
 
 
 
@@ -173,7 +173,7 @@ if (empty($adminuser)) {
                 </table>
 
 
-                <div class="clearfix">
+                <!-- <div class="clearfix">
                     <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
                     <ul class="pagination">
                         <li class="page-item disabled"><a href="#">Previous</a></li>
@@ -182,7 +182,7 @@ if (empty($adminuser)) {
                         <li class="page-item "><a href=" #" class="page-link">3</a></li>
                         <li class="page-item"><a href="#" class="page-link">Next</a></li>
                     </ul>
-                </div>
+                </div> -->
             </div>
 
         </main>

@@ -70,15 +70,17 @@
         <i class='fa fa-bars'></i>
         <form action="#">
             <div class="form-input">
-                Online Tutorial Portal - Admin
+                Online Tutorial Portal
             </div>
         </form>
 
-        <input type="checkbox" id="switch-mode" hidden>
-        <label for="switch-mode" class="switch-mode"></label>
-
+        <!-- <input type="checkbox" id="switch-mode" hidden>
+        <label for="switch-mode" class="switch-mode"></label> -->
+        <div class="form-input">
+            Admin
+        </div>
         <a href="#" class="profile">
-            <img src="../images/profile.png">
+            <img src="../images/admin/3.jpeg">
         </a>
     </nav>
 
