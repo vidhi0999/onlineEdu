@@ -223,12 +223,12 @@ if (empty($adminuser)) {
                                 </div>
 
 
-                                <!-- <div class="icons">
+                                <div class="icons">
                                     <button class="delete" title="Delete" id="delete" data-toggle="modal" type="button"
                                         data-target="#delete" style=" border:none ;background-color:inherit"><i style=" padding: 0.100rem
                                         0.10rem;" class="fa fa-trash"></i>
                                     </button>
-                                </div> -->
+                                </div>
                             </td>
 
                         </tr>

@@ -2,24 +2,18 @@
 session_start();
 include_once('../php/database.php');
 $adminuser = $_SESSION['adminuser'];
-// if (empty($adminuser)) {
-//     header("location:index.php");
-// }
-if (isset($_GET['id']) && $_GET['id'] > 0) {
-    $qry = $conn->query("SELECT *, CONCAT(lastname,', ',firstname , COALESCE(concat(' ', middlename), '')) as `name` FROM `tutor_list` where id = '{$_GET['id']}'");
+if (empty($adminuser)) {
+    header("location:index.php");
+}
 
-    if ($qry->num_rows > 0) {
-        foreach ($qry->fetch_array() as $k => $v) {
-            if (!is_numeric($k))
-                $$k = $v;
-        }
-        if (isset($id)) {
-            $meta_qry = $conn->query("SELECT * from `tutor_meta` where tutor_id = '{$id}' ");
-            while ($row = $meta_qry->fetch_assoc()) {
-                ${$row['meta_field']} = $row['meta_value'];
-            }
-        }
-    }
+if (isset($_GET['id']) && $_GET['id'] > 0) {
+    $tutor_id = $_GET['id'];
+
+    $sql1 = $conn->query("SELECT *, CONCAT(lastname,', ',firstname , COALESCE(concat(' ', middlename), '')) as `name` FROM `tutor_list`  WHERE id = '$tutor_id'");
+    $row1 = $sql1->fetch_assoc();
+    // $tutor_meta = $row1['tutor_id'];
+    $sql2 = $conn->query("SELECT * FROM tutor_meta WHERE tutor_id = $tutor_id");
+    $row2 = $sql2->fetch_assoc();
 }
 ?>
 
@@ -76,7 +70,7 @@ if (isset($_GET['id']) && $_GET['id'] > 0) {
                                     <div class="form-group">
                                         <label for="" class="control-label text-muted">Name</label>
                                         <div class="pl-4 font-weight-bolder">
-                                            <?= isset($name) ? strtoupper($name) : '' ?>
+                                            <?php echo $row1['name'] ?>
                                         </div>
                                     </div>
 
@@ -85,7 +79,7 @@ if (isset($_GET['id']) && $_GET['id'] > 0) {
                                             <div class="form-group">
                                                 <label for="dob" class="control-label text-muted">Birthday</label>
                                                 <div class="pl-4 font-weight-bolder">
-                                                    <?= isset($dob) ? date("F d, Y", strtotime($dob)) : '' ?>
+                                                    <?php echo $row2['dob'] ?>
                                                 </div>
                                             </div>
                                         </div>
@@ -93,7 +87,7 @@ if (isset($_GET['id']) && $_GET['id'] > 0) {
                                             <div class="form-group">
                                                 <label for="gender" class="control-label text-muted">Gender</label>
                                                 <div class="pl-4 font-weight-bolder">
-                                                    <?= isset($gender) ? strtoupper($gender) : '' ?>
+                                                    <?php echo $row2['gender'] ?>
                                                 </div>
                                             </div>
                                         </div>
@@ -103,7 +97,7 @@ if (isset($_GET['id']) && $_GET['id'] > 0) {
                                             <div class="form-group">
                                                 <label for="email" class="control-label text-muted">Email</label>
                                                 <div class="pl-4 font-weight-bolder">
-                                                    <?= isset($email) ? ($email) : '' ?>
+                                                    <?php echo $row1['email'] ?>
                                                 </div>
                                             </div>
                                         </div>
@@ -111,7 +105,7 @@ if (isset($_GET['id']) && $_GET['id'] > 0) {
                                             <div class="form-group">
                                                 <label for="contact" class="control-label text-muted">Contact #</label>
                                                 <div class="pl-4 font-weight-bolder">
-                                                    <?= isset($contact) ? ($contact) : '' ?>
+                                                    <?php echo $row2['contact'] ?>
                                                 </div>
                                             </div>
                                         </div>
@@ -121,7 +115,7 @@ if (isset($_GET['id']) && $_GET['id'] > 0) {
                                             <div class="form-group">
                                                 <label for="address" class="control-label text-muted">Address</label>
                                                 <div class="pl-4 font-weight-bolder">
-                                                    <?= isset($address) ? str_replace(["\n\r", "\n", "\r"], "<br/>", $address) : '' ?>
+                                                    <?php echo $row2['address'] ?>
                                                 </div>
                                             </div>
                                         </div>
@@ -132,7 +126,7 @@ if (isset($_GET['id']) && $_GET['id'] > 0) {
                                                 <label for="specialty"
                                                     class="control-label text-muted">Specialty</label>
                                                 <div class="pl-4 font-weight-bolder">
-                                                    <?= isset($specialty) ? str_replace(["\n\r", "\n", "\r"], "<br/>", $specialty) : '' ?>
+                                                    <?php echo $row2['speciality'] ?>
                                                 </div>
                                             </div>
                                         </div>
@@ -144,7 +138,7 @@ if (isset($_GET['id']) && $_GET['id'] > 0) {
                                                     Description About Your
                                                     Self</label>
                                                 <div class="pl-4">
-                                                    <?= isset($description) ? str_replace(["\n\r", "\n", "\r"], "<br/>", $description) : '' ?>
+                                                    <?php echo $row2['description'] ?>
                                                 </div>
                                             </div>
                                         </div>
@@ -154,19 +148,19 @@ if (isset($_GET['id']) && $_GET['id'] > 0) {
                                             <div class="form-group">
                                                 <label for="description" class="control-label text-muted">Status</label>
                                                 <div class="pl-4">
-                                                    <?php if ($status == 0): ?>
-                                                    <span
-                                                        class="badge badge-light bg-gradient-light border px-3 rounded-pill">Waiting
-                                                        For Approval</span>
-                                                    <?php elseif ($status == 1): ?>
-                                                    <span
-                                                        class="badge badge-primary bg-gradient-primary px-3 rounded-pill">Verified</span>
-                                                    <?php elseif ($status == 2): ?>
-                                                    <span
-                                                        class="badge badge-danger bg-gradient-danger px-3 rounded-pill">Blocked</span>
+                                                    <?php if ($row1['status'] == 0): ?>
+                                                        <span
+                                                            class="badge badge-light bg-gradient-light border px-3 rounded-pill">Waiting
+                                                            For Approval</span>
+                                                    <?php elseif ($row1['status'] == 1): ?>
+                                                        <span
+                                                            class="badge badge-primary bg-gradient-primary px-3 rounded-pill">Verified</span>
+                                                    <?php elseif ($row1['status'] == 2): ?>
+                                                        <span
+                                                            class="badge badge-danger bg-gradient-danger px-3 rounded-pill">Blocked</span>
                                                     <?php else: ?>
-                                                    <span
-                                                        class="badge badge-secondary bg-gradient-secondary px-3 rounded-pill">Inactive</span>
+                                                        <span
+                                                            class="badge badge-secondary bg-gradient-secondary px-3 rounded-pill">Inactive</span>
                                                     <?php endif; ?>
                                                 </div>
                                             </div>
@@ -176,8 +170,7 @@ if (isset($_GET['id']) && $_GET['id'] > 0) {
                             </div>
                             <div class="card-footer py-1 text-center">
                                 <a class="btn btn-primary btn-flat bg-gradient-primary btn-sm"
-                                    href="../admin/tutor_edit.php?id=<?= isset($id) ? $id : '' ?>"><i
-                                        class="fa fa-edit"></i>
+                                    href="../admin/tutor_edit.php?id=<?php echo $tutor_id ?>"><i class="fa fa-edit"></i>
                                     Edit
                                     Profile</a>
 
@@ -206,8 +199,8 @@ if (isset($_GET['id']) && $_GET['id'] > 0) {
         <div class="modal-dialog modal-dialog-centered" role="document">
             <!-- <div class="modal-content"> -->
             <?php
-                include("../controller/updatetutor.php");
-                ?>
+            include("../controller/updateTutorStatus.php");
+            ?>
         </div>
         <!-- </div> -->
     </div>
