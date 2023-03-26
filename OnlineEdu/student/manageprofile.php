@@ -2,8 +2,11 @@
 
 include_once('../php/database.php');
 include('./student-sidebar.php');
-
+session_start();
 $currentUser = $_SESSION['username'];
+if (empty($currentUser)) {
+    header("location:../php/loginstu.php"); 
+}
 $sql = "SELECT * from student where username='$currentUser'";
 $gotResults = mysqli_query($conn, $sql);
 

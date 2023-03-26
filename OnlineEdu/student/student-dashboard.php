@@ -1,3 +1,10 @@
+<?php 
+    session_start();
+    $currentUser = $_SESSION['username'];
+    if (empty($currentUser)) {
+        header("location:../php/loginstu.php"); 
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 

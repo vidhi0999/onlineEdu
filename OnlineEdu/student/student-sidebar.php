@@ -1,9 +1,9 @@
 <?php
-// session_start();
-// $adminuser = $_SESSION['adminuser'];
-// if (empty($adminuser)) {
-//     header("location:loginstu.php");
-// }
+session_start();
+$currentUser = $_SESSION['username'];
+if (empty($currentUser)) {
+    header("location:../php/loginstu.php"); 
+}
 ?>
 
 <?php
@@ -46,7 +46,7 @@ $row = mysqli_fetch_array($query);
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="./student-courses.php">
                     <i class='fa fa-list'></i>
                     <span class="text">Courses</span>
                 </a>
@@ -101,7 +101,20 @@ $row = mysqli_fetch_array($query);
 
             <a href="#" class="profile">
                 <!-- <img src="img/people.png"> -->
-                <img src="../images/student/<?php echo $result['filename']; ?>">
+                <?php
+                if($result['filename'] == ""){
+                    ?>
+                    <img src="../images/student/default.png">
+                    <?php
+                }else{
+                    ?>
+                    <img src="../images/avatars/<?php echo $result['filename']; ?>">
+                    <?php
+                }
+                ?>
+                <!-- <img src="../images/student/<?php 
+                // echo $result['filename']; 
+                ?>"> -->
             </a>
         </nav>
 
