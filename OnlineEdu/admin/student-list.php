@@ -4,6 +4,7 @@ $adminuser = $_SESSION['adminuser'];
 if (empty($adminuser)) {
     header("location:index.php");
 }
+include("../php/database.php");
 
 ?>
 <!DOCTYPE html>
@@ -64,9 +65,9 @@ if (empty($adminuser)) {
                 <table class="table">
                     <colgroup>
                         <col width="5%">
-                        <col width="15%">
-                        <col width="10%">
                         <col width="20%">
+                        <col width="10%">
+                        <col width="15%">
                         <col width="25%">
                         <col width="15%">
                         <!-- <col width="10%"> -->
@@ -78,92 +79,73 @@ if (empty($adminuser)) {
 
                         <tr>
                             <th>#</th>
-                            <th>Date Created<i class="fa fa-sort"></i></th>
-                            <th>Avatar<i class="fa fa-sort"></i></th>
                             <th>Name<i class="fa fa-sort"></i></th>
+                            <th>Avatar<i class="fa fa-sort"></i></th>
+                            <th>Usrename<i class="fa fa-sort"></i></th>
                             <th>Email<i class="fa fa-sort"></i></th>
                             <th>Course selected<i class="fa fa-sort"></i></th>
                             <!-- <th>Action</th> -->
                         </tr>
 
                     </thead>
+                    
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Fran Wilson</td>
-                            <td>C/ Araquil, 67</td>
-                            <td>Madrid</td>
-                            <td>28023</td>
-                            <td>Spain</td>
-                            <!-- <td>
-                                <a href="#" class="view" title="View" data-toggle="tooltip"><i
-                                        class="fa fa-eye"></i></a>
-                                <a href="#" class="edit" title="Edit" data-toggle="tooltip"><i
-                                        class="fa fa-edit "></i></a>
-                                <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i
-                                        class="fa fa-trash"></i></a>
-                            </td> -->
-                        </tr>
 
+                        <?php
+                        $i = 1;
+                        $sql = $conn->query("SELECT * FROM student");
+                        while ($row = $sql->fetch_assoc()):
+                            ?>
+                        
                         <tr>
-                            <td>1</td>
-                            <td>Fran Wilson</td>
-                            <td>C/ Araquil, 67</td>
-                            <td>Madrid</td>
-                            <td>28023</td>
-                            <td>Spain</td>
-                            <!-- <td>
-                                <a href="#" class="view" title="View" data-toggle="tooltip"><i
-                                        class="fa fa-eye"></i></a>
-                                <a href="#" class="edit" title="Edit" data-toggle="tooltip"><i
-                                        class="fa fa-edit "></i></a>
-                                <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i
-                                        class="fa fa-trash"></i></a>
-                            </td> -->
-                        </tr>
-                        <tr>
-                            <td class="text-center">2</td>
-                            <td>Date</td>
                             <td class="text-center">
-                                <img src="" alt="Course Logo"
-                                    class="img-thumbnail border border-dark p-0 rounded-0 course-logo">
+                                <?php echo $i++; ?>
                             </td>
-                            <td>tutor-name</td>
-                            <td>email</td>
-                            <td class="text-center">
-                                <span
-                                    style=" background-color:blue;color: white;  padding: 2px 4px; text-align: center; border-radius: 4px;">Verified</span>
+                            <td>
+                                <?php echo $row['fullname']; ?>
+                            </td>
+                            <td>
+                                <?php 
+                                    if($row['filename'] == ""){
+                                        echo "<img src='../images/avatars/default.png'>";
+                                    }else{
+                                        echo "<img src='../images/avatars/".$row['filename']."'>";
+                                    }
+                                ?>
 
                             </td>
-                            <!-- <td align="center"> -->
+                            <td>
+                                <?php echo $row['username'] ?>
+                            </td>
+                            <td>
+                                <?php echo $row['email'] ?>
+                            </td>
 
-                            <!-- <button type="button"
-                                        class="btn btn-flat p-1 btn-default btn-sm dropdown-toggle dropdown-icon"
-                                        data-toggle="dropdown">
-                                        Action
-                                        <span class="sr-only">Toggle Dropdown</span>
-                                    </button>
+                            <td>
+                                <?php 
+                                    $student_id = $row['id'];
 
-                                    <div class="dropdown-menu" role="menu">
-                                        <a class="dropdown-item view_data" href="javascript:void(0)" data-id=""><span
-                                                class="fa fa-eye text-dark"></span>
-                                            View</a>
+                                    $sql2 = $conn->query("SELECT * FROM course_request WHERE student_id = '$student_id' && status = '1'");
+                                    $result = mysqli_num_rows($sql2)>0;
+                                    // $row2 = $sql2->fetch_assoc();
+                                        if($result){
+                                            while($row2=$sql2->fetch_assoc()){
+                                                echo $row2['course_name'];
+                                                echo "<br/>";
+                                            }
+                                        }else{
+                                            echo "Not selected!";
+                                        }
+                                    
+                                    
+                                ?>
+                            </td>
 
-                                        <div class="dropdown-divider"></div>
+                           
 
-                                        <a class="dropdown-item edit_data" href="javascript:void(0)" data-id=""><span
-                                                class="fa fa-edit text-primary"></span> Edit</a>
-
-                                        <div class="dropdown-divider"></div>
-
-                                        <a class="dropdown-item delete_data" href="javascript:void(0)" data-id=""><span
-                                                class="fa fa-trash text-danger"></span> Delete</a>
-                                    </div> -->
-
-
-                            <!-- </td> -->
                         </tr>
 
+                        <?php endwhile; ?>
 
                     </tbody>
 
