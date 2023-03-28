@@ -1,8 +1,8 @@
 <?php
-
+session_start();
 include_once('../php/database.php');
 include('./student-sidebar.php');
-session_start();
+
 $currentUser = $_SESSION['username'];
 if (empty($currentUser)) {
     header("location:../php/loginstu.php"); 
