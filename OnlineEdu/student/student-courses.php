@@ -103,7 +103,7 @@
                     if ($check_course) {
                         while ($row = mysqli_fetch_array($query_run)) {
                             $sql1 = $row['tutor_id'];
-                            session_start();
+                            //session_start();
                             $_SESSION['course_id'] = $row['id'];
                             $currentUser = $_SESSION['username'];
                             // $course_id = $_SESSION['course_id'];

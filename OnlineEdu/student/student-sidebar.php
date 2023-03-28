@@ -1,5 +1,5 @@
 <?php
-session_start();
+//session_start();
 $currentUser = $_SESSION['username'];
 if (empty($currentUser)) {
     header("location:../php/loginstu.php"); 
@@ -7,7 +7,7 @@ if (empty($currentUser)) {
 ?>
 
 <?php
-session_start();
+//session_start();
 include_once('../php/database.php');
 $currentUser = $_SESSION['username'];
 $sql = "SELECT * from student where username='$currentUser' ";
