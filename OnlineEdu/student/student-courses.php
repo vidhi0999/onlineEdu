@@ -4,6 +4,7 @@
     if (empty($currentUser)) {
         header("location:../php/loginstu.php"); 
     } 
+    
 ?>
 <!DOCTYPE html>
 <html lang="en">
