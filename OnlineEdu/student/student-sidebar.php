@@ -1,15 +1,10 @@
 <?php
-//session_start();
+include_once('../php/database.php');
+// session_start();
 $currentUser = $_SESSION['username'];
 if (empty($currentUser)) {
-    header("location:../php/loginstu.php"); 
+    header("location:../php/loginstu.php");
 }
-?>
-
-<?php
-//session_start();
-include_once('../php/database.php');
-$currentUser = $_SESSION['username'];
 $sql = "SELECT * from student where username='$currentUser' ";
 $query = mysqli_query($conn, $sql);
 $result = mysqli_fetch_assoc($query);
@@ -66,9 +61,7 @@ $row = mysqli_fetch_array($query);
         </ul>
 
 
-
         <ul class="side-menu">
-
             <li>
                 <a href="./logout.php" class="logout">
                     <i class='fa fa-sign-out'></i>
@@ -102,19 +95,16 @@ $row = mysqli_fetch_array($query);
             <a href="#" class="profile">
                 <!-- <img src="img/people.png"> -->
                 <?php
-                if($result['filename'] == ""){
+                if ($result['filename'] == "") {
                     ?>
-                    <img src="../images/student/default.png">
-                    <?php
-                }else{
+                <img src="../images/student/default.png">
+                <?php
+                } else {
                     ?>
-                    <img src="../images/avatars/<?php echo $result['filename']; ?>">
-                    <?php
+                <img src="../images/student/<?php echo $result['filename']; ?>">
+                <?php
                 }
                 ?>
-                <!-- <img src="../images/student/<?php 
-                // echo $result['filename']; 
-                ?>"> -->
             </a>
         </nav>
 

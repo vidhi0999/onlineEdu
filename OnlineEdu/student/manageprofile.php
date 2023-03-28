@@ -5,7 +5,7 @@ include('./student-sidebar.php');
 
 $currentUser = $_SESSION['username'];
 if (empty($currentUser)) {
-    header("location:../php/loginstu.php"); 
+    header("location:../php/loginstu.php");
 }
 $sql = "SELECT * from student where username='$currentUser'";
 $gotResults = mysqli_query($conn, $sql);
@@ -61,11 +61,13 @@ $row = mysqli_fetch_array($gotResults);
                         </div>
                         <div class="input-box">
                             <span class="details">Birthday</span>
-                            <input type="date" name="dob" placeholder="Enter your birthdate" required>
+                            <input type="date" name="dob" placeholder="Enter your birthdate" required
+                                value="<?php echo $row['dob']; ?>">
                         </div>
                         <div class="input-box">
                             <span class="details">Qualification</span>
-                            <input type="text" name="qualify" placeholder="Enter your qualification" required>
+                            <input type="text" name="qualify" placeholder="Enter your qualification" required
+                                value="<?php echo $row['qualify']; ?>">
                         </div>
                     </div>
                     <div class="gender-details" required>
@@ -97,13 +99,14 @@ $row = mysqli_fetch_array($gotResults);
                     <div class="image-upload">
                         <!-- <form action="upload.php" method="post" enctype="multipart/form-data"> -->
                         Select image to upload:
-                        <input type="file" name="file" id="fileToUpload" required>
+                        <input type="file" name="file" id="file" required>
                         <!-- <input type="submit" value="Upload" name="submit"> -->
                         <!-- </form> -->
                     </div>
 
                     <div class="button">
-                        <input type="submit" name="submit" value="Save">
+                        <button?>
+                            <input type="submit" name="submit" value="Save"></button>
                     </div>
 
                 </form>

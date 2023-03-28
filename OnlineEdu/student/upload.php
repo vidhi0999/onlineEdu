@@ -1,9 +1,9 @@
 <?php
-
+session_start();
+$currentUser = $_SESSION['username'];
 include('./student-sidebar.php');
 include_once('../php/database.php');
-$statusMsg = '';
-$currentUser = $_SESSION['username'];
+// $statusMsg = '';
 $sql = "SELECT * from student where username='$currentUser'";
 
 $fullname = $_POST['fullname'];
@@ -28,7 +28,7 @@ if (isset($_POST["submit"]) && !empty($_FILES["file"]["name"])) {
         // Upload file to server
         if (move_uploaded_file($_FILES["file"]["tmp_name"], $targetFilePath)) {
             $insert = $conn->query("Update student set fullname = '$fullname',username='$username',email ='$email',qualify = '$qualify' ,dob='$dob'
-            ,phonenumber='$phone', gender='$gender',filename ='" . $fileName . "' where username='$currentUser'");
+            ,phonenumber='$phone', gender='$gender',filename =' $fileName ' where username='$currentUser'");
 
             if ($insert) {
                 header('location:manageprofile.php');
