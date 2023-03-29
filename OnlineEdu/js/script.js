@@ -48,14 +48,3 @@ $(document).ready(function () {
       });
     });
 });
-
-// course_view
-
-// $(document).ready(function () {
-//   $(".view_data").click(function () {
-//     uni_modal(
-//       "<i class='fa fa-bars'></i> Course Details",
-//       "../course_view.php?id=" + $(this).attr("data-id")
-//     );
-//   });
-// });

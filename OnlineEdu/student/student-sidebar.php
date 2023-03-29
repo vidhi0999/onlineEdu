@@ -1,6 +1,8 @@
 <?php
-include_once('../php/database.php');
 // session_start();
+
+include('../php/database.php');
+
 $currentUser = $_SESSION['username'];
 if (empty($currentUser)) {
     header("location:../php/loginstu.php");
@@ -17,8 +19,6 @@ $row = mysqli_fetch_array($query);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- My CSS -->
     <link rel="stylesheet" href="../css/dashboard.css">
@@ -53,7 +53,7 @@ $row = mysqli_fetch_array($query);
                 </a>
             </li>
             <li>
-                <a href="manageprofile.php">
+                <a href="./manageprofile.php">
                     <i class='fa fa-user'></i>
                     <span class="text">Manage Profile</span>
                 </a>
@@ -101,10 +101,17 @@ $row = mysqli_fetch_array($query);
                 <?php
                 } else {
                     ?>
+                <?php
+                    //  echo $result['filename'];
+                    ?>
                 <img src="../images/student/<?php echo $result['filename']; ?>">
+
+
+
                 <?php
                 }
                 ?>
+
             </a>
         </nav>
 
