@@ -174,12 +174,6 @@ if (isset($_GET['id']) && $_GET['id'] > 0) {
                                     Edit
                                     Profile</a>
 
-                                <button id="delete_tutor" class="btn btn-danger btn-flat bg-gradient-danger btn-sm"
-                                    type="button"><i class="fa fa-trash"></i> Delete</button>
-                                <!-- <a href="../controller/updatetutor.php?id=">
-                                    <button id="update_status" class="btn btn-navy btn-flat bg-gradient-navy btn-sm"
-                                        type="button"><i class="fa fa-check-square"></i> Update Status</button> -->
-
                                 <button id="update_status" class="btn btn-navy btn-flat bg-gradient-navy btn-sm"
                                     data-toggle="modal" type="button" data-target="#update" type="button"><i
                                         class="fa fa-check-square"></i> Update Status</button>

@@ -108,26 +108,6 @@ if (empty($adminuser)) {
 
                 <hr>
 
-                <!-- <div class="table-title">
-                    <div class="show-entries">
-                        <span>Show</span>
-                        <select>
-                            <option>5</option>
-                            <option>10</option>
-                            <option>15</option>
-                            <option>20</option>
-                        </select>
-                        <span>entries</span>
-                    </div>
-
-                    <div class="search-box">
-                        <span class="input-group-addon"><i class="fa fa-search">
-                                <input type="text" placeholder="Search&hellip;"></i></span>
-                    </div>
-                </div> -->
-
-
-
                 <table class="table">
                     <colgroup>
                         <col width="5%">
@@ -154,13 +134,13 @@ if (empty($adminuser)) {
                     <tbody>
 
                         <?php
-                        $i = 1;
-                        $qry = $conn->query("SELECT c.*, concat(t.lastname,', ', t.firstname, COALESCE(concat(' ', t.middlename),'')) as `tutor` from `course_list` c inner join `tutor_list` t on c.tutor_id = t.id where c.delete_flag = 0  order by c.`name` asc ");
+                        // $i = 1;
+                        $qry = $conn->query("SELECT c.*, concat(t.lastname,', ', t.firstname, COALESCE(concat(' ', t.middlename),'')) as `tutor` from `course_list` c inner join `tutor_list` t on c.tutor_id = t.id where c.delete_flag = 0  order by c.`id` asc");
                         while ($row = $qry->fetch_assoc()):
                             ?>
                         <tr>
                             <td class="text-center">
-                                <?php echo $i++; ?>
+                                <?php echo $row['id']; ?>
                             </td>
                             <td>
                                 <?php echo date("Y-m-d ", strtotime($row['date_created'])) ?>
@@ -221,14 +201,20 @@ if (empty($adminuser)) {
                                         </a>
                                     </button>
                                 </div>
-
-
                                 <div class="icons">
-                                    <button class="delete" title="Delete" id="delete" data-toggle="modal" type="button"
-                                        data-target="#delete" style=" border:none ;background-color:inherit"><i style=" padding: 0.100rem
-                                        0.10rem;" class="fa fa-trash"></i>
+                                    <button class="delete" class="btn" title="delete" id="delete" data-toggle="modal"
+                                        type="button" data-id="<?php echo $row['id'] ?>"
+                                        style="border:none; background-color:inherit">
+                                        <a href="deletecourse.php?id=<?php
+                                            // session_start(); 
+                                            echo $row['id'];
+                                            // $_SESSION['id'] = $row['id'];
+                                            ?>">
+                                            <i style=" padding: 0.100rem 0.10rem;" class="fa fa-trash"></i>
+                                        </a>
                                     </button>
                                 </div>
+
                             </td>
 
                         </tr>
@@ -237,17 +223,7 @@ if (empty($adminuser)) {
 
                     </tbody>
                 </table>
-                <!-- 
-                <div class="clearfix">
-                    <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
-                    <ul class="pagination">
-                        <li class="page-item disabled"><a href="#">Previous</a></li>
-                        <li class="page-item"><a href="#" class="page-link">1</a></li>
-                        <li class="page-item active"><a href="#" class="page-link">2</a></li>
-                        <li class="page-item "><a href=" #" class="page-link">3</a></li>
-                        <li class="page-item"><a href="#" class="page-link">Next</a></li>
-                    </ul>
-                </div> -->
+              
             </div>
 
 
