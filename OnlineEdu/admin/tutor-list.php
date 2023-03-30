@@ -98,13 +98,13 @@ if (empty($adminuser)) {
 
                     <tbody>
                         <?php
-                        $i = 1;
-                        $qry = $conn->query("SELECT *, concat(firstname,' ', coalesce(concat(middlename,' '), '') , lastname) as `name` from `tutor_list` where delete_flag = 0 order by `name` asc ");
+                        // $i = 1;
+                        $qry = $conn->query("SELECT *, concat(firstname,' ', coalesce(concat(middlename,' '), '') , lastname) as `name` from `tutor_list` where delete_flag = 0 order by `id` asc ");
                         while ($row = $qry->fetch_assoc()):
                             ?>
                             <tr>
                                 <td class="text-center">
-                                    <?php echo $i++; ?>
+                                    <?php echo $row['id']; ?>
                                 </td>
                                 <td>
                                     <?php echo date("Y-m-d ", strtotime($row['date_updated'])) ?>
@@ -161,6 +161,20 @@ if (empty($adminuser)) {
                                             </a>
                                         </button>
                                     </div>
+
+                                    <div class="icons">
+                                    <button class="delete" class="btn" title="delete" id="delete" data-toggle="modal"
+                                        type="button" data-id="<?php echo $row['id'] ?>"
+                                        style="border:none; background-color:inherit">
+                                        <a href="deletetutor.php?id=<?php
+                                            // session_start(); 
+                                            echo $row['id'];
+                                            // $_SESSION['id'] = $row['id'];
+                                            ?>">
+                                            <i style=" padding: 0.100rem 0.10rem;" class="fa fa-trash"></i>
+                                        </a>
+                                    </button>
+                                </div>
                                 </td>
 
 

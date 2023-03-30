@@ -23,6 +23,12 @@
             </a>
         </li>
         <li>
+            <a href="course-request.php">
+            <i class="fa fa-file-text"></i>
+                <span class="text">Course Request</span>
+            </a>
+        </li>
+        <li>
             <a href="tutor-list.php">
                 <i class='fa fa-users'></i>
                 <span class="text">Tutor List</span>
