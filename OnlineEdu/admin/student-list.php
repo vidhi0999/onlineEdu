@@ -14,11 +14,13 @@ include("../php/database.php");
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
     <!-- My CSS -->
     <link rel="stylesheet" href="../css/dashboard.css">
     <title>Admin</title>
-
 
 
 </head>
@@ -34,42 +36,25 @@ include("../php/database.php");
 
         <!-- MAIN -->
         <main>
-            <div class="head-title">
-                <div class="left">
-                    <h1>Students Enrolled</h1>
-                </div>
-            </div>
-
-            <hr>
             <div class="courses">
-                <div class="table-title">
-                    <div class="show-entries">
-                        <span>Show</span>
-                        <select>
-                            <option>5</option>
-                            <option>10</option>
-                            <option>15</option>
-                            <option>20</option>
-                        </select>
-                        <span>entries</span>
-                    </div>
-
-                    <div class="search-box">
-                        <span class="input-group-addon"><i class="fa fa-search"></i></span>
-                        <input type="text" class="form-control" placeholder="Search&hellip;">
+                <div class="head-title">
+                    <div class="left">
+                        <h3>Students Enrolled</h3>
                     </div>
                 </div>
+
+                <hr>
 
 
 
                 <table class="table">
                     <colgroup>
                         <col width="5%">
-                        <col width="20%">
+                        <col width="17.5%">
                         <col width="10%">
                         <col width="15%">
                         <col width="25%">
-                        <col width="15%">
+                        <col width="20.5%">
                         <!-- <col width="10%"> -->
                     </colgroup>
 
@@ -88,62 +73,62 @@ include("../php/database.php");
                         </tr>
 
                     </thead>
-                    
+
                     <tbody>
 
                         <?php
-                        $i = 1;
+                        // $i = 1;
                         $sql = $conn->query("SELECT * FROM student");
                         while ($row = $sql->fetch_assoc()):
                             ?>
-                        
-                        <tr>
-                            <td class="text-center">
-                                <?php echo $i++; ?>
-                            </td>
-                            <td>
-                                <?php echo $row['fullname']; ?>
-                            </td>
-                            <td>
-                                <?php 
-                                    if($row['filename'] == ""){
-                                        echo "<img src='../images/avatars/default.png'>";
-                                    }else{
-                                        echo "<img src='../images/avatars/".$row['filename']."'>";
+
+                            <tr>
+                                <td class="text-center">
+                                    <?php echo $row['id']; ?>
+                                </td>
+                                <td>
+                                    <?php echo $row['fullname']; ?>
+                                </td>
+                                <td>
+                                    <?php
+                                    if ($row['filename'] == "") {
+                                        echo "<img src='../images/student/default.png'>";
+                                    } else {
+                                        echo "<img src='../images/student/" . $row['filename'] . "'>";
                                     }
-                                ?>
+                                    ?>
 
-                            </td>
-                            <td>
-                                <?php echo $row['username'] ?>
-                            </td>
-                            <td>
-                                <?php echo $row['email'] ?>
-                            </td>
+                                </td>
+                                <td>
+                                    <?php echo $row['username'] ?>
+                                </td>
+                                <td>
+                                    <?php echo $row['email'] ?>
+                                </td>
 
-                            <td>
-                                <?php 
+                                <td>
+                                    <?php
                                     $student_id = $row['id'];
 
                                     $sql2 = $conn->query("SELECT * FROM course_request WHERE student_id = '$student_id' && status = '1'");
-                                    $result = mysqli_num_rows($sql2)>0;
+                                    $result = mysqli_num_rows($sql2) > 0;
                                     // $row2 = $sql2->fetch_assoc();
-                                        if($result){
-                                            while($row2=$sql2->fetch_assoc()){
-                                                echo $row2['course_name'];
-                                                echo "<br/>";
-                                            }
-                                        }else{
-                                            echo "Not selected!";
+                                    if ($result) {
+                                        while ($row2 = $sql2->fetch_assoc()) {
+                                            echo $row2['course_name'];
+                                            echo "<br/>";
                                         }
-                                    
-                                    
-                                ?>
-                            </td>
+                                    } else {
+                                        echo "Not selected!";
+                                    }
 
-                           
 
-                        </tr>
+                                    ?>
+                                </td>
+
+
+
+                            </tr>
 
                         <?php endwhile; ?>
 
@@ -152,7 +137,7 @@ include("../php/database.php");
                 </table>
 
 
-                <div class="clearfix">
+                <!-- <div class="clearfix">
                     <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
                     <ul class="pagination">
                         <li class="page-item disabled"><a href="#">Previous</a></li>
@@ -163,7 +148,7 @@ include("../php/database.php");
                         <li class="page-item"><a href="#" class="page-link">5</a></li>
                         <li class="page-item"><a href="#" class="page-link">Next</a></li>
                     </ul>
-                </div>
+                </div> -->
             </div>
 
 

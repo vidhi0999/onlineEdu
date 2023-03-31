@@ -43,7 +43,7 @@ if (empty($adminuser)) {
             <div class="courses">
                 <div class="head-title">
                     <div class="left">
-                        <h3>List of Tutors</h3>
+                        <h3>Course Request</h3>
                     </div>
                 </div>
 
@@ -77,16 +77,16 @@ if (empty($adminuser)) {
                         while ($row = $qry->fetch_assoc()):
                             $course_id = $row['course_id'];
                             $qry2 = $conn->query("SELECT * FROM course_list WHERE id = $course_id");
-                            while($row2 = $qry2->fetch_assoc()){
+                            while ($row2 = $qry2->fetch_assoc()) {
                                 $tutor_id = $row2['tutor_id'];
                                 $qry3 = $conn->query("SELECT * FROM tutor_list WHERE id = $tutor_id");
-                                while($row3 = $qry3->fetch_assoc()){
-                                    $row['name'] = $row3['lastname'] . ','.$row3['firstname'] .' '. $row3['lastname'];
+                                while ($row3 = $qry3->fetch_assoc()) {
+                                    $row['name'] = $row3['lastname'] . ',' . $row3['firstname'] . ' ' . $row3['lastname'];
                                 }
                             }
                             $studentUser = $row['student_userName'];
                             $qry4 = $conn->query("SELECT * FROM student WHERE username = '$studentUser'");
-                            while($row4 = $qry4->fetch_assoc()){
+                            while ($row4 = $qry4->fetch_assoc()) {
                                 $avtar = $row4['filename'];
                             }
                             ?>
@@ -95,14 +95,14 @@ if (empty($adminuser)) {
                                     <?php echo $i++; ?>
                                 </td>
                                 <td>
-                                    <?php 
-                                        if($avtar == ""){
-                                            echo "<img src='../images/avatars/default.png'>";
-                                        }else{
-                                            echo "<img src='../images/avatars/".$avtar."'>";
-                                        }
+                                    <?php
+                                    if ($avtar == "") {
+                                        echo "<img src='../images/student/default.png'>";
+                                    } else {
+                                        echo "<img src='../images/student/" . $avtar . "'>";
+                                    }
                                     ?>
-                                    
+
                                 </td>
                                 <td>
                                     <?php echo $row['student_userName']; ?>
@@ -115,23 +115,21 @@ if (empty($adminuser)) {
                                 </td>
 
                                 <td>
-                                    
+
                                     <?php if ($row['status'] == 0): ?>
                                         <form method="POST">
-                                            <input type="text" name="courseId" value="<?php echo $row['id']?>" hidden>
-                                            <button class="accept"  class="btn" title="Accept" 
-                                             data-id="<?php echo $row['id']; ?>" data-target=" #view"
-                                            name="accept">
-                                            Accept
+                                            <input type="text" name="courseId" value="<?php echo $row['id'] ?>" hidden>
+                                            <button class="accept" class="btn" title="Accept"
+                                                data-id="<?php echo $row['id']; ?>" data-target=" #view" name="accept">
+                                                Accept
                                             </button>
-                                            <button class="cancel"  class="btn" title="Cancel" id="view"
-                                             data-id="<?php echo $row['id']; ?>" data-target=" #view"
-                                            name="cancel">
-                                            Cancel
-                                        </button>
+                                            <button class="cancel" class="btn" title="Cancel" id="view"
+                                                data-id="<?php echo $row['id']; ?>" data-target=" #view" name="cancel">
+                                                Cancel
+                                            </button>
                                         </form>
                                     <?php endif; ?>
-                                    
+
                                 </td>
                             </tr>
                         <?php endwhile; ?>
@@ -144,15 +142,16 @@ if (empty($adminuser)) {
     <!-- CONTENT -->
     <script src="../js/script.js"></script>
 </body>
+
 </html>
-<?php 
-    if(isset($_POST['accept'])){
-        $id = $_POST['courseId'];
-        // echo "hello";
-        $sql = "UPDATE course_request SET status = '1' WHERE id = $id";
-        $result = $conn->query($sql);
-        if($result){
-            echo "<script>
+<?php
+if (isset($_POST['accept'])) {
+    $id = $_POST['courseId'];
+    // echo "hello";
+    $sql = "UPDATE course_request SET status = '1' WHERE id = $id";
+    $result = $conn->query($sql);
+    if ($result) {
+        echo "<script>
             swal({
                 title: 'Success!',
                 text: 'Request Accepted!',
@@ -162,8 +161,8 @@ if (empty($adminuser)) {
                 window.location = 'course-request.php';
             });
             </script>";
-        }else{
-            echo "<script>
+    } else {
+        echo "<script>
             swal({
                 title: 'Error!',
                 text: 'Something went wrong!',
@@ -173,6 +172,6 @@ if (empty($adminuser)) {
                 window.location = 'course-request.php';
             });
             </script>";
-        }
     }
+}
 ?>
