@@ -174,4 +174,33 @@ if (isset($_POST['accept'])) {
             </script>";
     }
 }
+if(isset($_POST['cancel'])){
+    $id = $_POST['courseId'];
+    $sql = "UPDATE course_request SET delete_flag='1' WHERE id = $id";
+    $result = $conn->query($sql);
+    if($result){
+        echo "<script>
+            swal({
+                title: 'Success!',
+                text: 'Request Cancelled!',
+                icon: 'success',
+                button: 'Ok',
+            }).then(function() {
+                window.location = 'course-request.php';
+            });
+            </script>";
+    
+        }else{
+            echo "<script>
+            swal({
+                title: 'Error!',
+                text: 'Something went wrong!',
+                icon: 'error',
+                button: 'Ok',
+            }).then(function() {
+                window.location = 'course-request.php';
+            });
+            </script>";
+        }
+}
 ?>

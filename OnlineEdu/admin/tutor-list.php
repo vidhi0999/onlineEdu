@@ -20,6 +20,7 @@ if (empty($adminuser)) {
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/sweetalert.min.js"></script>
     <!-- My CSS -->
     <link rel="stylesheet" href="../css/dashboard.css">
     <title>Admin</title>
@@ -163,17 +164,14 @@ if (empty($adminuser)) {
                                     </div>
 
                                     <div class="icons">
-                                    <button class="delete" class="btn" title="delete" id="delete" data-toggle="modal"
-                                        type="button" data-id="<?php echo $row['id'] ?>"
-                                        style="border:none; background-color:inherit">
-                                        <a href="deletetutor.php?id=<?php
-                                            // session_start(); 
-                                            echo $row['id'];
-                                            // $_SESSION['id'] = $row['id'];
-                                            ?>">
-                                            <i style=" padding: 0.100rem 0.10rem;" class="fa fa-trash"></i>
-                                        </a>
-                                    </button>
+                                        <form method="POST">
+                                            <input type="text" name="delete" value="<?php echo $row['id'] ?>" hidden>
+                                            <button name="delete1"  class="btn" title="Delete"
+                                                data-id="<?php echo $row['id'] ?>"   
+                                                style="border:none; background-color:inherit">
+                                                    <i style=" padding: 0.100rem 0.10rem;" class="fa fa-trash"></i>
+                                            </button>
+                                        </form>
                                 </div>
                                 </td>
 
@@ -209,3 +207,44 @@ if (empty($adminuser)) {
 </body>
 
 </html>
+<?php 
+    if(isset($_POST['delete1'])){
+        $id = $_POST['delete'];
+        $sql = "DELETE FROM tutor_meta WHERE tutor_id='$id'";
+        $result = $conn->query($sql);
+        $sql1 = "UPDATE tutor_list SET delete_flag = '1' WHERE id='$id'";
+        $result1 = $conn->query($sql1);
+        $sql2 = "UPDATE course_list SET delete_flag = '1' WHERE tutor_id='$id'";
+        $result2 = $conn->query($sql2);
+        $sql3 = "UPDATE course_request SET delete_flag = '1' WHERE tutor_id='$id'";
+        $result3 = $conn->query($sql3);
+        if($result && $result1 && $result2 && $result3){
+            echo "<script>
+                swal({
+                    title: 'Success!',
+                    text: 'Tutor Deleted!',
+                    icon: 'success',
+                    button: 'Ok',
+                }).then(function() {
+                    window.location = 'tutor-list.php';
+                });
+                </script>";
+        } else {
+            echo "<script>
+                swal({
+                    title: 'Error!',
+                    text: 'Something went wrong!',
+                    icon: 'error',
+                    button: 'Ok',
+                }).then(function() {
+                    window.location = 'tutor-list.php';
+                });
+                </script>";
+        }
+        // $conn->query("UPDATE `tutor_list` set delete_flag = 1 where id = $id");
+        // header("Location: tutor_list.php");
+        // echo '<script>
+        // console.log("'.$id.'");
+        // </script>';
+    }
+?>

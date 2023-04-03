@@ -19,6 +19,7 @@ if (empty($adminuser)) {
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
     <!-- My CSS -->
+    <script src="../js/sweetalert.min.js"></script>
     <link rel="stylesheet" href="../css/dashboard.css">
     <title>Admin</title>
 </head>
@@ -134,13 +135,13 @@ if (empty($adminuser)) {
                     <tbody>
 
                         <?php
-                        // $i = 1;
+                        $i = 1;
                         $qry = $conn->query("SELECT c.*, concat(t.lastname,', ', t.firstname, COALESCE(concat(' ', t.middlename),'')) as `tutor` from `course_list` c inner join `tutor_list` t on c.tutor_id = t.id where c.delete_flag = 0  order by c.`id` asc");
                         while ($row = $qry->fetch_assoc()):
                             ?>
                         <tr>
                             <td class="text-center">
-                                <?php echo $row['id']; ?>
+                                <?php echo $i++; ?>
                             </td>
                             <td>
                                 <?php echo date("Y-m-d ", strtotime($row['date_created'])) ?>
@@ -202,17 +203,14 @@ if (empty($adminuser)) {
                                     </button>
                                 </div>
                                 <div class="icons">
-                                    <button class="delete" class="btn" title="delete" id="delete" data-toggle="modal"
-                                        type="button" data-id="<?php echo $row['id'] ?>"
-                                        style="border:none; background-color:inherit">
-                                        <a href="deletecourse.php?id=<?php
-                                            // session_start(); 
-                                            echo $row['id'];
-                                            // $_SESSION['id'] = $row['id'];
-                                            ?>">
-                                            <i style=" padding: 0.100rem 0.10rem;" class="fa fa-trash"></i>
-                                        </a>
-                                    </button>
+                                    <form method="POST">
+                                            <input type="text" name="delete" value="<?php echo $row['id'] ?>" hidden>
+                                            <button  class="btn" title="Accept"
+                                                data-id="<?php echo $row['id']; ?>" data-target=" #view" name="delete1">
+                                                <i style=" padding: 0.100rem 0.10rem; color:#e34724;" class="fa fa-trash"></i>
+
+                                            </button>
+                                        </form>
                                 </div>
 
                             </td>
@@ -237,3 +235,46 @@ if (empty($adminuser)) {
 </body>
 
 </html>
+<?php 
+    // if(isset($_POST['delete'])){
+    //     // $id = $_POST['delete'];
+    //     $id = 3;
+    //     // echo $id;
+    //     // $conn->query("UPDATE `course_list` SET `delete_flag` = 1 WHERE `id` = '$id'");
+    //     // echo "<script>window.location.href='course_list.php'</script>";
+    //     echo '<script>
+    //     console.log("'.$id.'");        
+        
+    //     </script>';
+    // }
+    if (isset($_POST['delete1'])) {
+        $id = $_POST['delete'];
+        $sql = "UPDATE course_list SET delete_flag = '1' WHERE id='$id'";
+        $result1 = $conn->query($sql);
+        $sql2 = "UPDATE course_request SET delete_flag = '1' WHERE course_id='$id'";
+        $result2 = $conn->query($sql2);
+        if ($result1 && $result2) {
+            echo "<script>
+                swal({
+                    title: 'Success!',
+                    text: 'Course Deleted!',
+                    icon: 'success',
+                    button: 'Ok',
+                }).then(function() {
+                    window.location = 'course-list.php';
+                });
+                </script>";
+        } else {
+            echo "<script>
+                swal({
+                    title: 'Error!',
+                    text: 'Something went wrong!',
+                    icon: 'error',
+                    button: 'Ok',
+                }).then(function() {
+                    window.location = 'course-list.php';
+                });
+                </script>";
+        }
+        }
+?>
