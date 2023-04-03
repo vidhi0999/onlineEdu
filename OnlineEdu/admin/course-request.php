@@ -76,7 +76,7 @@ if (empty($adminuser)) {
                         $qry = $conn->query("SELECT * FROM course_request WHERE status = '0'");
                         while ($row = $qry->fetch_assoc()):
                             $course_id = $row['course_id'];
-                            $qry2 = $conn->query("SELECT * FROM course_list WHERE id = $course_id");
+                            $qry2 = $conn->query("SELECT * FROM course_list WHERE id = $course_id AND delete_flag = '0'");
                             while ($row2 = $qry2->fetch_assoc()) {
                                 $tutor_id = $row2['tutor_id'];
                                 $qry3 = $conn->query("SELECT * FROM tutor_list WHERE id = $tutor_id");
