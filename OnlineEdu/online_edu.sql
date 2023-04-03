@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Mar 25, 2023 at 11:26 AM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 8.1.1
+-- Host: localhost
+-- Generation Time: Apr 03, 2023 at 06:44 PM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 8.1.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -32,7 +32,7 @@ CREATE TABLE `admin` (
   `email` varchar(255) NOT NULL,
   `username` varchar(255) NOT NULL,
   `pass` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `admin`
@@ -40,28 +40,6 @@ CREATE TABLE `admin` (
 
 INSERT INTO `admin` (`id`, `email`, `username`, `pass`) VALUES
 (1, 'admin@gmail.com', 'admin123', 'admin123');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `contactus`
---
-
-CREATE TABLE `contactus` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `last_name` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `message` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_date` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `contactus`
---
-
-INSERT INTO `contactus` (`id`, `name`, `last_name`, `email`, `message`, `created_date`) VALUES
-(1, 'shreya', '', 'shreya@yahoo.com', 'join', '2023-03-25');
 
 -- --------------------------------------------------------
 
@@ -80,7 +58,7 @@ CREATE TABLE `course_list` (
   `delete_flag` tinyint(1) NOT NULL DEFAULT 0,
   `date_created` date NOT NULL DEFAULT current_timestamp(),
   `date_updated` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `course_list`
@@ -89,10 +67,43 @@ CREATE TABLE `course_list` (
 INSERT INTO `course_list` (`id`, `tutor_id`, `name`, `logo`, `description`, `experience`, `status`, `delete_flag`, `date_created`, `date_updated`) VALUES
 (1, 3, 'PHP', 'php.png', 'Learn all PHP Fundamental and building blocks-Complete php course.Make web pages dynamic with variety of concepts including form validation.', '5 Years', 1, 0, '2022-05-17', '2023-03-23'),
 (2, 1, 'MySQL', 'mysql.png', 'Introduction to Structured Query language. Learn about the basic syntax of the SQL language, as well as database design with multiple table,etc  ', '5 Years', 1, 0, '2022-05-17', '2023-03-23'),
-(3, 3, 'DBMS', 'dbms.jpeg', 'Learn database management system(DBMS).Gain DBMS skills such as data creation ,queryingand manipulation and many more concepts.', '5 Years', 0, 0, '2023-03-08', '2023-03-23'),
-(4, 2, 'Data Structure', 'ds.png', 'Learn basics of Data Structure , its algorithms and  data solving techniques.', '4 years', 1, 0, '2023-03-08', '2023-03-23'),
-(5, 3, 'C++', 'c++.jfif', 'C++', '1 Year', 1, 0, '2023-03-24', '2023-03-24'),
-(6, 2, 'Data Mining', 'dm.png', 'Data Mining', '3 Year', 1, 0, '2023-03-24', '2023-03-24');
+(3, 3, 'DBMS', 'dbms.jpeg', 'Learn database management system(DBMS).Gain DBMS skills such as data creation ,queryingand manipulation and many more concepts.', '5 Years', 1, 0, '2023-03-08', '2023-03-23'),
+(4, 2, 'Data Structure', 'ds.png', 'Learn basics of Data Structure , You will learn how these data structures are implemented in different programming languages and will practice implementing them in our programming assignments.', '4 years', 1, 0, '2023-03-08', '2023-03-23'),
+(5, 3, 'C++', 'c++.jfif', 'C++ is an object-oriented programming (OOP) language that is viewed by many as the best language for creating large-scale applications.', '1 Year', 1, 0, '2023-03-24', '2023-03-24'),
+(6, 2, 'Data Mining', 'dm.png', 'Data mining is the process of sorting through large data sets to identify patterns and relationships that can help solve business problems through data analysis.', '3 Year', 1, 0, '2023-03-24', '2023-03-24');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `course_request`
+--
+
+CREATE TABLE `course_request` (
+  `id` int(6) UNSIGNED NOT NULL,
+  `tutor_id` int(6) NOT NULL,
+  `course_id` int(255) NOT NULL,
+  `course_name` varchar(255) NOT NULL,
+  `student_id` int(255) NOT NULL,
+  `student_userName` varchar(255) NOT NULL,
+  `status` int(4) NOT NULL,
+  `delete_flag` int(6) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `course_request`
+--
+
+INSERT INTO `course_request` (`id`, `tutor_id`, `course_id`, `course_name`, `student_id`, `student_userName`, `status`, `delete_flag`) VALUES
+(1, 3, 1, 'PHP', 1, 'maulik7332', 0, 0),
+(2, 1, 2, 'MySQL', 1, 'maulik7332', 0, 0),
+(3, 3, 1, 'PHP', 3, 'vidhi54', 0, 0),
+(5, 3, 3, 'DBMS', 1, 'maulik7332', 0, 0),
+(6, 3, 5, 'C++', 3, 'vidhi54', 0, 0),
+(7, 3, 1, 'PHP', 2, 'vrujal30', 0, 0),
+(8, 1, 2, 'MySQL', 2, 'vrujal30', 0, 0),
+(9, 2, 4, 'Data Structure', 1, 'maulik7332', 0, 0),
+(10, 1, 2, 'MySQL', 3, 'vidhi54', 0, 0),
+(11, 3, 5, 'C++', 1, 'maulik7332', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -111,7 +122,7 @@ CREATE TABLE `inquiry_list` (
   `status` tinyint(1) NOT NULL DEFAULT 0,
   `date_created` datetime NOT NULL DEFAULT current_timestamp(),
   `date_updated` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `inquiry_list`
@@ -137,7 +148,7 @@ CREATE TABLE `student` (
   `filename` varchar(100) NOT NULL,
   `qualify` varchar(255) NOT NULL,
   `dob` date NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `student`
@@ -166,7 +177,7 @@ CREATE TABLE `tutor_list` (
   `delete_flag` tinyint(1) NOT NULL DEFAULT 0,
   `date_created` date NOT NULL,
   `date_updated` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tutor_list`
@@ -185,33 +196,9 @@ INSERT INTO `tutor_list` (`id`, `firstname`, `middlename`, `lastname`, `email`, 
 
 CREATE TABLE `tutor_meta` (
   `tutor_id` int(20) NOT NULL,
-  `meta_field` text CHARACTER SET utf8 NOT NULL,
-  `meta_value` text CHARACTER SET utf8 NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `tutor_meta`
---
-
-INSERT INTO `tutor_meta` (`tutor_id`, `meta_field`, `meta_value`) VALUES
-(1, 'dob', '1997-06-23'),
-(1, 'gender', 'Male'),
-(1, 'contact', '09123456789'),
-(1, 'address', '518 Evangelista, Manila, Metro Manila'),
-(1, 'specialty', 'HTML, CSS, JS, Python, PHP, MYSQL, SQLite, AngularJS, and Node.JS'),
-(1, 'description', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean blandit leo vel quam ultricies ultrices. Nam sit amet arcu diam. Cras in augue tempor, imperdiet ligula scelerisque, aliquet dolor. Nulla interdum mi at justo condimentum, ac euismod tellus sollicitudin. Ut interdum augue non arcu tincidunt tincidunt.\r\n\r\nDonec cursus nulla orci, in condimentum metus egestas in. Curabitur rhoncus tincidunt quam. Aliquam erat volutpat.'),
-(3, 'dob', '1997-10-14'),
-(3, 'gender', 'Female'),
-(3, 'contact', '09654789123 / 098785466'),
-(3, 'address', '469 Gen. Luna St., Hulong Duhat, Malabon, Metro Manila'),
-(3, 'specialty', 'Grammar, English, Science, and Mathematics'),
-(3, 'description', 'Integer a mi quam. Vivamus et purus sed velit laoreet maximus. Suspendisse erat metus, efficitur sit amet blandit a, imperdiet sed sapien. Praesent lacinia, metus vitae mollis pharetra, enim ex laoreet erat, sit amet egestas nisi diam quis nisi. Praesent luctus eleifend varius. Quisque ut pulvinar quam, vel tempor ipsum. Morbi id dapibus tellus. Praesent vitae libero aliquam, consequat eros a, efficitur sapien. Maecenas ullamcorper velit at purus porttitor, in fermentum orci suscipit. Fusce venenatis blandit vehicula. Quisque non ex eu sapien placerat lobortis nec vitae magna. Aliquam erat volutpat. In at purus erat.'),
-(2, 'dob', '1997-06-23'),
-(2, 'gender', 'Male'),
-(2, 'contact', '09789654123'),
-(2, 'address', 'Sample Address only'),
-(2, 'specialty', 'PHP, HTML, CSS, JS, and Python.'),
-(2, 'description', 'This is a sample description about myself.');
+  `meta_field` text CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `meta_value` text CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Indexes for dumped tables
@@ -226,15 +213,15 @@ ALTER TABLE `admin`
   ADD UNIQUE KEY `username` (`username`);
 
 --
--- Indexes for table `contactus`
---
-ALTER TABLE `contactus`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `course_list`
 --
 ALTER TABLE `course_list`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `course_request`
+--
+ALTER TABLE `course_request`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -268,16 +255,16 @@ ALTER TABLE `admin`
   MODIFY `id` int(6) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `contactus`
---
-ALTER TABLE `contactus`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
 -- AUTO_INCREMENT for table `course_list`
 --
 ALTER TABLE `course_list`
   MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `course_request`
+--
+ALTER TABLE `course_request`
+  MODIFY `id` int(6) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `student`
