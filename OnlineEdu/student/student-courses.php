@@ -46,7 +46,7 @@ if (empty($currentUser)) {
                 <div class="row" mt-3>
                     <?php
                     require '../php/database.php';
-                    $query = "SELECT * FROM course_list WHERE status = '1'";
+                    $query = "SELECT * FROM course_list WHERE status = '1' AND delete_flag = '0'";
                     $query_run = mysqli_query($conn, $query);
                     $check_course = mysqli_num_rows($query_run) > 0;
                     if ($check_course) {
