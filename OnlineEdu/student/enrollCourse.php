@@ -20,13 +20,14 @@ if (isset($_POST['enroll'])) {
     $result = mysqli_fetch_assoc($query);
     $course_name = $result['name'];
     $course_id = $result['id'];
+    $tutor_id = $result['tutor_id'];
     $student_user = $_SESSION['username'];
     $sql2 = "SELECT * FROM student WHERE username='$student_user'";
     $query2 = mysqli_query($conn, $sql2);
     $result2 = mysqli_fetch_assoc($query2);
     $student_id = $result2['id'];
     $student_userName = $result2['username'];
-    $sql3 = "INSERT INTO course_request(course_id,course_name,student_id,student_userName,status) VALUES('$course_id','$course_name','$student_id','$student_userName','0')";
+    $sql3 = "INSERT INTO course_request(tutor_id,course_id,course_name,student_id,student_userName,status,delete_flag) VALUES('$tutor_id','$course_id','$course_name','$student_id','$student_userName','0','0')";
     if ($conn->query($sql3)) {
         // echo "done karo mee";
         header("location:student-courses.php");

@@ -73,7 +73,7 @@ if (empty($adminuser)) {
                     <tbody>
                         <?php
                         $i = 1;
-                        $qry = $conn->query("SELECT * FROM course_request WHERE status = '0'");
+                        $qry = $conn->query("SELECT * FROM course_request WHERE status = '0' AND delete_flag = '0'");
                         while ($row = $qry->fetch_assoc()):
                             $course_id = $row['course_id'];
                             $qry2 = $conn->query("SELECT * FROM course_list WHERE id = $course_id AND delete_flag = '0'");
