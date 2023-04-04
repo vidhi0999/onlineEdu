@@ -48,6 +48,15 @@
                         <input type="submit"></button>
                     </div>
 
+                    <?php if (isset($_GET['error'])) { ?>
+                    <div class="error">
+                        <div class="sub-error">
+                            <h4>
+                                <?php echo $_GET['error']; ?>
+                            </h4>
+                        </div>
+                    </div>
+                <?php } ?>
                 </form>
 
             </div>

@@ -137,6 +137,17 @@ form .button input {
 form .button input:hover {
   background: linear-gradient(135deg, #71b7e6, #9b59b6);
 }
+
+.error{
+  height: 35px;
+  width: 100%;
+  color: black;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
+}
 @media (max-width: 584px) {
   .container {
     max-width: 100%;
