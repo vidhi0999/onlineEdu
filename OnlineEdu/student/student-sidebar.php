@@ -104,7 +104,7 @@ $row = mysqli_fetch_array($query);
                     <?php
                     //  echo $result['filename'];
                     ?>
-                    <img src="../images/student/<?php echo $result['filename']; ?>">
+                    <img src='../images/student/<?php echo $result['filename']; ?>'>
 
 
 
