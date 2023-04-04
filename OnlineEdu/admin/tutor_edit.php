@@ -5,27 +5,12 @@ $adminuser = $_SESSION['adminuser'];
 if (empty($adminuser)) {
     header("location:index.php");
 }
-// if(isset($_GET['id']) && $_GET['id'] > 0){
-//     $qry = $conn->query("SELECT *, CONCAT(lastname,', ',firstname , COALESCE(concat(' ', middlename), '')) as `name` FROM `tutor_list` where id = '{$_GET['id']}'");
-//     if($qry->num_rows > 0){
-//         foreach($qry->fetch_array() as $k => $v){
-//             if(!is_numeric($k))
-//                 $$k = $v;
-//         }
-//         if(isset($id)){
-//             $meta_qry = $conn->query("SELECT * from `tutor_meta` where tutor_id = '{$id}' ");
-//             while($row = $meta_qry->fetch_assoc()){
-//                 ${$row['meta_field']} = $row['meta_value'];
-//             }
-//         }
-//     }
-// }
+
 if (isset($_GET['id']) && $_GET['id'] > 0) {
     $tutor_id = $_GET['id'];
 
     $sql1 = $conn->query("SELECT *, CONCAT(lastname,', ',firstname , COALESCE(concat(' ', middlename), '')) as `name` FROM `tutor_list`  WHERE id = '$tutor_id'");
     $row1 = $sql1->fetch_assoc();
-    // $tutor_meta = $row1['tutor_id'];
     $sql2 = $conn->query("SELECT * FROM tutor_meta WHERE tutor_id = $tutor_id");
     $row2 = $sql2->fetch_assoc();
 }

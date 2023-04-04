@@ -35,7 +35,7 @@ if (empty($adminuser)) {
         <main>
             <div class="head-title">
                 <div class="left">
-                    <h1>List of Courses</h1>
+                    <h1>Inquiries</h1>
                 </div>
             </div>
 
@@ -43,13 +43,13 @@ if (empty($adminuser)) {
             <div class="courses">
                 <table class="table">
                     <colgroup>
-                        <col width="5%">
+                        <col width="7%">
+                        <col width="17%">
                         <col width="15%">
-                        <col width="10%">
-                        <col width="20%">
+                        <col width="22%">
                         <col width="25%">
                         <col width="15%">
-                        <col width="10%">
+                        <!-- <col width="10%"> -->
                     </colgroup>
 
 
@@ -63,7 +63,7 @@ if (empty($adminuser)) {
                             <th> For Tutor Name<i class="fa fa-sort"></i></th>
                             <th>Message<i class="fa fa-sort"></i></th>
                             <th>Status<i class="fa fa-sort"></i></th>
-                            <th>Action</th>
+                            <!-- <th>Action</th> -->
                         </tr>
 
                     </thead>

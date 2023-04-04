@@ -45,30 +45,92 @@ if (empty($adminuser)) {
                     <div class="left">
                         <h3>List of Tutors</h3>
                     </div>
+
+
+                    <button type="button" class="btn" data-toggle="modal" data-target="#form">
+                        <div class="right-plus" data-toggle="modal" data-target="#form">
+                            <i class=" fa fa-plus"></i> Add New Tutor
+                        </div>
+                    </button>
+
+
+                    <div class="modal fade" id="form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header border-bottom-0">
+                                    <h5 class="modal-title" id="exampleModalLabel">New Course</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+
+                                <form action="addtutor.php" method="POST" enctype="multipart/form-data">
+                                    <div class="modal-body">
+
+                                        <label for="TutorName">Tutor Name</label>
+                                        <div class="form-group" style="display:flex">
+                                            <input type="text" style="width:33%" name="lastname" placeholder="last name"
+                                                class="form-control" id="">,
+                                            <input type="text" style="width:33%" name="firstname" class="form-control"
+                                                placeholder="first name" id="">
+                                            <input type="text" style="width:33%" name="middlename" class="form-control"
+                                                placeholder="middle name" id="">
+
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="email">Email</label>
+                                            <input type="email" name="email" class="form-control" id="">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="contact">Contact</label>
+                                            <input type="number" name="contact" class="form-control" id="">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="gender"> Gender</label>
+                                            <select class="form-control" name="gender">
+                                                <option value="" selected> Select option </option>
+                                                <option value="1"> Male </option>
+                                                <option value="2"> Female</option>
+                                                <option value="3"> Prefer not to say </option>
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="dob">Date of birth</label>
+                                            <input type="date" name="dob" class="form-control" id="">
+                                        </div>
+
+
+                                        <div class="form-group">
+                                            <label for="address">Address</label>
+                                            <input type="text" name="address" class="form-control" id="">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="contact">Speciality</label>
+                                            <input type="text" name="speciality" class="form-control" id="">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="contact">Short Description</label>
+                                            <input type="text" name="descrp" class="form-control" id="">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="courseImg">Tutor's Avatar</label>
+                                            <input type="file" name="tutor_image" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer border-top-0 d-flex justify-content-center">
+                                        <button type="submit" name="save_tutor" class="btn btn-success">Submit</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
-
                 <hr>
-
-                <!-- <div class="table-title">
-                    <div class="show-entries">
-                        <span>Show</span>
-                        <select>
-                            <option>5</option>
-                            <option>10</option>
-                            <option>15</option>
-                            <option>20</option>
-                        </select>
-                        <span>entries</span>
-                    </div>
-
-                    <div class="search-box">
-                        <span class="input-group-addon"><i class="fa fa-search">
-                                <input type="text" placeholder="Search&hellip;"></i></span>
-                    </div>
-                </div> -->
-
-
 
                 <table class="table">
                     <colgroup>
@@ -166,13 +228,13 @@ if (empty($adminuser)) {
                                     <div class="icons">
                                         <form method="POST">
                                             <input type="text" name="delete" value="<?php echo $row['id'] ?>" hidden>
-                                            <button name="delete1"  class="btn" title="Delete"
-                                                data-id="<?php echo $row['id'] ?>"   
+                                            <button name="delete1" class="btn" title="Delete"
+                                                data-id="<?php echo $row['id'] ?>"
                                                 style="border:none; background-color:inherit">
-                                                    <i style=" padding: 0.100rem 0.10rem;" class="fa fa-trash"></i>
+                                                <i style=" padding: 0.100rem 0.10rem;" class="fa fa-trash"></i>
                                             </button>
                                         </form>
-                                </div>
+                                    </div>
                                 </td>
 
 
@@ -207,19 +269,19 @@ if (empty($adminuser)) {
 </body>
 
 </html>
-<?php 
-    if(isset($_POST['delete1'])){
-        $id = $_POST['delete'];
-        $sql = "DELETE FROM tutor_meta WHERE tutor_id='$id'";
-        $result = $conn->query($sql);
-        $sql1 = "UPDATE tutor_list SET delete_flag = '1' WHERE id='$id'";
-        $result1 = $conn->query($sql1);
-        $sql2 = "UPDATE course_list SET delete_flag = '1' WHERE tutor_id='$id'";
-        $result2 = $conn->query($sql2);
-        $sql3 = "UPDATE course_request SET delete_flag = '1' WHERE tutor_id='$id'";
-        $result3 = $conn->query($sql3);
-        if($result && $result1 && $result2 && $result3){
-            echo "<script>
+<?php
+if (isset($_POST['delete1'])) {
+    $id = $_POST['delete'];
+    $sql = "DELETE FROM tutor_meta WHERE tutor_id='$id'";
+    $result = $conn->query($sql);
+    $sql1 = "UPDATE tutor_list SET delete_flag = '1' WHERE id='$id'";
+    $result1 = $conn->query($sql1);
+    $sql2 = "UPDATE course_list SET delete_flag = '1' WHERE tutor_id='$id'";
+    $result2 = $conn->query($sql2);
+    $sql3 = "UPDATE course_request SET delete_flag = '1' WHERE tutor_id='$id'";
+    $result3 = $conn->query($sql3);
+    if ($result && $result1 && $result2 && $result3) {
+        echo "<script>
                 swal({
                     title: 'Success!',
                     text: 'Tutor Deleted!',
@@ -229,8 +291,8 @@ if (empty($adminuser)) {
                     window.location = 'tutor-list.php';
                 });
                 </script>";
-        } else {
-            echo "<script>
+    } else {
+        echo "<script>
                 swal({
                     title: 'Error!',
                     text: 'Something went wrong!',
@@ -240,11 +302,11 @@ if (empty($adminuser)) {
                     window.location = 'tutor-list.php';
                 });
                 </script>";
-        }
-        // $conn->query("UPDATE `tutor_list` set delete_flag = 1 where id = $id");
-        // header("Location: tutor_list.php");
-        // echo '<script>
-        // console.log("'.$id.'");
-        // </script>';
     }
+    // $conn->query("UPDATE `tutor_list` set delete_flag = 1 where id = $id");
+    // header("Location: tutor_list.php");
+    // echo '<script>
+    // console.log("'.$id.'");
+    // </script>';
+}
 ?>

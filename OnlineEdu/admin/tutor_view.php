@@ -8,10 +8,8 @@ if (empty($adminuser)) {
 
 if (isset($_GET['id']) && $_GET['id'] > 0) {
     $tutor_id = $_GET['id'];
-
     $sql1 = $conn->query("SELECT *, CONCAT(lastname,', ',firstname , COALESCE(concat(' ', middlename), '')) as `name` FROM `tutor_list`  WHERE id = '$tutor_id'");
     $row1 = $sql1->fetch_assoc();
-    // $tutor_meta = $row1['tutor_id'];
     $sql2 = $conn->query("SELECT * FROM tutor_meta WHERE tutor_id = $tutor_id");
     $row2 = $sql2->fetch_assoc();
 }

@@ -61,15 +61,23 @@ if (empty($adminuser)) {
 
                                 <form action="code.php" method="POST" enctype="multipart/form-data">
                                     <div class="modal-body">
-                                        <div class="form-group">
+                                        <!-- <div class="form-group">
                                             <label for="email1">Tutor</label>
-                                            <!-- <input type="email" class="form-control" id="email1" aria-describedby="emailHelp" placeholder="Enter email"> -->
-                                            <select class="form-control" name="tutor">
+                                              <select class="form-control" name="tutor">
                                                 <option value="" selected> Select option </option>
                                                 <option value="1"> Cooper, Mark D </option>
                                                 <option value="2"> Blake, Claire C </option>
                                                 <option value="3"> Miller, Samantha Jane C </option>
                                             </select>
+                                        </div> -->
+
+                                        <div class="form-group">
+                                            <label for="Tutor id">Tutor Id</label>
+                                            <input type="text" name="tutor" class="form-control" id="courseName">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="TutorName">Tutor Name</label>
+                                            <input type="text" name="tutorname" class="form-control" id="courseName">
                                         </div>
                                         <div class="form-group">
                                             <label for="CourseName">Course Name</label>
@@ -136,92 +144,93 @@ if (empty($adminuser)) {
 
                         <?php
                         $i = 1;
-                        $qry = $conn->query("SELECT c.*, concat(t.lastname,', ', t.firstname, COALESCE(concat(' ', t.middlename),'')) as `tutor` from `course_list` c inner join `tutor_list` t on c.tutor_id = t.id where c.delete_flag = 0  order by c.`id` asc");
+                        $qry = $conn->query("SELECT c.*, concat(t.lastname,', ', t.firstname, COALESCE(concat(' ', t.middlename),'')) as `tutor` from `course_list` c inner join `tutor_list` t on c.tutor_id = t.id where c.delete_flag = 0 and t.status=1  order by c.`id` asc");
                         while ($row = $qry->fetch_assoc()):
                             ?>
-                        <tr>
-                            <td class="text-center">
-                                <?php echo $i++; ?>
-                            </td>
-                            <td>
-                                <?php echo date("Y-m-d ", strtotime($row['date_created'])) ?>
-                            </td>
-                            <td>
-                                <img src="../images/courses/<?php echo $row['logo']; ?>">
+                            <tr>
+                                <td class="text-center">
+                                    <?php echo $i++; ?>
+                                </td>
+                                <td>
+                                    <?php echo date("Y-m-d ", strtotime($row['date_created'])) ?>
+                                </td>
+                                <td>
+                                    <img src="../images/courses/<?php echo $row['logo']; ?>">
 
-                            </td>
-                            <td>
-                                <?php echo $row['tutor'] ?>
-                            </td>
-                            <td>
-                                <?php echo $row['name'] ?>
-                            </td>
+                                </td>
+                                <td>
+                                    <?php echo $row['tutor'] ?>
+                                </td>
+                                <td>
+                                    <?php echo $row['name'] ?>
+                                </td>
 
-                            <td>
+                                <td>
 
-                                <?php if ($row['status'] == 1): ?>
-                                <a href="../controller/updateInactive.php?id=<?php
+                                    <?php if ($row['status'] == 1): ?>
+                                        <a href="../controller/updateInactive.php?id=<?php
                                         echo $row['id'];
                                         ?>">
-                                    <span class="btn btn-success">Active</span> </a>
+                                            <span class="btn btn-success">Active</span> </a>
 
-                                <?php elseif ($row['status'] == 0): ?>
-                                <a href="../controller/updateActive.php?id=<?php
+                                    <?php elseif ($row['status'] == 0): ?>
+                                        <a href="../controller/updateActive.php?id=<?php
                                         echo $row['id'];
                                         ?>">
-                                    <span class="btn btn-danger">Inactive</span></a>
-                                <?php endif; ?>
-                            </td>
+                                            <span class="btn btn-danger">Inactive</span></a>
+                                    <?php endif; ?>
+                                </td>
 
-                            <td>
-                                <div class="icons">
-                                    <button class="view" class="btn" title="View" id="view" data-toggle="modal"
-                                        type="button" data-id="<?php echo $row['id'] ?>" data-target=" #view"
-                                        style="border:none; background-color:inherit">
-                                        <a href="course_view.php?id=<?php
+                                <td>
+                                    <div class="icons">
+                                        <button class="view" class="btn" title="View" id="view" data-toggle="modal"
+                                            type="button" data-id="<?php echo $row['id'] ?>" data-target=" #view"
+                                            style="border:none; background-color:inherit">
+                                            <a href="course_view.php?id=<?php
                                             // session_start(); 
                                             echo $row['id'];
                                             // $_SESSION['id'] = $row['id'];
                                             ?>">
-                                            <i style=" padding: 0.100rem 0.10rem;" class="fa fa-eye"></i>
-                                        </a>
-                                    </button>
+                                                <i style=" padding: 0.100rem 0.10rem;" class="fa fa-eye"></i>
+                                            </a>
+                                        </button>
 
-                                </div>
+                                    </div>
 
-                                <div class="icons">
-                                    <button class="edit" class="btn" title="edit" id="edit" data-toggle="modal"
-                                        type="button" data-id="<?php echo $row['id'] ?>"
-                                        style="border:none; background-color:inherit">
-                                        <a href="course_edit.php?id=<?php
+                                    <div class="icons">
+                                        <button class="edit" class="btn" title="edit" id="edit" data-toggle="modal"
+                                            type="button" data-id="<?php echo $row['id'] ?>"
+                                            style="border:none; background-color:inherit">
+                                            <a href="course_edit.php?id=<?php
                                             // session_start(); 
                                             echo $row['id'];
                                             // $_SESSION['id'] = $row['id'];
                                             ?>">
-                                            <i style=" padding: 0.100rem 0.10rem;" class="fa fa-edit"></i>
-                                        </a>
-                                    </button>
-                                </div>
-                                <div class="icons">
-                                    <form method="POST">
+                                                <i style=" padding: 0.100rem 0.10rem;" class="fa fa-edit"></i>
+                                            </a>
+                                        </button>
+                                    </div>
+                                    <div class="icons">
+                                        <form method="POST">
                                             <input type="text" name="delete" value="<?php echo $row['id'] ?>" hidden>
-                                            <button  class="btn" title="Accept"
-                                                data-id="<?php echo $row['id']; ?>" data-target=" #view" name="delete1">
-                                                <i style=" padding: 0.100rem 0.10rem; color:#e34724;" class="fa fa-trash"></i>
+                                            <button class="btn" title="Accept" data-id="<?php echo $row['id']; ?>"
+                                                data-target=" #view" name="delete1">
+                                                <i style=" padding: 0.100rem 0.10rem; color:#e34724;"
+                                                    class="fa fa-trash"></i>
 
                                             </button>
                                         </form>
-                                </div>
+                                    </div>
 
-                            </td>
+                                </td>
 
-                        </tr>
+                            </tr>
 
                         <?php endwhile; ?>
 
                     </tbody>
                 </table>
-              
+
             </div>
 
 
@@ -235,26 +244,26 @@ if (empty($adminuser)) {
 </body>
 
 </html>
-<?php 
-    // if(isset($_POST['delete'])){
-    //     // $id = $_POST['delete'];
-    //     $id = 3;
-    //     // echo $id;
-    //     // $conn->query("UPDATE `course_list` SET `delete_flag` = 1 WHERE `id` = '$id'");
-    //     // echo "<script>window.location.href='course_list.php'</script>";
-    //     echo '<script>
-    //     console.log("'.$id.'");        
-        
-    //     </script>';
-    // }
-    if (isset($_POST['delete1'])) {
-        $id = $_POST['delete'];
-        $sql = "UPDATE course_list SET delete_flag = '1' WHERE id='$id'";
-        $result1 = $conn->query($sql);
-        $sql2 = "UPDATE course_request SET delete_flag = '1' WHERE course_id='$id'";
-        $result2 = $conn->query($sql2);
-        if ($result1 && $result2) {
-            echo "<script>
+<?php
+// if(isset($_POST['delete'])){
+//     // $id = $_POST['delete'];
+//     $id = 3;
+//     // echo $id;
+//     // $conn->query("UPDATE `course_list` SET `delete_flag` = 1 WHERE `id` = '$id'");
+//     // echo "<script>window.location.href='course_list.php'</script>";
+//     echo '<script>
+//     console.log("'.$id.'");        
+
+//     </script>';
+// }
+if (isset($_POST['delete1'])) {
+    $id = $_POST['delete'];
+    $sql = "UPDATE course_list SET delete_flag = '1' WHERE id='$id'";
+    $result1 = $conn->query($sql);
+    $sql2 = "UPDATE course_request SET delete_flag = '1' WHERE course_id='$id'";
+    $result2 = $conn->query($sql2);
+    if ($result1 && $result2) {
+        echo "<script>
                 swal({
                     title: 'Success!',
                     text: 'Course Deleted!',
@@ -264,8 +273,8 @@ if (empty($adminuser)) {
                     window.location = 'course-list.php';
                 });
                 </script>";
-        } else {
-            echo "<script>
+    } else {
+        echo "<script>
                 swal({
                     title: 'Error!',
                     text: 'Something went wrong!',
@@ -275,6 +284,6 @@ if (empty($adminuser)) {
                     window.location = 'course-list.php';
                 });
                 </script>";
-        }
-        }
+    }
+}
 ?>

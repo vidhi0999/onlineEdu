@@ -2,9 +2,15 @@
 session_start();
 include('./student-sidebar.php');
 $currentUser = $_SESSION['username'];
+// $id = $_SESSION['id'];
 if (empty($currentUser)) {
     header("location:../php/loginstu.php");
 }
+
+
+$sql = "SELECT * from student where username='$currentUser'";
+$gotResults = mysqli_query($conn, $sql);
+$row = mysqli_fetch_array($gotResults);
 ?>
 
 <!DOCTYPE html>
@@ -13,16 +19,10 @@ if (empty($currentUser)) {
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
     <title>Student</title>
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
     <link rel="stylesheet" href="../css/updateprofile.css">
     <!-- <link rel="stylesheet" href="../css/studentCourse.css"> -->
-
-
-
 </head>
 
 <body>
@@ -31,65 +31,33 @@ if (empty($currentUser)) {
             <div class="title">Inquiries</div>
             <div class="content">
 
-
-                <!-- <div class="form-group">
-                    <label>Name:</label>
-                    <input type="text" name="name" class="form-control" required>
-                </div>
-                <div class="form-group">
-                    <label>Email:</label>
-                    <input type="email" name="email" class="form-control" required>
-                </div>
-                <div class="form-group">
-                    <label>Message:</label>
-                    <textarea class="form-control" name="message" required></textarea>
-                </div>
-                <div class="form-group">
-                    <button class="btn btn-success" type="submit">Submit</button>
-                </div>
-                </form>
-            </div> -->
-
-
-
-                <form method="post" action="">
+                <form method="post" action="SendInquiries.php">
+                    <input type="hidden" name="id" value="<?php echo $row['id'] ?>">
 
                     <div class="user-details">
                         <div class="input-box">
-                            <span class="details">Full Name</span>
-                            <input type="text" name="fullname" placeholder="Enter your name" required>
-                        </div>
-                        <div class="input-box">
-                            <span class="details">Username</span>
-                            <input type="text" name="username" placeholder="Enter your username" required>
+                            <span class="details">Name</span>
+                            <input type="text" name="name" placeholder="Enter your name" required>
                         </div>
                         <div class="input-box">
                             <span class="details">Email</span>
-                            <input type="email" name="email" placeholder="Enter your email" required>
+                            <input type="text" name="email" placeholder="Enter your username" required>
                         </div>
                         <div class="input-box">
-                            <span class="details">Phone Number</span>
-                            <input type="number" name="phone" placeholder="Enter your number" required>
+                            <span class="details">Course Name</span>
+                            <input type="text" name="coursename" placeholder="Enter your email" required>
                         </div>
-                        <div class="input-box">
-                            <label>Message:</label>
-                            <!-- <span class="details">Message:</span> -->
-
-                            <textarea class="form-control" name="message" required> </textarea>
-                            <!-- <input type="text" name="message" required> -->
-
-                        </div>
-
+                        <label>Message</label>
+                        <textarea id="subject" name="message" placeholder="Write something.."
+                            style="height:100px;width:200px"></textarea>
                     </div>
                     <div class="button">
                         <input type="submit" name="submit" value="SEND">
                     </div>
-
                 </form>
 
             </div>
         </div>
-        <!-- </div> -->
         </main>
         </section>
         <script src="../js/script.js"></script>
