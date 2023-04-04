@@ -3,8 +3,18 @@
 <head>
     <title>contact us form</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/contactsty.css">
 </head>
 <body>
+<header class="header">
+        <div class="logo">
+            <img src="../images/E-logo.png" alt="">
+            <div class="line"></div>
+            <p>OnlineEdu</p>
+        </div>
+        <div class="logo-space">
+        </div>
+    </header>
 <div class="container">
     <h3>Contact us</h3>
     <form action="conaction.php" method="POST">
