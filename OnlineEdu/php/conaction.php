@@ -6,7 +6,7 @@ $success = $conn->query($sql);
 if (!$success) {
     die("Couldn't enter data: " . $conn->error);
 }
-echo "Thank You for Contacting Us. We will get back to you soon. ";
+echo "<h3>Thank You for Contacting Us. We will get back to you soon.</h3> ";
 $conn->close();
 
 
