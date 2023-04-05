@@ -143,24 +143,6 @@ if (isset($_POST['id']) && $_POST['id'] > 0) {
                     </span>
                 </li>
                 <li>
-                    <i class='fa fa-info-circle'></i>
-                    <span class="text">
-                        <h3>
-                            3
-                        </h3>
-                        <p>Read Inquiries</p>
-                    </span>
-                </li>
-                <li>
-                    <i class='fa fa-info-circle'></i>
-                    <span class="text">
-                        <h3>
-                            5
-                        </h3>
-                        <p>Unread Inquiries</p>
-                    </span>
-                </li>
-                <li>
                     <i class='fa fa-user'></i>
                     <span class="text">
                         <h3>
@@ -178,6 +160,43 @@ if (isset($_POST['id']) && $_POST['id'] > 0) {
                         <p>Students</p>
                     </span>
                 </li>
+                <li>
+                    <i class='fa fa-info-circle'></i>
+                    <span class="text">
+                        <h3>
+                            <?php
+                            $count = 0;
+                            $inquiry = $conn->query("SELECT * FROM inquiries where delete_flag = 0 and `status` = 1");
+                            if ($inquiry->num_rows > 0) {
+                                while ($row = $inquiry->fetch_assoc()) {
+                                    $count = $count + 1;
+                                }
+                            }
+                            echo $count;
+                            ?>
+                        </h3>
+                        <p>Read Inquiries</p>
+                    </span>
+                </li>
+                <li>
+                    <i class='fa fa-info-circle'></i>
+                    <span class="text">
+                        <h3>
+                            <?php
+                            $count = 0;
+                            $inquiry = $conn->query("SELECT * FROM inquiries where delete_flag = 0 and `status` = 0");
+                            if ($inquiry->num_rows > 0) {
+                                while ($row = $inquiry->fetch_assoc()) {
+                                    $count = $count + 1;
+                                }
+                            }
+                            echo $count;
+                            ?>
+                        </h3>
+                        <p>Unread Inquiries</p>
+                    </span>
+                </li>
+
             </ul>
         </main>
         <!-- MAIN -->
