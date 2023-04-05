@@ -245,17 +245,6 @@ if (empty($adminuser)) {
 
 </html>
 <?php
-// if(isset($_POST['delete'])){
-//     // $id = $_POST['delete'];
-//     $id = 3;
-//     // echo $id;
-//     // $conn->query("UPDATE `course_list` SET `delete_flag` = 1 WHERE `id` = '$id'");
-//     // echo "<script>window.location.href='course_list.php'</script>";
-//     echo '<script>
-//     console.log("'.$id.'");        
-
-//     </script>';
-// }
 if (isset($_POST['delete1'])) {
     $id = $_POST['delete'];
     $sql = "UPDATE course_list SET delete_flag = '1' WHERE id='$id'";
