@@ -139,7 +139,7 @@ form input[type="submit"] {
   padding: 0;
   border: none;
   background: -webkit-linear-gradient(right, #a445b2, #fa4299, #a445b2, #fa4299);
-  ;
+  
   cursor: pointer;
   border-bottom: 2px solid rgba(0, 0, 0, 0.1);
   z-index: 1;

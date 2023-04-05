@@ -13,17 +13,18 @@ $qualify = $_POST['qualify'];
 $dob = $_POST['dob'];
 $phone = $_POST['phone'];
 $gender = $_POST['gender'];
+$fileName = $_FILES['file'];
 
 // File upload path
 $targetDir = "../images/student/";
 $fileName = basename($_FILES["file"]["name"]);
-$targetFilePath = $targetDir . $fileName;
+$targetFilePath = $targetDir.$fileName;
 $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
 
 // Check if image file is a actual image or fake image
 if (isset($_POST["submit"]) && !empty($_FILES["file"]["name"])) {
     // Allow certain file formats
-    $allowTypes = array('jpg', 'png', 'jpeg', 'gif', 'pdf');
+    $allowTypes = array('jpg','JPG', 'png', 'jpeg', 'gif', 'pdf');
     if (in_array($fileType, $allowTypes)) {
         // Upload file to server
         if (move_uploaded_file($_FILES["file"]["tmp_name"], $targetFilePath)) {

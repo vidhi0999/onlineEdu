@@ -31,8 +31,7 @@ $row = mysqli_fetch_array($gotResults);
             <div class="title">Inquiries</div>
             <div class="content">
 
-                <form method="post" action="SendInquiries.php">
-                    <input type="hidden" name="id" value="<?php echo $row['id'] ?>">
+                <form method="post" action="">
 
                     <div class="user-details">
                         <div class="input-box">
