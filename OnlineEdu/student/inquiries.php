@@ -57,7 +57,22 @@ $row = mysqli_fetch_array($gotResults);
                         </div>
                         <div class="input-box">
                             <span class="details">Course Name</span>
-                            <input type="text" name="coursename" placeholder="Enter your email" required>
+                            <select name="coursename" id="">
+                                <option value="#">-- Select Course --</option>
+                                <?php
+                                $sql = "SELECT * from course_request where student_id = '$row[id]' AND status = '1'";
+                                $gotResults = mysqli_query($conn, $sql);
+                                
+                                while ($row = mysqli_fetch_array($gotResults)) {
+                                    echo "<option value='" . $row['course_name'] . "'>" . $row['course_name'] . "</option>";
+                                }
+                                if(mysqli_num_rows($gotResults) == 0){
+                                    echo "<option value='#'>No Course Request</option>";
+                                 }
+                                ?>
+
+                            </select>
+                            <!-- <input type="text" name="coursename" placeholder="Enter your email" required> -->
                         </div>
                         <label>Message</label>
                         <textarea id="subject" name="message" placeholder="Write something.."
@@ -82,55 +97,93 @@ $row = mysqli_fetch_array($gotResults);
 // require('../php/database.php');
 // extract($_POST);
 
-if (isset($_POST['submit'])) {
-    $studentid = $_POST['studentid'];
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $coursename = $_POST['coursename'];
-    $message = $_POST['message'];
-    $CreatedDate = date("Y-m-d");
-
-
-    $sql = "INSERT into inquiries 
-    (student_id,username,email,course_name,
-    message,date_created) VALUES
-    ('$studentid ','$name','$email','$coursename','$message','$CreatedDate')";
-    $success = $conn->query($sql);
-
-    $sql2 = "SELECT id,tutor_id from course_list Where name = '$coursename'";
-    $gotResults = mysqli_query($conn, $sql2);
-    $row = mysqli_fetch_array($gotResults);
-
-    $course_id = $row['id'];
-    $tutor_id = $row['tutor_id'];
-
-    $sql3 = "Update inquiries set course_id = '$course_id' ,tutor_id = '$tutor_id'  where course_name = '$coursename'";
-    $success2 = $conn->query($sql3);
-
-    if ($success && $success2) {
+if (isset($_POST['submit']) ) {
+    if($_POST['coursename'] != '#'){
+        $studentid = $_POST['studentid'];
+        $name = $_POST['name'];
+        $email = $_POST['email'];
+        
+        $coursename = $_POST['coursename'];
+        $sql2 = "SELECT * FROM course_request WHERE course_name = '$coursename' AND student_id = '$studentid'";
+        $gotResults = mysqli_query($conn, $sql2);
+        $row = mysqli_fetch_array($gotResults);
+        $course_id = $row['course_id'];
+        $tutor_id = $row['tutor_id'];
+        $message = $_POST['message'];
+        $CreatedDate = date("Y-m-d");
+        $sql3 = "INSERT into inquiries(student_id,username,email,course_id,course_name,tutor_id,message,delete_flag,date_created) VALUES('$studentid ','$name','$email','$course_id','$coursename','$tutor_id','$message','0','$CreatedDate')";
+        $success2 = $conn->query($sql3);
+        if($success2){
+            echo "<script>
+            swal({
+                title: 'Success!',
+                text: 'Inquiry Sent',
+                icon: 'success',
+                button: 'Ok',
+            });
+            </script>";
+        }else{
+            echo "<script>
+            swal({
+                title: 'Error!',
+                text: 'Inquiry Not Sent',
+                icon: 'error',
+                button: 'Ok',
+            });
+            </script>";
+        }
+    }else{
         echo "<script>
-                swal({
-                    title: 'Success!',
-                    text: 'Inquiry sent successfully!',
-                    icon: 'success',
-                    button: 'Ok',
-                }).then(function() {
-                    window.location = 'inquiries.php';
-                });
-                </script>";
-    } else {
-        echo "<script>
-                swal({
-                    title: 'Error!',
-                    text: 'Something went wrong!',
-                    icon: 'error',
-                    button: 'Ok',
-                }).then(function() {
-                    window.location = 'inquiries.php';
-                });
-                </script>";
-
-
+        swal({
+            title: 'Error!',
+            text: 'Please select a course',
+            icon: 'error',
+            button: 'Ok',
+        });
+        </script>";
     }
+
+
+    // $sql = "INSERT into inquiries 
+    // (student_id,username,email,course_name,
+    // message,date_created) VALUES
+    // ('$studentid ','$name','$email','$coursename','$message','$CreatedDate')";
+    // $success = $conn->query($sql);
+
+    // $sql2 = "SELECT id,tutor_id from course_list Where name = '$coursename'";
+    // $gotResults = mysqli_query($conn, $sql2);
+    // $row = mysqli_fetch_array($gotResults);
+
+    // $course_id = $row['id'];
+    // $tutor_id = $row['tutor_id'];
+
+    // $sql3 = "Update inquiries set course_id = '$course_id' ,tutor_id = '$tutor_id'  where course_name = '$coursename'";
+    // $success2 = $conn->query($sql3);
+
+    // if ($success && $success2) {
+    //     echo "<script>
+    //             swal({
+    //                 title: 'Success!',
+    //                 text: 'Inquiry sent successfully!',
+    //                 icon: 'success',
+    //                 button: 'Ok',
+    //             }).then(function() {
+    //                 window.location = 'inquiries.php';
+    //             });
+    //             </script>";
+    // } else {
+    //     echo "<script>
+    //             swal({
+    //                 title: 'Error!',
+    //                 text: 'Something went wrong!',
+    //                 icon: 'error',
+    //                 button: 'Ok',
+    //             }).then(function() {
+    //                 window.location = 'inquiries.php';
+    //             });
+    //             </script>";
+
+
+    // }
 }
 ?>
