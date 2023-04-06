@@ -24,7 +24,7 @@
         </li>
         <li>
             <a href="course-request.php">
-            <i class="fa fa-file-text"></i>
+                <i class="fa fa-file-text"></i>
                 <span class="text">Course Request</span>
             </a>
         </li>
@@ -52,12 +52,6 @@
 
 
     <ul class="side-menu">
-        <li>
-            <a href="setting.php">
-                <i class='fa fa-cog'></i>
-                <span class="text">Settings</span>
-            </a>
-        </li>
         <li>
             <a href="./adminlogout.php" class="logout">
                 <i class='fa fa-sign-out'></i>
