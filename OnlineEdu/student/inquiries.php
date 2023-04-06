@@ -62,13 +62,13 @@ $row = mysqli_fetch_array($gotResults);
                                 <?php
                                 $sql = "SELECT * from course_request where student_id = '$row[id]' AND status = '1'";
                                 $gotResults = mysqli_query($conn, $sql);
-                                
+
                                 while ($row = mysqli_fetch_array($gotResults)) {
                                     echo "<option value='" . $row['course_name'] . "'>" . $row['course_name'] . "</option>";
                                 }
-                                if(mysqli_num_rows($gotResults) == 0){
+                                if (mysqli_num_rows($gotResults) == 0) {
                                     echo "<option value='#'>No Course Request</option>";
-                                 }
+                                }
                                 ?>
 
                             </select>
@@ -97,12 +97,12 @@ $row = mysqli_fetch_array($gotResults);
 // require('../php/database.php');
 // extract($_POST);
 
-if (isset($_POST['submit']) ) {
-    if($_POST['coursename'] != '#'){
+if (isset($_POST['submit'])) {
+    if ($_POST['coursename'] != '#') {
         $studentid = $_POST['studentid'];
         $name = $_POST['name'];
         $email = $_POST['email'];
-        
+
         $coursename = $_POST['coursename'];
         $sql2 = "SELECT * FROM course_request WHERE course_name = '$coursename' AND student_id = '$studentid'";
         $gotResults = mysqli_query($conn, $sql2);
@@ -113,7 +113,7 @@ if (isset($_POST['submit']) ) {
         $CreatedDate = date("Y-m-d");
         $sql3 = "INSERT into inquiries(student_id,username,email,course_id,course_name,tutor_id,message,delete_flag,date_created) VALUES('$studentid ','$name','$email','$course_id','$coursename','$tutor_id','$message','0','$CreatedDate')";
         $success2 = $conn->query($sql3);
-        if($success2){
+        if ($success2) {
             echo "<script>
             swal({
                 title: 'Success!',
@@ -122,7 +122,7 @@ if (isset($_POST['submit']) ) {
                 button: 'Ok',
             });
             </script>";
-        }else{
+        } else {
             echo "<script>
             swal({
                 title: 'Error!',
@@ -132,7 +132,7 @@ if (isset($_POST['submit']) ) {
             });
             </script>";
         }
-    }else{
+    } else {
         echo "<script>
         swal({
             title: 'Error!',

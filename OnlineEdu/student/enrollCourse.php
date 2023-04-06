@@ -6,15 +6,15 @@ $currentUser = $_SESSION['username'];
 if (empty($currentUser)) {
     header("location:../php/loginstu.php");
 }
-if (empty($_GET['id'])) {
+if (empty($_POST['id'])) {
     header("Location:student-courses.php");
 }
 
-if (isset($_GET['id'])) {
-    $id = $_GET['id'];
+if (isset($_POST['course_id'])) {
+    $id = $_POST['course_id'];
 }
 if (isset($_POST['enroll'])) {
-    $id = $_GET['id'];
+    $id = $_POST['id'];
     $sql = "SELECT * FROM course_list WHERE id='$id'";
     $query = mysqli_query($conn, $sql);
     $result = mysqli_fetch_assoc($query);

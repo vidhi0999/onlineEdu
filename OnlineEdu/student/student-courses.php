@@ -13,6 +13,7 @@ if (empty($currentUser)) {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Courses</title>
+    <link rel="stylesheet" href="../css/studentCourse.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -20,26 +21,27 @@ if (empty($currentUser)) {
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-    <title>Student</title>
-    <link rel="stylesheet" href="../css/studentCourse.css">
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <style>
-    body {
-        /* background-color: #eee; */
+    .launch {
+        height: 40px;
     }
 
-    .container {
-        /* height: 100vh; */
+    .close {
+        font-size: 21px;
+        cursor: pointer;
     }
 
-    .card {
-        border: none;
+    .modal-body {
+        height: 500px;
     }
 
     .form-control {
-        border-bottom: 2px solid #eee !important;
+        border-bottom: 1px solid #eee !important;
         border: none;
-        font-weight: 600
+        font-weight: 600;
     }
 
     .form-control:focus {
@@ -48,21 +50,19 @@ if (empty($currentUser)) {
         border-color: #8bbafe;
         outline: 0;
         box-shadow: none;
-        border-radius: 0px;
-        border-bottom: 2px solid blue !important;
     }
 
     .inputbox {
         position: relative;
-        margin-bottom: 20px;
-        width: 100%
+        /* margin-bottom: 10px; */
+        width: 100%;
     }
 
     .inputbox span {
         position: absolute;
         top: 7px;
         left: 11px;
-        transition: 0.5s
+        transition: 0.5s;
     }
 
     .inputbox i {
@@ -70,81 +70,44 @@ if (empty($currentUser)) {
         top: 13px;
         right: 8px;
         transition: 0.5s;
-        color: #3F51B5
+        color: #3f51b5;
     }
 
     input::-webkit-outer-spin-button,
     input::-webkit-inner-spin-button {
         -webkit-appearance: none;
-        margin: 0
+        margin: 0;
     }
 
     .inputbox input:focus~span {
         transform: translateX(-0px) translateY(-15px);
-        font-size: 12px
+        font-size: 12px;
     }
 
     .inputbox input:valid~span {
         transform: translateX(-0px) translateY(-15px);
-        font-size: 12px
+        font-size: 12px;
     }
 
-    .card-blue {
-        background-color: #492bc4;
-    }
-
-    .hightlight {
-        background-color: #5737d9;
-        padding: 10px;
-        border-radius: 10px;
-        margin-top: 15px;
-        font-size: 14px;
-    }
-
-    .yellow {
-        color: #fdcc49;
-    }
-
-    .decoration {
-
-        text-decoration: none;
-        font-size: 14px;
-    }
-
-    .btn-success {
-        color: #fff;
-        background-color: #492bc4;
-        border-color: #492bc4;
-    }
-
-    .btn-success:hover {
-        color: #fff;
-        background-color: #492bc4;
-        border-color: #492bc4;
-    }
-
-    .decoration:hover {
-        text-decoration: none;
-        color: #fdcc49;
+    .pay button {
+        height: 40px;
+        border-radius: 37px;
     }
     </style>
 </head>
 
 <body>
-
     <!-- CONTENT -->
     <section id="content">
         <!-- MAIN -->
         <main>
             <!-- Modal HTML -->
-
             <div class="head-title">
                 <div class="left">
                     <h1>Courses</h1>
                 </div>
             </div>
             <hr>
-
             <div class="container" py-4>
                 <div class="row" mt-3>
                     <?php
@@ -168,7 +131,7 @@ if (empty($currentUser)) {
                             ?>
                     <div class="col-md-4 mt-3">
                         <div class="card">
-                            <img src="../images/courses/<?php echo $row['logo']; ?>" class="card-img-top" width="200px"
+                            <img src="../images/courses/<?php echo $row['logo']; ?>" class=" card-img-top" width="200px"
                                 height="240px" alt="Faculty images">
                             <div class="card-body">
                                 <h2 class="card-title">
@@ -188,234 +151,115 @@ if (empty($currentUser)) {
                                 <span class="fa fa-star"></span>
                                 <p class="card-text"><b>₹449</b></p>
                                 <?php
-
-                                        if ($result['status'] === '1') {
-                                            ?>
+                                        $sql2 = "SELECT * FROM course_request WHERE course_id ='$course_id' && student_userName = '$currentUser' ";
+                                        $query = mysqli_query($conn, $sql2);
+                                        $result = mysqli_fetch_assoc($query);
+                                        if (mysqli_num_rows($query) != 0) {
+                                            if ($result['status'] === '1') {
+                                                ?>
                                 <button onclick="done()" class="enrolled" name="enrolled">
                                     Enrolled
                                 </button>
 
                                 <?php
-                                        } else if ($result['status'] === '0') {
-                                            ?>
+                                            } else if ($result['status'] === '0') {
+                                                ?>
                                 <button onclick="done()" class="requested" name="requested">
                                     Requested
                                 </button>
 
                                 <?php
+                                            }
                                         } else {
                                             ?>
 
 
-
-
-
-
-                                <!--  -->
-                                <button type="button" class="btn btn-primary launch" data-toggle="modal"
-                                    data-target="#staticBackdrop"> <i class="fa fa-rocket"></i> Pay Now
+                                <button type="button" style="height:35px" class="enrollNow" data-toggle="modal"
+                                    data-target="#staticBackdrop"> <i class="fa fa-rocket"></i>
+                                    Enroll Now
                                 </button>
+
                                 <!-- Modal -->
                                 <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false"
                                     tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                    <div class="container mt-5 px-5">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-body">
+                                                <div class=" text-right"> <i class="fa fa-close close"
+                                                        data-dismiss="modal"></i>
+                                                </div>
+                                                <form method="post" action="enrollCourse.php">
 
-                                        <div class="mb-4">
+                                                    <div class="mt-4 mb-4">
+                                                        <h6 class="text-uppercase">Payment details</h6>
+                                                        <div class="inputbox mt-3"> <input type="text" name="name"
+                                                                class="form-control" required> <span>Name on
+                                                                card</span>
+                                                        </div>
 
-                                            <h2>Confirm order and pay</h2>
-                                            <span>please make the payment, after that you can enjoy all the features and
-                                                benefits.</span>
+                                                        <div class="inputbox mt-3 "> <input type="number"
+                                                                name="cardNumber" class="form-control" required> <i
+                                                                class="fa fa-credit-card"></i>
+                                                            <span>Card
+                                                                Number</span>
+                                                        </div>
 
-                                        </div>
-
-                                        <div class="row">
-
-                                            <div class="col-md-8">
-
-
-                                                <div class="card p-3">
-
-                                                    <h6 class="text-uppercase">Payment details</h6>
-                                                    <div class="inputbox mt-3"> <input type="text" name="name"
-                                                            class="form-control" required="required"> <span>Name on
-                                                            card</span> </div>
-
-
-                                                    <div class="row">
-
-                                                        <div class="col-md-6">
-
+                                                        <!-- <div class="mt-4 mb-4"> -->
+                                                        <div class="d-flex flex-row">
                                                             <div class="inputbox mt-3 mr-2"> <input type="text"
-                                                                    name="name" class="form-control"
-                                                                    required="required"> <i
-                                                                    class="fa fa-credit-card"></i> <span>Card
-                                                                    Number</span>
-
-
+                                                                    name="expiry" class="form-control" required>
+                                                                <span>Expiry(MM-YY)</span>
                                                             </div>
-
-
-                                                        </div>
-
-                                                        <div class="col-md-6">
-
-                                                            <div class="d-flex flex-row">
-
-
-                                                                <div class="inputbox mt-3 mr-2"> <input type="text"
-                                                                        name="name" class="form-control"
-                                                                        required="required"> <span>Expiry</span> </div>
-
-                                                                <div class="inputbox mt-3 mr-2"> <input type="text"
-                                                                        name="name" class="form-control"
-                                                                        required="required"> <span>CVV</span> </div>
-
-
+                                                            <div class="inputbox mt-3 mr-2"> <input type="number"
+                                                                    name="cvv" class="form-control" required>
+                                                                <span>CVV</span>
                                                             </div>
-
-
                                                         </div>
-
-
                                                     </div>
+
 
 
 
                                                     <div class="mt-4 mb-4">
-
                                                         <h6 class="text-uppercase">Billing Address</h6>
-
-
-                                                        <div class="row mt-3">
-
-                                                            <div class="col-md-6">
-
-                                                                <div class="inputbox mt-3 mr-2"> <input type="text"
-                                                                        name="name" class="form-control"
-                                                                        required="required"> <span>Street Address</span>
-                                                                </div>
-
-
+                                                        <div class="d-flex flex-row">
+                                                            <div class="inputbox mt-3 mr-2"> <input type="text"
+                                                                    name="address" class="form-control" required>
+                                                                <span>Street
+                                                                    Address</span>
                                                             </div>
-
-
-                                                            <div class="col-md-6">
-
-                                                                <div class="inputbox mt-3 mr-2"> <input type="text"
-                                                                        name="name" class="form-control"
-                                                                        required="required"> <span>City</span> </div>
-
-
+                                                            <div class="inputbox mt-3 mr-2"> <input type="text"
+                                                                    name="city" class="form-control" required>
+                                                                <span>City</span>
                                                             </div>
-
-
-
-
                                                         </div>
-
-
-                                                        <div class="row mt-2">
-
-                                                            <div class="col-md-6">
-
-                                                                <div class="inputbox mt-3 mr-2"> <input type="text"
-                                                                        name="name" class="form-control"
-                                                                        required="required"> <span>State/Province</span>
-                                                                </div>
-
-
+                                                    </div>
+                                                    <div class="mt-4 mb-4">
+                                                        <div class="d-flex flex-row">
+                                                            <div class="inputbox mt-3 mr-2"> <input type="text"
+                                                                    name="state" class="form-control" required>
+                                                                <span>State/Province</span>
                                                             </div>
-
-
-                                                            <div class="col-md-6">
-
-                                                                <div class="inputbox mt-3 mr-2"> <input type="text"
-                                                                        name="name" class="form-control"
-                                                                        required="required"> <span>Zip code</span>
-                                                                </div>
-
-
+                                                            <div class="inputbox mt-3 mr-2"> <input type="number"
+                                                                    name="zipCode" class="form-control" required>
+                                                                <span>Zip code</span>
                                                             </div>
-
-
-
-
                                                         </div>
-
                                                     </div>
 
-                                                </div>
 
-
-                                                <div class="mt-4 mb-4 d-flex justify-content-between">
-
-
-                                                    <span>Previous step</span>
-
-
-                                                    <button class="btn btn-success px-3">Pay $840</button>
-
-
-
-
-                                                </div>
-
-                                            </div>
-
-                                            <div class="col-md-4">
-
-                                                <div class="card card-blue p-3 text-white mb-3">
-
-                                                    <span>You have to pay</span>
-                                                    <div class="d-flex flex-row align-items-end mb-3">
-                                                        <h1 class="mb-0 yellow">$549</h1> <span>.99</span>
+                                                    <div class=" pay px-5">
+                                                        <button class=" btn btn-primary btn-block" name="enroll">Pay
+                                                            ₹449</button>
                                                     </div>
-
-                                                    <span>Enjoy all the features and perk after you complete the
-                                                        payment</span>
-                                                    <a href="#" class="yellow decoration">Know all the features</a>
-
-                                                    <div class="hightlight">
-
-                                                        <span>100% Guaranteed support and update for the next 5
-                                                            years.</span>
-
-
-                                                    </div>
-
-                                                </div>
+                                                </form>
 
                                             </div>
 
                                         </div>
-
-
                                     </div>
                                 </div>
 
-                                <!--  -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                                <a href="./enrollCourse.php?id=<?php echo $row['id']; ?>">
-                                    <button class="enrollNow" value="" class="btn" title="View" id="view"
-                                        data-toggle="modal" data-id="<?php echo $row['id']; ?>" data-target=" #view"
-                                        name="enrollNow">
-                                        Enroll now
-                                    </button>
-                                </a>
 
                                 <?php
                                         }
@@ -436,36 +280,30 @@ if (empty($currentUser)) {
     </section>
     <script src="../js/script.js"></script>
 
-    <!-- <script src="../js/sweetalert.min.js"></script> -->
-    <!-- <script type="text/javascript">
-    $(".remove").click(function(){
+    <script src="../js/sweetalert.min.js"></script>
+    <script type="text/javascript">
+    $(".remove").click(function() {
         var id = $(this).parents("tr").attr("id");
 
-        if(confirm('Are you sure to remove this record ?'))
-        {
+        if (confirm('Are you sure to remove this record ?')) {
             $.ajax({
-               url: '/enrollCourse.php',
-               type: 'GET',
-               data: {id: id},
-               error: function() {
-                  alert('Something is wrong');
-               },
-               success: function(data) {
+                url: '/enrollCourse.php',
+                type: 'POST',
+                data: {
+                    id: id
+                },
+                error: function() {
+                    alert('Something is wrong');
+                },
+                success: function(data) {
                     // $("#"+id).remove();
-                    alert("Record removed successfully");  
-               }
+                    alert("Record removed successfully");
+                }
             });
         }
     });
-
-</script> -->
-    <!-- <script type="text/javascript">
-
-
-function done(){
-    document.querySelector(".main-container").style.display = "block"
-} -->
     </script>
+
 </body>
 
 </html>
