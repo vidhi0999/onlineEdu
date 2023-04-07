@@ -87,7 +87,7 @@ if (empty($adminuser)) {
                                     echo '<option value="'.$row['id'].'"> '.$row['lastname'].', '.$row['firstname'].' '.$row['middlename'].'  </option>';
                                 }
                                 if (mysqli_num_rows($gotResults) == 0) {
-                                    echo "<option value='#'>No Course Request</option>";
+                                    echo "<option value='#'>No Tutor found</option>";
                                 }
                                 ?>
 

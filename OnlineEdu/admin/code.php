@@ -21,21 +21,24 @@ if (isset($_POST['save_course'])) {
     // $sql = "INSERT INTO course_list("
 
     $allowTypes = array('jpg', 'png', 'jpeg', 'gif', 'pdf');
-    if (in_array($fileType, $allowTypes)) {
-        // Upload file to server
-        if (move_uploaded_file($_FILES["course_image"]["tmp_name"], $targetFilePath)) {
-            $sql = "INSERT INTO course_list(tutor_id,name,logo,description,experience,status,delete_flag,date_created,date_updated) VALUES('$tutor_id','$coursename','$fileName','$description','$exp','0','0','$CreatedDate','$UpdateDate')"; {
-                if ($conn->query($sql) === TRUE) {
-                    // header('Location:course-list.php');
-                    echo '<script>alert("Couses added")</script>';
-                    header("location:course-list.php");
-                    echo "done";
-                } else {
-                    // header('Location:course-list.php');
-                    echo '<script>alert("Couser not added")</script>';
+    if($tutor_id != '#'){
+        if (in_array($fileType, $allowTypes)) {
+            // Upload file to server
+            if (move_uploaded_file($_FILES["course_image"]["tmp_name"], $targetFilePath)) {
+                $sql = "INSERT INTO course_list(tutor_id,name,logo,description,experience,status,delete_flag,date_created,date_updated) VALUES('$tutor_id','$coursename','$fileName','$description','$exp','0','0','$CreatedDate','$UpdateDate')"; {
+                    if ($conn->query($sql) === TRUE) {
+                        // header('Location:course-list.php');
+                        echo '<script>alert("Couses added")</script>';
+                        header("location:course-list.php");
+                        echo "done";
+                    } else {
+                        // header('Location:course-list.php');
+                        echo '<script>alert("Couser not added")</script>';
+                    }
                 }
             }
         }
     }
+    
 }
 ?>
