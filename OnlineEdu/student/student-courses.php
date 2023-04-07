@@ -25,7 +25,7 @@ if (empty($currentUser)) {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <style>
-/* <<<<<<< HEAD */
+    /* <<<<<<< HEAD */
     .launch {
         height: 40px;
     }
@@ -34,7 +34,8 @@ if (empty($currentUser)) {
         font-size: 21px;
         cursor: pointer;
     }
-/* ======= */
+
+    /* ======= */
     /* body {
         background-color: #eee;
     }
@@ -42,7 +43,7 @@ if (empty($currentUser)) {
     .container {
         height: 100vh;
     } */
-/* >>>>>>> 1d0d5b0 (Update studentCourse.css) */
+    /* >>>>>>> 1d0d5b0 (Update studentCourse.css) */
 
     .modal-body {
         height: 500px;
@@ -259,7 +260,7 @@ if (empty($currentUser)) {
 
 
                                                     <div class=" pay px-5">
-                                                        <button class=" btn btn-primary btn-block" name="enroll">Pay
+                                                        <button class=" btn btn-primary btn-block" name="enrolled">Pay
                                                             ₹449</button>
                                                     </div>
                                                 </form>

@@ -13,7 +13,7 @@ if (empty($_POST['id'])) {
 if (isset($_POST['course_id'])) {
     $id = $_POST['course_id'];
 }
-if (isset($_POST['enroll'])) {
+if (isset($_POST['enrolled'])) {
     $id = $_POST['id'];
     $sql = "SELECT * FROM course_list WHERE id='$id'";
     $query = mysqli_query($conn, $sql);
