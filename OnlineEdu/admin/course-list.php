@@ -96,16 +96,16 @@ if (empty($adminuser)) {
                                         </div>
                                         <div class="form-group">
                                             <label for="CourseName">Course Name</label>
-                                            <input type="text" name="course_name" class="form-control" id="courseName">
+                                            <input type="text" name="course_name" class="form-control" id="courseName" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="desc">Description</label>
-                                            <input type="text" name="descrp" class="form-control" id="desc">
+                                            <input type="text" name="descrp" class="form-control" id="desc" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="exp">Experience</label>
                                             <!-- <input type="text" class="form-control" id="exp" placeholder="1 Years"> -->
-                                            <select class="form-control" name="experience">
+                                            <select class="form-control" name="experience" required>
                                                 <option value="" selected> Select option </option>
                                                 <option value="1 Year"> 1 Year </option>
                                                 <option value="2 Year"> 2 Years </option>
@@ -118,7 +118,7 @@ if (empty($adminuser)) {
                                         <div class="form-group">
                                             <label for="courseImg">Course's Logo</label>
                                             <input type="file" name="course_image" id="course_image"
-                                                class="form-control">
+                                                class="form-control" required>
                                         </div>
                                     </div>
                                     <div class="modal-footer border-top-0 d-flex justify-content-center">

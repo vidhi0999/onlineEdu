@@ -38,16 +38,46 @@ if (isset($_POST['save_tutor'])) {
             values('$id','$dob','$gender','$contact','$address','$speciality','$description')";
 
             if ($conn->query($sql2) === TRUE) {
-                echo '<script>alert("Tutor added")</script>';
-                header("location:tutor-list.php");
+                echo "<script>
+                swal({
+                    title: 'Success!',
+                    text: 'Tutor Added',
+                    icon: 'success',
+                    button: 'Ok',
+                }).then(function() {
+                    window.location = 'tutor-list.php';
+                });
+                </script>";
 
             } else {
-                echo '<script>alert("error in tutor meta")</script>';
+                echo "<script>
+                        swal({
+                            title: 'Error!',
+                            text: 'Tutor Not Added',
+                            icon: 'error',
+                            button: 'Ok',
+                        }).then(function() {
+                            window.location = 'tutor-list.php';
+                        });
+                        
+                        </script>";
             }
 
         }
     }
 
+}else{
+    echo "<script>
+    swal({
+        title: 'Error!',
+        text: 'Tutor Not Added',
+        icon: 'error',
+        button: 'Ok',
+    }).then(function() {
+        window.location = 'tutor-list.php';
+    });
+    
+    </script>";
 }
 
 ?>
