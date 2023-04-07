@@ -77,39 +77,44 @@ include("../php/database.php");
                         $qry = $conn->query("SELECT* FROM inquiries");
                         while ($row = $qry->fetch_assoc()):
                             ?>
-                            <tr>
-                                <td class="text-center">
-                                    <?php echo $row['id']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $row['date_created'] ?>
-                                </td>
+                        <tr>
+                            <td class="text-center">
+                                <?php echo $row['id']; ?>
+                            </td>
+                            <td>
+                                <?php echo $row['date_created'] ?>
+                            </td>
 
-                                <td>
-                                    <?php echo $row['username'] ?>
-                                </td>
-                                <td>
-                                    <?php echo $row['course_name'] ?>
-                                </td>
-                                <td>
-                                    <?php echo $row['message'] ?>
-                                </td>
-                                <td>
+                            <td>
+                                <?php echo $row['username'] ?>
+                            </td>
+                            <td>
+                                <?php echo $row['course_name'] ?>
+                            </td>
+                            <td>
+                                <?php echo $row['message'] ?>
+                            </td>
+                            <td>
 
-                                    <?php if ($row['status'] == 1): ?>
+                                <?php if ($row['status'] == 1): ?>
+                                <a href="../controller/updateRead.php?id=<?php
+                                        echo $row['id'];
+                                        ?>">
+                                    <span class="btn btn-success">Read</span> </a>
+                                </a>
 
-                                        <span class="btn btn-success">Read</span> </a>
+                                <?php elseif ($row['status'] == 0): ?>
+                                <a href="../controller/updateUnread.php?id=<?php
+                                        echo $row['id'];
+                                        ?>"> <span class=" btn btn-danger">Unread</span></a>
 
-                                    <?php elseif ($row['status'] == 0): ?>
-
-                                        <span class="btn btn-danger">Unread</span></a>
-                                    <?php endif; ?>
-                                </td>
-
-
+                                <?php endif; ?>
+                            </td>
 
 
-                            </tr>
+
+
+                        </tr>
 
                         <?php endwhile; ?>
 
