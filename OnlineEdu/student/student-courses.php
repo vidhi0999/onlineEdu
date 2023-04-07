@@ -114,17 +114,19 @@ if (empty($currentUser)) {
                 <div class="row" mt-3>
                     <?php
                     require '../php/database.php';
-                    $query1 = "SELECT * FROM tutor_list WHERE status='1' AND delete_flag='0'";
-                    $query_run1 = mysqli_query($conn, $query1);
-                    while($row2 = mysqli_fetch_array($query_run1)){
-                    $tutor_id = $row2['id'];   
+                    // $query1 = "SELECT * FROM tutor_list WHERE status='1' AND delete_flag='0'";
+                    // $query_run1 = mysqli_query($conn, $query1);
+                    // while($row2 = mysqli_fetch_array($query_run1)){
+                    // $tutor_id = $row2['id'];   
                        
-                    $query = "SELECT * FROM course_list WHERE status = '1' AND delete_flag = '0' AND tutor_id = '$tutor_id'";
-                    $query_run = mysqli_query($conn, $query);
-                    $check_course = mysqli_num_rows($query_run) > 0;
-                    }
-                    if ($check_course) {
-                        while ($row = mysqli_fetch_array($query_run)) {
+                    // $query = "SELECT * FROM course_list WHERE status = '1' AND delete_flag = '0' AND tutor_id = '$tutor_id'";
+                    // $query_run = mysqli_query($conn, $query);
+                    // $check_course = mysqli_num_rows($query_run) > 0;
+                    // // }
+                    // if ($check_course) {
+                    //     while ($row = mysqli_fetch_array($query_run)) {
+                        $qry = $conn->query("SELECT c.*, concat(t.lastname,', ', t.firstname, COALESCE(concat(' ', t.middlename),'')) as `tutor` from `course_list` c inner join `tutor_list` t on c.tutor_id = t.id where c.delete_flag = 0 and t.status=1  order by c.`id` asc");
+                        while ($row = $qry->fetch_assoc()){
                             $sql1 = $row['tutor_id'];
                             $_SESSION['course_id'] = $row['id'];
                             $currentUser = $_SESSION['username'];
@@ -196,10 +198,10 @@ if (empty($currentUser)) {
                             </div>
                             <?php
                         }
-                    }
-                    else {
-                        echo "No courses found";
-                    }
+                //     }
+                //     else {
+                //         echo "No courses found";
+                //     }
                 // }
 
                     ?>
