@@ -68,7 +68,7 @@ if (empty($currentUser)) {
                                 $descip = $row3['description'];
                                 $sql1 = $row['tutor_id'];
                                 $_SESSION['course_id'] = $row['id'];
-                                $_SESSION['course_name'] = $row['name'];
+                                // $_SESSION['course_name'] = $row['name'];
                                 $query1 = "SELECT * FROM tutor_list WHERE id = '$sql1'";
                                 $query_run1 = mysqli_query($conn, $query1);
                                 $row1 = mysqli_fetch_array($query_run1);

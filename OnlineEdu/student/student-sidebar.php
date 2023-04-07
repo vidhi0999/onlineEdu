@@ -87,8 +87,8 @@ $row = mysqli_fetch_array($query);
                 </div>
             </form>
 
-            <input type="checkbox" id="switch-mode" hidden>
-            <label for="switch-mode" class="switch-mode"></label>
+            <!-- <input type="checkbox" id="switch-mode" hidden>
+            <label for="switch-mode" class="switch-mode"></label> -->
 
             <?php echo $result['username']; ?>
 
@@ -97,18 +97,18 @@ $row = mysqli_fetch_array($query);
                 <?php
                 if ($result['filename'] == "") {
                     ?>
-                    <img src="../images/student/default.png">
-                    <?php
+                <img src="../images/student/default.png">
+                <?php
                 } else {
                     ?>
-                    <?php
+                <?php
                     //  echo $result['filename'];
                     ?>
-                    <img src='../images/student/<?php echo $result['filename']; ?>'>
+                <img src='../images/student/<?php echo $result['filename']; ?>'>
 
 
 
-                    <?php
+                <?php
                 }
                 ?>
 
