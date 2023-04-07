@@ -25,76 +25,75 @@ if (empty($currentUser)) {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <style>
-        /* <<<<<<< HEAD */
-        .launch {
-            height: 40px;
-        }
+    /* <<<<<<< HEAD */
+    .launch {
+        height: 40px;
+    }
 
-        .close {
-            font-size: 21px;
-            cursor: pointer;
-        }
+    .close {
+        font-size: 21px;
+        cursor: pointer;
+    }
 
 
-        .modal-body {
-            height: 500px;
-        }
+    .modal-body {
+        height: 500px;
+    }
 
-        .form-control {
-            border-bottom: 1px solid #eee !important;
-            border: none;
-            font-weight: 600;
-        }
+    .form-control {
+        border-bottom: 1px solid #eee !important;
+        border: none;
+        font-weight: 600;
+    }
 
-        .form-control:focus {
-            color: #495057;
-            background-color: #fff;
-            border-color: #8bbafe;
-            outline: 0;
-            box-shadow: none;
-        }
+    .form-control:focus {
+        color: #495057;
+        background-color: #fff;
+        border-color: #8bbafe;
+        outline: 0;
+        box-shadow: none;
+    }
 
-        .inputbox {
-            position: relative;
-            /* margin-bottom: 10px; */
-            width: 100%;
-        }
+    .inputbox {
+        position: relative;
+        width: 100%;
+    }
 
-        .inputbox span {
-            position: absolute;
-            top: 7px;
-            left: 11px;
-            transition: 0.5s;
-        }
+    .inputbox span {
+        position: absolute;
+        top: 7px;
+        left: 11px;
+        transition: 0.5s;
+    }
 
-        .inputbox i {
-            position: absolute;
-            top: 13px;
-            right: 8px;
-            transition: 0.5s;
-            color: #3f51b5;
-        }
+    .inputbox i {
+        position: absolute;
+        top: 13px;
+        right: 8px;
+        transition: 0.5s;
+        color: #3f51b5;
+    }
 
-        input::-webkit-outer-spin-button,
-        input::-webkit-inner-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-        }
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
 
-        .inputbox input:focus~span {
-            transform: translateX(-0px) translateY(-15px);
-            font-size: 12px;
-        }
+    .inputbox input:focus~span {
+        transform: translateX(-0px) translateY(-15px);
+        font-size: 12px;
+    }
 
-        .inputbox input:valid~span {
-            transform: translateX(-0px) translateY(-15px);
-            font-size: 12px;
-        }
+    .inputbox input:valid~span {
+        transform: translateX(-0px) translateY(-15px);
+        font-size: 12px;
+    }
 
-        .pay button {
-            height: 40px;
-            border-radius: 37px;
-        }
+    .pay button {
+        height: 40px;
+        border-radius: 37px;
+    }
     </style>
 </head>
 
@@ -114,98 +113,78 @@ if (empty($currentUser)) {
                 <div class="row" mt-3>
                     <?php
                     require '../php/database.php';
-                    // $query1 = "SELECT * FROM tutor_list WHERE status='1' AND delete_flag='0'";
-                    // $query_run1 = mysqli_query($conn, $query1);
-                    // while($row2 = mysqli_fetch_array($query_run1)){
-                    // $tutor_id = $row2['id'];   
-                       
-                    // $query = "SELECT * FROM course_list WHERE status = '1' AND delete_flag = '0' AND tutor_id = '$tutor_id'";
-                    // $query_run = mysqli_query($conn, $query);
-                    // $check_course = mysqli_num_rows($query_run) > 0;
-                    // // }
-                    // if ($check_course) {
-                    //     while ($row = mysqli_fetch_array($query_run)) {
-                        $qry = $conn->query("SELECT c.*, concat(t.lastname,', ', t.firstname, COALESCE(concat(' ', t.middlename),'')) as `tutor` from `course_list` c inner join `tutor_list` t on c.tutor_id = t.id where c.delete_flag = 0 and t.status=1  order by c.`id` asc");
-                        while ($row = $qry->fetch_assoc()){
-                            $sql1 = $row['tutor_id'];
-                            $_SESSION['course_id'] = $row['id'];
-                            $currentUser = $_SESSION['username'];
-                            $_SESSION['course_name'] = $row['name'];
-                            $query1 = "SELECT * FROM tutor_list WHERE id = '$sql1'";
-                            $query_run1 = mysqli_query($conn, $query1);
-                            $row1 = mysqli_fetch_array($query_run1);
-                            $course_id = $row['id'];
-                            $sql2 = "SELECT * FROM course_request WHERE course_id ='$course_id' && student_userName = '$currentUser' ";
-                            $query = mysqli_query($conn, $sql2);
-                            $result = mysqli_fetch_assoc($query);
-                            ?>
-                            <div class="col-md-4 mt-3">
-                                <div class="card">
-                                    <img src="../images/courses/<?php echo $row['logo']; ?>" class=" card-img-top" width="200px"
-                                        height="240px" alt="Faculty images">
-                                    <div class="card-body">
-                                        <h2 class="card-title">
-                                            <?php echo $row['name']; ?>
-                                        </h2>
-                                        <h7 class="card-title">
-                                            <?php echo $row['description']; ?>
-                                        </h7>
-                                        <hr>
-                                        <h6 style="color: rgba(0, 0, 0, 0.350);">
-                                            <?php echo $row1['lastname'] . ", " . $row1['firstname'] . " " . $row1['middlename'] ?>
-                                        </h6>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star"></span>
-                                        <span class="fa fa-star"></span>
-                                        <p class="card-text"><b>₹449</b></p>
-                                        <?php
-                                        $sql2 = "SELECT * FROM course_request WHERE course_id ='$course_id' && student_userName = '$currentUser' ";
-                                        $query = mysqli_query($conn, $sql2);
-                                        $result = mysqli_fetch_assoc($query);
-                                        if (mysqli_num_rows($query) != 0) {
-                                            if ($result['status'] === '1') {
-                                                ?>
-                                                <button onclick="done()" class="enrolled" name="enrolled">
-                                                    Enrolled
-                                                </button>
-
-                                                <?php
-                                            } else if ($result['status'] === '0') {
-                                                ?>
-                                                    <button onclick="done()" class="requested" name="requested">
-                                                        Requested
-                                                    </button>
-
-                                                <?php
-                                            }
-                                        } else {
+                    $qry = $conn->query("SELECT c.*, concat(t.lastname,', ', t.firstname, COALESCE(concat(' ', t.middlename),'')) as `tutor` from `course_list` c inner join `tutor_list` t on c.tutor_id = t.id where c.delete_flag = 0 and t.status=1  order by c.`id` asc");
+                    while ($row = $qry->fetch_assoc()) {
+                        $sql1 = $row['tutor_id'];
+                        $_SESSION['course_id'] = $row['id'];
+                        $currentUser = $_SESSION['username'];
+                        $_SESSION['course_name'] = $row['name'];
+                        $query1 = "SELECT * FROM tutor_list WHERE id = '$sql1'";
+                        $query_run1 = mysqli_query($conn, $query1);
+                        $row1 = mysqli_fetch_array($query_run1);
+                        $course_id = $row['id'];
+                        $sql2 = "SELECT * FROM course_request WHERE course_id ='$course_id' && student_userName = '$currentUser' ";
+                        $query = mysqli_query($conn, $sql2);
+                        $result = mysqli_fetch_assoc($query);
+                        ?>
+                    <div class="col-md-4 mt-3">
+                        <div class="card">
+                            <img src="../images/courses/<?php echo $row['logo']; ?>" class=" card-img-top" width="200px"
+                                height="240px" alt="Faculty images">
+                            <div class="card-body">
+                                <h2 class="card-title">
+                                    <?php echo $row['name']; ?>
+                                </h2>
+                                <h7 class="card-title">
+                                    <?php echo $row['description']; ?>
+                                </h7>
+                                <hr>
+                                <h6 style="color: rgba(0, 0, 0, 0.350);">
+                                    <?php echo $row1['lastname'] . ", " . $row1['firstname'] . " " . $row1['middlename'] ?>
+                                </h6>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                                <p class="card-text"><b>₹449</b></p>
+                                <?php
+                                    $sql2 = "SELECT * FROM course_request WHERE course_id ='$course_id' && student_userName = '$currentUser' ";
+                                    $query = mysqli_query($conn, $sql2);
+                                    $result = mysqli_fetch_assoc($query);
+                                    if (mysqli_num_rows($query) != 0) {
+                                        if ($result['status'] === '1') {
                                             ?>
+                                <button onclick="done()" class="enrolled" name="enrolled">
+                                    Enrolled
+                                </button>
 
+                                <?php
+                                        } else if ($result['status'] === '0') {
+                                            ?>
+                                <button onclick="done()" class="requested" name="requested">
+                                    Requested
+                                </button>
 
-                                            <button type="button" style="height:35px" class="enrollNow" data-toggle="modal"
-                                                data-target="#staticBackdrop"> <i class="fa fa-rocket"></i>
-                                                Enroll Now
-                                            </button>
-
-
-                                            <?php
+                                <?php
                                         }
+                                    } else {
                                         ?>
-                                    </div>
-                                </div>
+                                <a href="./pay.php?id=<?php echo $row["id"] ?>">
+                                    <button type="button" style="height:35px" class="enrollNow" data-toggle="modal"
+                                        data-target="#staticBackdrop"> <i class="fa fa-rocket"></i>
+                                        Enroll Now
+                                    </button>
+                                </a>
+                                <?php
+                                    }
+                                    ?>
                             </div>
-                            <?php
-                        }
-                //     }
-                //     else {
-                //         echo "No courses found";
-                //     }
-                // }
-
+                        </div>
+                    </div>
+                    <?php
+                    }
                     ?>
-
                 </div>
             </div>
         </main>
@@ -214,26 +193,26 @@ if (empty($currentUser)) {
 
     <script src="../js/sweetalert.min.js"></script>
     <script type="text/javascript">
-        $(".remove").click(function () {
-            var id = $(this).parents("tr").attr("id");
+    $(".remove").click(function() {
+        var id = $(this).parents("tr").attr("id");
 
-            if (confirm('Are you sure to remove this record ?')) {
-                $.ajax({
-                    url: '/enrollCourse.php',
-                    type: 'POST',
-                    data: {
-                        id: id
-                    },
-                    error: function () {
-                        alert('Something is wrong');
-                    },
-                    success: function (data) {
-                        // $("#"+id).remove();
-                        alert("Record removed successfully");
-                    }
-                });
-            }
-        });
+        if (confirm('Are you sure to remove this record ?')) {
+            $.ajax({
+                url: '/enrollCourse.php',
+                type: 'POST',
+                data: {
+                    id: id
+                },
+                error: function() {
+                    alert('Something is wrong');
+                },
+                success: function(data) {
+                    // $("#"+id).remove();
+                    alert("Record removed successfully");
+                }
+            });
+        }
+    });
     </script>
 
 </body>

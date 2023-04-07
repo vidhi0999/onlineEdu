@@ -6,15 +6,25 @@ $currentUser = $_SESSION['username'];
 if (empty($currentUser)) {
     header("location:../php/loginstu.php");
 }
-if (empty($_POST['id'])) {
-    header("Location:student-courses.php");
+
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
 }
 
-if (isset($_POST['course_id'])) {
-    $id = $_POST['course_id'];
-}
-if (isset($_POST['enrolled'])) {
-    $id = $_POST['id'];
+if (isset($_POST['enroll'])) {
+    $id = $_GET['id'];
+
+    $cardname = $_POST['cardname'];
+    $cardnumber = $_POST['cardnumber'];
+    $expiry = $_POST['expiry'];
+    $cvv = $_POST['cvv'];
+    $add = $_POST['add'];
+    $city = $_POST['city'];
+    $state = $_POST['state'];
+    $pin = $_POST['pin'];
+
+
+
     $sql = "SELECT * FROM course_list WHERE id='$id'";
     $query = mysqli_query($conn, $sql);
     $result = mysqli_fetch_assoc($query);
@@ -27,7 +37,22 @@ if (isset($_POST['enrolled'])) {
     $result2 = mysqli_fetch_assoc($query2);
     $student_id = $result2['id'];
     $student_userName = $result2['username'];
+
+    // echo $cardname;
+    // echo $cardnumber;
+    // echo $expiry;
+    // echo $cvv;
+    // echo $add;
+    // echo $city;
+    // echo $state;
+    // echo $pin;
+    // echo $course_id;
+    // echo $student_id;
+    // echo $tutor_id;
+
     $sql3 = "INSERT INTO course_request(tutor_id,course_id,course_name,student_id,student_userName,status,delete_flag) VALUES('$tutor_id','$course_id','$course_name','$student_id','$student_userName','0','0')";
+    // $sql4 = "INSERT INTO payment(cardname,cardnumber,expiry,cvv,add,city,state,pin,course_id,student_id,tutor_id) values('$cardname','$cardnumber','$expiry','$cvv','$add','$city','$state','$pin','$course_id','$student_id','$tutor_id')";
+
     if ($conn->query($sql3)) {
         // echo "done karo mee";
         header("location:student-courses.php");
@@ -36,6 +61,7 @@ if (isset($_POST['enrolled'])) {
 } else if (isset($_POST['cancel'])) {
     // echo "Cancelled";
     header("Location:student-courses.php");
+
 }
 ?>
 <html>

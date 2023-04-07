@@ -42,5 +42,10 @@ if (isset($_POST['submit'])) {
     $tutor_id = $_POST['id'];
     $status = $_POST['status'];
     $sql = $conn->query("Update tutor_list set status ='$status' where id=$tutor_id");
+    if ($status == 1) {
+        $sql = $conn->query("Update course_request set delete_flag ='0' where tutor_id=$tutor_id");
+    } else if ($status == 0 || $status == 2) {
+        $sql = $conn->query("Update course_request set delete_flag ='1' where tutor_id=$tutor_id");
+    }
     header("location:../admin/tutor_view.php?id=$tutor_id");
 } ?>

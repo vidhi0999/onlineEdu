@@ -24,109 +24,101 @@ if (empty($currentUser)) {
     <link rel="stylesheet" href="../css/studentCourse.css">
 
     <style>
-    /* body {
-        background-color: #eee;
-    }
+        .card {
+            border: none;
+        }
 
-    .container {
-        height: 100vh;
-    } */
+        .form-control {
+            border-bottom: 2px solid #eee !important;
+            border: none;
+            font-weight: 600
+        }
 
-    .card {
-        border: none;
-    }
+        .form-control:focus {
+            color: #495057;
+            background-color: #fff;
+            border-color: #8bbafe;
+            outline: 0;
+            box-shadow: none;
+            border-radius: 0px;
+            border-bottom: 2px solid blue !important;
+        }
 
-    .form-control {
-        border-bottom: 2px solid #eee !important;
-        border: none;
-        font-weight: 600
-    }
+        .inputbox {
+            position: relative;
+            margin-bottom: 20px;
+            width: 100%
+        }
 
-    .form-control:focus {
-        color: #495057;
-        background-color: #fff;
-        border-color: #8bbafe;
-        outline: 0;
-        box-shadow: none;
-        border-radius: 0px;
-        border-bottom: 2px solid blue !important;
-    }
+        .inputbox span {
+            position: absolute;
+            top: 7px;
+            left: 11px;
+            transition: 0.5s
+        }
 
-    .inputbox {
-        position: relative;
-        margin-bottom: 20px;
-        width: 100%
-    }
+        .inputbox i {
+            position: absolute;
+            top: 13px;
+            right: 8px;
+            transition: 0.5s;
+            color: #3F51B5
+        }
 
-    .inputbox span {
-        position: absolute;
-        top: 7px;
-        left: 11px;
-        transition: 0.5s
-    }
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0
+        }
 
-    .inputbox i {
-        position: absolute;
-        top: 13px;
-        right: 8px;
-        transition: 0.5s;
-        color: #3F51B5
-    }
+        .inputbox input:focus~span {
+            transform: translateX(-0px) translateY(-15px);
+            font-size: 12px
+        }
 
-    input::-webkit-outer-spin-button,
-    input::-webkit-inner-spin-button {
-        -webkit-appearance: none;
-        margin: 0
-    }
+        .inputbox input:valid~span {
+            transform: translateX(-0px) translateY(-15px);
+            font-size: 12px
+        }
 
-    .inputbox input:focus~span {
-        transform: translateX(-0px) translateY(-15px);
-        font-size: 12px
-    }
+        .card-blue {
+            background-color: #492bc4;
+        }
 
-    .inputbox input:valid~span {
-        transform: translateX(-0px) translateY(-15px);
-        font-size: 12px
-    }
+        .hightlight {
+            background-color: #5737d9;
+            padding: 10px;
+            border-radius: 10px;
+            margin-top: 15px;
+            font-size: 14px;
+        }
 
-    .card-blue {
-        background-color: #492bc4;
-    }
+        .yellow {
+            color: #fdcc49;
+        }
 
-    .hightlight {
-        background-color: #5737d9;
-        padding: 10px;
-        border-radius: 10px;
-        margin-top: 15px;
-        font-size: 14px;
-    }
+        .decoration {
 
-    .yellow {
-        color: #fdcc49;
-    }
+            text-decoration: none;
+            font-size: 14px;
+        }
 
-    .decoration {
+        .btn-success {
+            color: #fff;
+            background-color: #492bc4;
+            border-color: #492bc4;
+        }
 
-        text-decoration: none;
-        font-size: 14px;
-    }
+        .btn-success:hover {
+            color: #fff;
+            background-color: #492bc4;
+            border-color: #492bc4;
+        }
 
-    .btn-success {
-        color: #fff;
-        background-color: #492bc4;
-        border-color: #492bc4;
-    }
-
-    .btn-success:hover {
-        color: #fff;
-        background-color: #492bc4;
-        border-color: #492bc4;
-    }
-
-    .decoration:hover {
-        text-decoration: none;
-        color: #fdcc49;
-    }
+        .decoration:hover {
+            text-decoration: none;
+            color: #fdcc49;
+        }
     </style>
 </head>
 
@@ -145,7 +137,7 @@ if (empty($currentUser)) {
             </div>
             <hr>
 
-            
+
         </main>
     </section>
     <script src="../js/script.js"></script>
