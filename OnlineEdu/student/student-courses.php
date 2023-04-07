@@ -25,7 +25,7 @@ if (empty($currentUser)) {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <style>
-<<<<<<< HEAD
+/* <<<<<<< HEAD */
     .launch {
         height: 40px;
     }
@@ -34,7 +34,7 @@ if (empty($currentUser)) {
         font-size: 21px;
         cursor: pointer;
     }
-=======
+/* ======= */
     /* body {
         background-color: #eee;
     }
@@ -42,7 +42,7 @@ if (empty($currentUser)) {
     .container {
         height: 100vh;
     } */
->>>>>>> f1a351836cc97d121226b7e7379913083d6d8ed8
+/* >>>>>>> 1d0d5b0 (Update studentCourse.css) */
 
     .modal-body {
         height: 500px;
