@@ -71,13 +71,28 @@ if (empty($adminuser)) {
                                             </select>
                                         </div> -->
 
-                                        <div class="form-group">
+                                        <!-- <div class="form-group">
                                             <label for="Tutor id">Tutor Id</label>
                                             <input type="text" name="tutor" class="form-control" id="courseName">
-                                        </div>
+                                        </div> -->
                                         <div class="form-group">
                                             <label for="TutorName">Tutor Name</label>
-                                            <input type="text" name="tutorname" class="form-control" id="courseName">
+                                            <select name="tutorname" id="">
+                                <option value="#">-- Select Course --</option>
+                                <?php
+                                $sql = "SELECT * from tutor_list where status='1' AND delete_flag='0'";
+                                $gotResults = mysqli_query($conn, $sql);
+
+                                while ($row = mysqli_fetch_array($gotResults)) {
+                                    echo '<option value="'.$row['id'].'"> '.$row['lastname'].', '.$row['firstname'].' '.$row['middlename'].'  </option>';
+                                }
+                                if (mysqli_num_rows($gotResults) == 0) {
+                                    echo "<option value='#'>No Course Request</option>";
+                                }
+                                ?>
+
+                            </select>
+                                            <!-- <input type="text" name="tutorname" class="form-control" id="courseName"> -->
                                         </div>
                                         <div class="form-group">
                                             <label for="CourseName">Course Name</label>

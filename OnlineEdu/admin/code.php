@@ -1,12 +1,12 @@
 <?php
 include_once('../php/database.php');
 if (isset($_POST['save_course'])) {
-    $tutor_id = $_POST['tutor'];
+    $tutor_id = $_POST['tutorname'];
     $coursename = $_POST['course_name'];
     $description = $_POST['descrp'];
     $exp = $_POST['experience'];
 
-
+    // echo $tutor_id;
     $targetDir = "../images/courses/";
     $fileName = basename($_FILES["course_image"]["name"]);
     $targetFilePath = $targetDir . $fileName;
