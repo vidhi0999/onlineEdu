@@ -47,7 +47,7 @@ if (empty($currentUser)) {
                     <div class="col-md-8">
                         <!-- <form> -->
                         <div class="card p-3">
-                            <h6 class="text-uppercase">Payment details</h6>
+                            <h6 style="font-size: 900!important;" class="text-uppercase">Payment details</h6>
                             <div class="inputbox mt-3"> <input type="text" name="cardname" class="form-control"
                                     required>
                                 <span>Name on card</span>
@@ -65,6 +65,12 @@ if (empty($currentUser)) {
                                     <div class="d-flex flex-row">
                                         <div class="inputbox mt-3 mr-2"> <input type="date" name="expiry"
                                                 class="form-control" required> <span>Expiry</span> </div>
+                                        <!-- <div class="inputbox mt-3 mr-2"> <input type="text" name="cvv"
+                                                class="form-control" required> <span>CVV</span> </div> -->
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="d-flex flex-row">
                                         <div class="inputbox mt-3 mr-2"> <input type="text" name="cvv"
                                                 class="form-control" required> <span>CVV</span> </div>
                                     </div>
