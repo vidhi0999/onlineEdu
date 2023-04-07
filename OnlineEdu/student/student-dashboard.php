@@ -69,7 +69,8 @@ if (empty($currentUser)) {
                 <div class="row" mt-3>
                     <?php
                     require '../php/database.php';
-                    $query = "SELECT * FROM course_request WHERE status = '1' AND delete_flag = '0'";
+                    $currentUser = $_SESSION['username'];
+                    $query = "SELECT * FROM course_request WHERE   status = '1' AND delete_flag = '0' AND student_userName = '$currentUser'";
                     $query_run = mysqli_query($conn, $query);
                     $check_course = mysqli_num_rows($query_run) > 0;
                     if ($check_course) {
@@ -84,7 +85,6 @@ if (empty($currentUser)) {
                             $descip = $row3['description'];
                             $sql1 = $row['tutor_id'];
                             $_SESSION['course_id'] = $row['id'];
-                            $currentUser = $_SESSION['username'];
                             $_SESSION['course_name'] = $row['name'];
                             $query1 = "SELECT * FROM tutor_list WHERE id = '$sql1'";
                             $query_run1 = mysqli_query($conn, $query1);
