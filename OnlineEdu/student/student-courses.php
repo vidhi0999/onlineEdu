@@ -25,85 +25,76 @@ if (empty($currentUser)) {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <style>
-    /* <<<<<<< HEAD */
-    .launch {
-        height: 40px;
-    }
+        /* <<<<<<< HEAD */
+        .launch {
+            height: 40px;
+        }
 
-    .close {
-        font-size: 21px;
-        cursor: pointer;
-    }
+        .close {
+            font-size: 21px;
+            cursor: pointer;
+        }
 
-    /* ======= */
-    /* body {
-        background-color: #eee;
-    }
 
-    .container {
-        height: 100vh;
-    } */
-    /* >>>>>>> 1d0d5b0 (Update studentCourse.css) */
+        .modal-body {
+            height: 500px;
+        }
 
-    .modal-body {
-        height: 500px;
-    }
+        .form-control {
+            border-bottom: 1px solid #eee !important;
+            border: none;
+            font-weight: 600;
+        }
 
-    .form-control {
-        border-bottom: 1px solid #eee !important;
-        border: none;
-        font-weight: 600;
-    }
+        .form-control:focus {
+            color: #495057;
+            background-color: #fff;
+            border-color: #8bbafe;
+            outline: 0;
+            box-shadow: none;
+        }
 
-    .form-control:focus {
-        color: #495057;
-        background-color: #fff;
-        border-color: #8bbafe;
-        outline: 0;
-        box-shadow: none;
-    }
+        .inputbox {
+            position: relative;
+            /* margin-bottom: 10px; */
+            width: 100%;
+        }
 
-    .inputbox {
-        position: relative;
-        /* margin-bottom: 10px; */
-        width: 100%;
-    }
+        .inputbox span {
+            position: absolute;
+            top: 7px;
+            left: 11px;
+            transition: 0.5s;
+        }
 
-    .inputbox span {
-        position: absolute;
-        top: 7px;
-        left: 11px;
-        transition: 0.5s;
-    }
+        .inputbox i {
+            position: absolute;
+            top: 13px;
+            right: 8px;
+            transition: 0.5s;
+            color: #3f51b5;
+        }
 
-    .inputbox i {
-        position: absolute;
-        top: 13px;
-        right: 8px;
-        transition: 0.5s;
-        color: #3f51b5;
-    }
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
 
-    input::-webkit-outer-spin-button,
-    input::-webkit-inner-spin-button {
-        -webkit-appearance: none;
-        margin: 0;
-    }
+        .inputbox input:focus~span {
+            transform: translateX(-0px) translateY(-15px);
+            font-size: 12px;
+        }
 
-    .inputbox input:focus~span {
-        transform: translateX(-0px) translateY(-15px);
-        font-size: 12px;
-    }
+        .inputbox input:valid~span {
+            transform: translateX(-0px) translateY(-15px);
+            font-size: 12px;
+        }
 
-    .inputbox input:valid~span {
-        transform: translateX(-0px) translateY(-15px);
-        font-size: 12px;
-    }
-
-    .pay button {
-        height: 40px;
-        border-radius: 37px;
-    }
+        .pay button {
+            height: 40px;
+            border-radius: 37px;
+        }
     </style>
 </head>
 
@@ -140,145 +131,64 @@ if (empty($currentUser)) {
                             $query = mysqli_query($conn, $sql2);
                             $result = mysqli_fetch_assoc($query);
                             ?>
-                    <div class="col-md-4 mt-3">
-                        <div class="card">
-                            <img src="../images/courses/<?php echo $row['logo']; ?>" class=" card-img-top" width="200px"
-                                height="240px" alt="Faculty images">
-                            <div class="card-body">
-                                <h2 class="card-title">
-                                    <?php echo $row['name']; ?>
-                                </h2>
-                                <h7 class="card-title">
-                                    <?php echo $row['description']; ?>
-                                </h7>
-                                <hr>
-                                <h6 style="color: rgba(0, 0, 0, 0.350);">
-                                    <?php echo $row1['lastname'] . ", " . $row1['firstname'] . " " . $row1['middlename'] ?>
-                                </h6>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star"></span>
-                                <span class="fa fa-star"></span>
-                                <p class="card-text"><b>₹449</b></p>
-                                <?php
+                            <div class="col-md-4 mt-3">
+                                <div class="card">
+                                    <img src="../images/courses/<?php echo $row['logo']; ?>" class=" card-img-top" width="200px"
+                                        height="240px" alt="Faculty images">
+                                    <div class="card-body">
+                                        <h2 class="card-title">
+                                            <?php echo $row['name']; ?>
+                                        </h2>
+                                        <h7 class="card-title">
+                                            <?php echo $row['description']; ?>
+                                        </h7>
+                                        <hr>
+                                        <h6 style="color: rgba(0, 0, 0, 0.350);">
+                                            <?php echo $row1['lastname'] . ", " . $row1['firstname'] . " " . $row1['middlename'] ?>
+                                        </h6>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star"></span>
+                                        <p class="card-text"><b>₹449</b></p>
+                                        <?php
                                         $sql2 = "SELECT * FROM course_request WHERE course_id ='$course_id' && student_userName = '$currentUser' ";
                                         $query = mysqli_query($conn, $sql2);
                                         $result = mysqli_fetch_assoc($query);
                                         if (mysqli_num_rows($query) != 0) {
                                             if ($result['status'] === '1') {
                                                 ?>
-                                <button onclick="done()" class="enrolled" name="enrolled">
-                                    Enrolled
-                                </button>
+                                                <button onclick="done()" class="enrolled" name="enrolled">
+                                                    Enrolled
+                                                </button>
 
-                                <?php
+                                                <?php
                                             } else if ($result['status'] === '0') {
                                                 ?>
-                                <button onclick="done()" class="requested" name="requested">
-                                    Requested
-                                </button>
+                                                    <button onclick="done()" class="requested" name="requested">
+                                                        Requested
+                                                    </button>
 
-                                <?php
+                                                <?php
                                             }
                                         } else {
                                             ?>
 
 
-                                <button type="button" style="height:35px" class="enrollNow" data-toggle="modal"
-                                    data-target="#staticBackdrop"> <i class="fa fa-rocket"></i>
-                                    Enroll Now
-                                </button>
-
-                                <!-- Modal -->
-                                <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false"
-                                    tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-body">
-                                                <div class=" text-right"> <i class="fa fa-close close"
-                                                        data-dismiss="modal"></i>
-                                                </div>
-                                                <form method="post" action="enrollCourse.php">
-
-                                                    <div class="mt-4 mb-4">
-                                                        <h6 class="text-uppercase">Payment details</h6>
-                                                        <div class="inputbox mt-3"> <input type="text" name="name"
-                                                                class="form-control" required> <span>Name on
-                                                                card</span>
-                                                        </div>
-
-                                                        <div class="inputbox mt-3 "> <input type="number"
-                                                                name="cardNumber" class="form-control" required> <i
-                                                                class="fa fa-credit-card"></i>
-                                                            <span>Card
-                                                                Number</span>
-                                                        </div>
-
-                                                        <!-- <div class="mt-4 mb-4"> -->
-                                                        <div class="d-flex flex-row">
-                                                            <div class="inputbox mt-3 mr-2"> <input type="text"
-                                                                    name="expiry" class="form-control" required>
-                                                                <span>Expiry(MM-YY)</span>
-                                                            </div>
-                                                            <div class="inputbox mt-3 mr-2"> <input type="number"
-                                                                    name="cvv" class="form-control" required>
-                                                                <span>CVV</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                            <button type="button" style="height:35px" class="enrollNow" data-toggle="modal"
+                                                data-target="#staticBackdrop"> <i class="fa fa-rocket"></i>
+                                                Enroll Now
+                                            </button>
 
 
-
-
-                                                    <div class="mt-4 mb-4">
-                                                        <h6 class="text-uppercase">Billing Address</h6>
-                                                        <div class="d-flex flex-row">
-                                                            <div class="inputbox mt-3 mr-2"> <input type="text"
-                                                                    name="address" class="form-control" required>
-                                                                <span>Street
-                                                                    Address</span>
-                                                            </div>
-                                                            <div class="inputbox mt-3 mr-2"> <input type="text"
-                                                                    name="city" class="form-control" required>
-                                                                <span>City</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="mt-4 mb-4">
-                                                        <div class="d-flex flex-row">
-                                                            <div class="inputbox mt-3 mr-2"> <input type="text"
-                                                                    name="state" class="form-control" required>
-                                                                <span>State/Province</span>
-                                                            </div>
-                                                            <div class="inputbox mt-3 mr-2"> <input type="number"
-                                                                    name="zipCode" class="form-control" required>
-                                                                <span>Zip code</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-
-                                                    <div class=" pay px-5">
-                                                        <button class=" btn btn-primary btn-block" name="enrolled">Pay
-                                                            ₹449</button>
-                                                    </div>
-                                                </form>
-
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <?php
+                                            <?php
                                         }
                                         ?>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <?php
+                            <?php
                         }
                     } else {
                         echo "No courses found";
@@ -293,26 +203,26 @@ if (empty($currentUser)) {
 
     <script src="../js/sweetalert.min.js"></script>
     <script type="text/javascript">
-    $(".remove").click(function() {
-        var id = $(this).parents("tr").attr("id");
+        $(".remove").click(function () {
+            var id = $(this).parents("tr").attr("id");
 
-        if (confirm('Are you sure to remove this record ?')) {
-            $.ajax({
-                url: '/enrollCourse.php',
-                type: 'POST',
-                data: {
-                    id: id
-                },
-                error: function() {
-                    alert('Something is wrong');
-                },
-                success: function(data) {
-                    // $("#"+id).remove();
-                    alert("Record removed successfully");
-                }
-            });
-        }
-    });
+            if (confirm('Are you sure to remove this record ?')) {
+                $.ajax({
+                    url: '/enrollCourse.php',
+                    type: 'POST',
+                    data: {
+                        id: id
+                    },
+                    error: function () {
+                        alert('Something is wrong');
+                    },
+                    success: function (data) {
+                        // $("#"+id).remove();
+                        alert("Record removed successfully");
+                    }
+                });
+            }
+        });
     </script>
 
 </body>
