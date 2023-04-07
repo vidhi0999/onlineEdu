@@ -31,7 +31,18 @@
 .header img {
     height: 4rem;
 }
-
+.main-container{
+    margin-left: 30px;
+    margin-right: 30px;
+}
+.container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 2rem;
+    margin-bottom: 50px;
+}
 .line {
     background-color: #000839;
     height: 0.3rem;
@@ -55,3 +66,28 @@
     
     flex-direction: column;
 }
+.enrollNow {
+    appearance: none;
+    background-color: #2ea44f;
+    border: 1px solid rgba(27, 31, 35, .15);
+    border-radius: 6px;
+    color: #fff;
+    box-shadow: rgba(27, 31, 35, .1) 0 1px 0;
+    cursor: pointer;
+    font-family: -apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
+    font-size: 14px;
+    font-weight: 600;
+    padding: 6px 16px;
+    user-select: none;
+    white-space: nowrap;
+  }
+  .enrolled{
+    background-color: #2e77a4;
+  
+  }
+  
+    .enrollNow a{
+      text-decoration: none;
+      color: #fff;
+  
+    }

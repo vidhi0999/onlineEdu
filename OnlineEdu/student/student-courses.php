@@ -24,13 +24,13 @@ if (empty($currentUser)) {
     <link rel="stylesheet" href="../css/studentCourse.css">
 
     <style>
-    body {
-        /* background-color: #eee; */
+    /* body {
+        background-color: #eee;
     }
 
     .container {
-        /* height: 100vh; */
-    }
+        height: 100vh;
+    } */
 
     .card {
         border: none;

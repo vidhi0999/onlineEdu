@@ -594,3 +594,40 @@ table.table td i {
 .cancel:hover {
   background-color: #a32f2f;
 }
+.enrollNow {
+  appearance: none;
+  background-color: #2ea44f;
+  border: 1px solid rgba(27, 31, 35, .15);
+  border-radius: 6px;
+  color: #fff;
+  box-shadow: rgba(27, 31, 35, .1) 0 1px 0;
+  cursor: pointer;
+  font-family: -apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
+  font-size: 14px;
+  font-weight: 600;
+  padding: 6px 16px;
+  user-select: none;
+  white-space: nowrap;
+}
+.enrolled{
+  background-color: #2e77a4;
+
+}
+
+  .enrollNow a{
+    text-decoration: none;
+    color: #fff;
+
+  }
+.enrolledCourses{
+  margin-top: 50px;
+}
+.checked {
+  color: orange;
+}
+/* .card{
+  border-radius: 50px;
+}
+.card-img,.card-img-top{
+  border-radius: 50px;
+} */

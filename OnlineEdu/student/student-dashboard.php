@@ -14,6 +14,10 @@ if (empty($currentUser)) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- My CSS -->
     <link rel="stylesheet" href="../css/dashboard.css">
     <title>Student</title>
@@ -59,9 +63,85 @@ if (empty($currentUser)) {
                     </span>
                 </li>
             </ul>
+            <div class="enrolledCourses">
+                <hr>
+                <div class="container" py-4>
+                <div class="row" mt-3>
+                    <?php
+                    require '../php/database.php';
+                    $query = "SELECT * FROM course_request WHERE status = '1' AND delete_flag = '0'";
+                    $query_run = mysqli_query($conn, $query);
+                    $check_course = mysqli_num_rows($query_run) > 0;
+                    if ($check_course) {
+                        while ($row = mysqli_fetch_array($query_run)) {
+                            $course_id = $row['course_id'];
+                            // $query2 = "SELECT * FROM course_list WHERE id = '$course_id'";
+                            // $query_run2 = mysqli_query($conn, $query1);
+                            // $row2 = mysqli_fetch_array($query_run1);
+                            $query3 = "SELECT * FROM course_list WHERE id = '$course_id'";
+                            $query_run3 = mysqli_query($conn, $query3);
+                            $row3 = mysqli_fetch_array($query_run3);
+                            $descip = $row3['description'];
+                            $sql1 = $row['tutor_id'];
+                            $_SESSION['course_id'] = $row['id'];
+                            $currentUser = $_SESSION['username'];
+                            $_SESSION['course_name'] = $row['name'];
+                            $query1 = "SELECT * FROM tutor_list WHERE id = '$sql1'";
+                            $query_run1 = mysqli_query($conn, $query1);
+                            $row1 = mysqli_fetch_array($query_run1);
+                            $course_id = $row['id'];
+
+
+                            // $sql2 = "SELECT * FROM course_request WHERE course_id ='$course_id' && student_userName = '$currentUser' ";
+                            // $query = mysqli_query($conn, $sql2);
+                            // $result = mysqli_fetch_assoc($query);
+                            ?>
+                    <div class="col-md-4 mt-3">
+                        <div class="card">
+                            <img src="../images/courses/<?php echo $row3['logo']; ?>" class="card-img-top" width="200px"
+                                height="240px" alt="Faculty images">
+                            <div class="card-body">
+                                <h2 class="card-title">
+                                    <?php echo $row['course_name']; ?>
+                                </h2>
+                                <h7 class="card-title">
+                                    <?php echo $descip ?>
+                                </h7>
+                                <hr>
+                                <h6 style="color: rgba(0, 0, 0, 0.350);">
+                                    <?php echo $row1['lastname'] . ", " . $row1['firstname'] . " " . $row1['middlename'] ?>
+                                </h6>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                                <p class="card-text"><b>₹449</b></p>
+                               
+                                <a href="./enrolled-course.php">
+                                    <button class="enrollNow" value="" class="btn" title="View" id="view"
+                                        data-toggle="modal" data-id="<?php echo $row['id']; ?>" data-target=" #view"
+                                        name="enrollNow">
+                                        View Details
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <?php
+                        }
+                    } else {
+                        echo "No courses found";
+                    }
+                    ?>
+
+                </div>
+            </div>
+            </div>
         </main>
         <!-- MAIN -->
     </section>
+
     <!-- CONTENT -->
 
 
