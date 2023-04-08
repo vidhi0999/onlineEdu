@@ -61,42 +61,30 @@ if (empty($adminuser)) {
 
                                 <form action="code.php" method="POST" enctype="multipart/form-data">
                                     <div class="modal-body">
-                                        <!-- <div class="form-group">
-                                            <label for="email1">Tutor</label>
-                                              <select class="form-control" name="tutor">
-                                                <option value="" selected> Select option </option>
-                                                <option value="1"> Cooper, Mark D </option>
-                                                <option value="2"> Blake, Claire C </option>
-                                                <option value="3"> Miller, Samantha Jane C </option>
-                                            </select>
-                                        </div> -->
 
-                                        <!-- <div class="form-group">
-                                            <label for="Tutor id">Tutor Id</label>
-                                            <input type="text" name="tutor" class="form-control" id="courseName">
-                                        </div> -->
                                         <div class="form-group">
                                             <label for="TutorName">Tutor Name</label>
                                             <select name="tutorname" id="">
-                                <option value="#">-- Select Course --</option>
-                                <?php
-                                $sql = "SELECT * from tutor_list where status='1' AND delete_flag='0'";
-                                $gotResults = mysqli_query($conn, $sql);
+                                                <option value="#">-- Select Course --</option>
+                                                <?php
+                                                $sql = "SELECT * from tutor_list where status='1' AND delete_flag='0'";
+                                                $gotResults = mysqli_query($conn, $sql);
 
-                                while ($row = mysqli_fetch_array($gotResults)) {
-                                    echo '<option value="'.$row['id'].'"> '.$row['lastname'].', '.$row['firstname'].' '.$row['middlename'].'  </option>';
-                                }
-                                if (mysqli_num_rows($gotResults) == 0) {
-                                    echo "<option value='#'>No Tutor found</option>";
-                                }
-                                ?>
+                                                while ($row = mysqli_fetch_array($gotResults)) {
+                                                    echo '<option value="' . $row['id'] . '"> ' . $row['lastname'] . ', ' . $row['firstname'] . ' ' . $row['middlename'] . '  </option>';
+                                                }
+                                                if (mysqli_num_rows($gotResults) == 0) {
+                                                    echo "<option value='#'>No Tutor found</option>";
+                                                }
+                                                ?>
 
-                            </select>
+                                            </select>
                                             <!-- <input type="text" name="tutorname" class="form-control" id="courseName"> -->
                                         </div>
                                         <div class="form-group">
                                             <label for="CourseName">Course Name</label>
-                                            <input type="text" name="course_name" class="form-control" id="courseName" required>
+                                            <input type="text" name="course_name" class="form-control" id="courseName"
+                                                required>
                                         </div>
                                         <div class="form-group">
                                             <label for="desc">Description</label>

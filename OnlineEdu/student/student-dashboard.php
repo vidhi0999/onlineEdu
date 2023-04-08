@@ -2,6 +2,7 @@
 session_start();
 include('./student-sidebar.php');
 $currentUser = $_SESSION['username'];
+// $student_id = $_SESSION['id'];
 if (empty($currentUser)) {
     header("location:../php/loginstu.php");
 }
@@ -35,18 +36,58 @@ if (empty($currentUser)) {
                 </div>
 
             </div>
-            <!-- <hr> -->
-            <!-- <ul class="box-info">
+            <hr>
+            <ul class="box-info">
                 <li>
                     <i class='fa fa-list'></i>
                     <span class="text">
-                        <h3></h3>
+                        <h3>
 
-                        <p>Active Courses</p>
+                            <?php
+                            $count = 0;
+                            $inquiry = $conn->query("SELECT * FROM course_request where delete_flag = 0 and `status` = 1 and student_userName = '$currentUser'");
+
+                            if ($inquiry->num_rows > 0) {
+                                while ($row = $inquiry->fetch_assoc()) {
+                                    $count = $count + 1;
+                                }
+                            }
+                            echo $count;
+                            ?>
+                        </h3>
+                        <p>Enrolled Courses</p>
                     </span>
                 </li>
-            </ul> -->
+
+                <li>
+                    <i class='fa fa-list'></i>
+                    <span class="text">
+                        <h3>
+                            <?php
+                            $count = 0;
+                            $inquiry = $conn->query("SELECT * FROM course_request where delete_flag = 0 and `status` = 0  and student_userName = '$currentUser'");
+                            if ($inquiry->num_rows > 0) {
+                                while ($row = $inquiry->fetch_assoc()) {
+                                    $count = $count + 1;
+                                }
+                            }
+                            echo $count;
+                            ?>
+
+                        </h3>
+                        <p>Requested Courses</p>
+                    </span>
+                </li>
+            </ul>
+            <hr>
+            <!-- <hr> -->
             <div class="enrolledCourses">
+
+                <div class="head-title">
+                    <div class="left">
+                        <h1>My courses</h1>
+                    </div>
+                </div>
                 <hr>
                 <div class="container" py-4>
                     <div class="row" mt-3>
@@ -59,9 +100,6 @@ if (empty($currentUser)) {
                         if ($check_course) {
                             while ($row = mysqli_fetch_array($query_run)) {
                                 $course_id = $row['course_id'];
-                                // $query2 = "SELECT * FROM course_list WHERE id = '$course_id'";
-                                // $query_run2 = mysqli_query($conn, $query1);
-                                // $row2 = mysqli_fetch_array($query_run1);
                                 $query3 = "SELECT * FROM course_list WHERE id = '$course_id'";
                                 $query_run3 = mysqli_query($conn, $query3);
                                 $row3 = mysqli_fetch_array($query_run3);
