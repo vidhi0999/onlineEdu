@@ -48,7 +48,7 @@
                         </a>
                         <a href="./php/viewcourses.php"><i class='fas fa-user-tie' style='font-size:9rem'></i></a>
                         <a href="./php/viewcourses.php">
-                            <p style="font-style: italic;">click here to view our courses </p>
+                            <p style="font-style: italic;">click here to view our popular courses and their faculties. </p>
                         </a>
                     </div>
                     <div class="portal1">
@@ -67,7 +67,7 @@
         <!-- welcome -->
         <div class="sub-container2">
             <h1>Welcome</h1>
-
+            
         </div>
 
         <!-- Why choose us -->
@@ -149,7 +149,7 @@
 
         <div class="sub-container4">
             <div class="sub-container4-1">
-
+                
                 <div class="in-details">
                     <div class="in-sub-details">
                         <h1>Become an instructor</h1>
