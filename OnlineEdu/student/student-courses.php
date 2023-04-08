@@ -113,7 +113,7 @@ if (empty($currentUser)) {
                 <div class="row" mt-3>
                     <?php
                     require '../php/database.php';
-                    $qry = $conn->query("SELECT c.*, concat(t.lastname,', ', t.firstname, COALESCE(concat(' ', t.middlename),'')) as `tutor` from `course_list` c inner join `tutor_list` t on c.tutor_id = t.id where c.delete_flag = 0 and t.status=1  order by c.`id` asc");
+                    $qry = $conn->query("SELECT c.*, concat(t.lastname,', ', t.firstname, COALESCE(concat(' ', t.middlename),'')) as `tutor` from `course_list` c inner join `tutor_list` t on c.tutor_id = t.id where c.delete_flag = 0 and t.status=1   && c.status = 1 order by c.`id` asc");
                     while ($row = $qry->fetch_assoc()) {
                         $sql1 = $row['tutor_id'];
                         $_SESSION['course_id'] = $row['id'];
@@ -149,7 +149,7 @@ if (empty($currentUser)) {
                                 <span class="fa fa-star"></span>
                                 <p class="card-text"><b>₹449</b></p>
                                 <?php
-                                    $sql2 = "SELECT * FROM course_request WHERE course_id ='$course_id' && student_userName = '$currentUser' ";
+                                    $sql2 = "SELECT * FROM course_request WHERE course_id ='$course_id' && student_userName = '$currentUser'  && delete_flag = 0 && delete_courses = 0 "; 
                                     $query = mysqli_query($conn, $sql2);
                                     $result = mysqli_fetch_assoc($query);
                                     if (mysqli_num_rows($query) != 0) {
