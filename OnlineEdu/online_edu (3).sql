@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 07, 2023 at 02:34 PM
+-- Generation Time: Apr 08, 2023 at 03:06 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.1
 
@@ -92,7 +92,9 @@ INSERT INTO `course_list` (`id`, `tutor_id`, `name`, `logo`, `description`, `exp
 (3, 3, 'DBMS', 'dbms.jpeg', 'Learn database management system(DBMS).Gain DBMS skills such as data creation ,queryingand manipulation and many more concepts.', '5 Years', 1, 0, '2023-03-08', '2023-03-23'),
 (4, 2, 'Data Structure', 'ds.png', 'Learn basics of Data Structure , You will learn how these data structures are implemented in different programming languages and will practice implementing them in our programming assignments.', '4 years', 1, 0, '2023-03-08', '2023-03-23'),
 (5, 3, 'C++', 'c++.jfif', 'C++ is an object-oriented programming (OOP) language that is viewed by many as the best language for creating large-scale applications.', '1 Year', 1, 0, '2023-03-24', '2023-03-24'),
-(6, 2, 'Data Mining', 'dm.png', 'Data mining is the process of sorting through large data sets to identify patterns and relationships that can help solve business problems through data analysis.', '3 Year', 1, 0, '2023-03-24', '2023-03-24');
+(6, 2, 'Data Mining', 'dm.png', 'Data mining is the process of sorting through large data sets to identify patterns and relationships that can help solve business problems through data analysis.', '3 Year', 1, 0, '2023-03-24', '2023-03-24'),
+(7, 2, 'Machine Learning', 'pic-3.jpg', 'anything', 'More than 5 Year', 0, 1, '2023-04-07', '2023-04-07'),
+(8, 1, 'Machine Learning', 'pic-2.jpg', 'anything', '3 Year', 1, 0, '2023-04-07', '2023-04-07');
 
 -- --------------------------------------------------------
 
@@ -108,27 +110,25 @@ CREATE TABLE `course_request` (
   `student_id` int(255) NOT NULL,
   `student_userName` varchar(255) NOT NULL,
   `status` int(4) NOT NULL,
-  `delete_flag` int(6) NOT NULL
+  `delete_flag` int(6) NOT NULL,
+  `delete_courses` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `course_request`
 --
 
-INSERT INTO `course_request` (`id`, `tutor_id`, `course_id`, `course_name`, `student_id`, `student_userName`, `status`, `delete_flag`) VALUES
-(1, 3, 1, 'PHP', 1, 'maulik7332', 0, 1),
-(2, 1, 2, 'MySQL', 1, 'maulik7332', 0, 1),
-(3, 3, 1, 'PHP', 3, 'vidhi54', 0, 1),
-(5, 3, 3, 'DBMS', 1, 'maulik7332', 0, 1),
-(6, 3, 5, 'C++', 3, 'vidhi54', 0, 1),
-(7, 3, 1, 'PHP', 2, 'vrujal30', 0, 1),
-(8, 1, 2, 'MySQL', 2, 'vrujal30', 0, 0),
-(9, 2, 4, 'Data Structure', 1, 'maulik7332', 0, 0),
-(10, 1, 2, 'MySQL', 3, 'vidhi54', 1, 0),
-(11, 3, 5, 'C++', 1, 'maulik7332', 0, 0),
-(19, 0, 0, '', 2, 'vrujal30', 0, 1),
-(20, 0, 0, '', 3, 'vidhi54', 0, 0),
-(21, 0, 0, '', 3, 'vidhi54', 0, 0);
+INSERT INTO `course_request` (`id`, `tutor_id`, `course_id`, `course_name`, `student_id`, `student_userName`, `status`, `delete_flag`, `delete_courses`) VALUES
+(1, 3, 1, 'PHP', 1, 'maulik7332', 0, 0, 0),
+(2, 1, 2, 'MySQL', 1, 'maulik7332', 0, 0, 0),
+(3, 3, 1, 'PHP', 3, 'vidhi54', 0, 0, 0),
+(5, 3, 3, 'DBMS', 1, 'maulik7332', 0, 0, 0),
+(6, 3, 5, 'C++', 3, 'vidhi54', 1, 0, 0),
+(7, 3, 1, 'PHP', 2, 'vrujal30', 0, 0, 0),
+(8, 1, 2, 'MySQL', 2, 'vrujal30', 0, 0, 0),
+(9, 2, 4, 'Data Structure', 1, 'maulik7332', 1, 0, 0),
+(10, 1, 2, 'MySQL', 3, 'vidhi54', 1, 0, 0),
+(11, 3, 5, 'C++', 1, 'maulik7332', 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -155,10 +155,42 @@ CREATE TABLE `inquiries` (
 --
 
 INSERT INTO `inquiries` (`id`, `student_id`, `username`, `email`, `course_id`, `course_name`, `tutor_id`, `message`, `delete_flag`, `date_created`, `status`) VALUES
-(1, '', 'vidhi', 'vidhi54@gmail.com', 1, 'php', 3, '123', 0, '2023-04-04', 0),
-(2, '3 ', 'vidhi54', 'vidhi54@gmail.com', 1, 'php', 3, 'hello', 0, '2023-04-05', 1),
-(4, '3 ', 'vidhi54', 'vidhi54@gmail.com', 6, 'data mining', 2, 'i have a doubt', 0, '2023-04-05', 1),
-(5, '3 ', 'vidhi54', 'vidhi54@gmail.com', 1, 'php', 3, '123', 0, '2023-04-06', 1);
+(1, '', 'vidhi', 'vidhi54@gmail.com', 1, 'php', 3, '123', 0, '2023-04-04', 1),
+(2, '3 ', 'vidhi54', 'vidhi54@gmail.com', 1, 'php', 3, 'hello', 0, '2023-04-05', 0),
+(4, '3 ', 'vidhi54', 'vidhi54@gmail.com', 6, 'data mining', 2, 'i have a doubt', 0, '2023-04-05', 0),
+(5, '3 ', 'vidhi54', 'vidhi54@gmail.com', 1, 'php', 3, '123', 0, '2023-04-06', 0),
+(6, '3 ', 'vidhi54', 'vidhi54@gmail.com', 5, 'C++', 3, 't6527', 0, '2023-04-08', 0),
+(7, '3 ', 'vidhi54', 'vidhi54@gmail.com', 2, 'MySQL', 1, 'mysql', 0, '2023-04-08', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `payment`
+--
+
+CREATE TABLE `payment` (
+  `id` int(6) UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `cardnumber` varchar(255) NOT NULL,
+  `expiry` date NOT NULL,
+  `cvv` varchar(255) NOT NULL,
+  `address` varchar(255) NOT NULL,
+  `city` varchar(255) NOT NULL,
+  `state` varchar(255) NOT NULL,
+  `pincode` varchar(255) NOT NULL,
+  `course_id` int(20) NOT NULL,
+  `student_id` int(20) NOT NULL,
+  `tutor_id` int(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `payment`
+--
+
+INSERT INTO `payment` (`id`, `name`, `cardnumber`, `expiry`, `cvv`, `address`, `city`, `state`, `pincode`, `course_id`, `student_id`, `tutor_id`) VALUES
+(1, ' vidhi', ' 98398', '0000-00-00', ' 8787', ' 878997', ' surat', ' gujarat', ' 395006', 3, 3, 3),
+(2, ' vidhi', ' 2-02309090', '2002-09-25', ' 989', ' gujarat', ' surat', ' india', ' 495006', 3, 3, 3),
+(3, ' vidhi', ' 3232', '0231-03-21', ' 322', ' 987', ' 878', ' 787', ' 87', 8, 3, 1);
 
 -- --------------------------------------------------------
 
@@ -213,7 +245,7 @@ CREATE TABLE `tutor_list` (
 
 INSERT INTO `tutor_list` (`id`, `firstname`, `middlename`, `lastname`, `email`, `avtar`, `status`, `delete_flag`, `date_created`, `date_updated`) VALUES
 (1, 'Mark', 'D', 'Cooper', 'mcooper@gmail.com', '1.png', 1, 0, '2022-05-17', '2023-03-23'),
-(2, 'Claire', 'C', 'Blake', 'cblake@sample.com', '2.png', 0, 0, '2022-05-17', '2023-03-23'),
+(2, 'Claire', 'C', 'Blake', 'cblake@sample.com', '2.png', 1, 0, '2022-05-17', '2023-03-23'),
 (3, 'Samantha Jane', 'C', 'Miller', 'sam23@gmail.com', '3.png', 1, 0, '2022-05-18', '2023-03-23');
 
 -- --------------------------------------------------------
@@ -279,6 +311,12 @@ ALTER TABLE `inquiries`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `payment`
+--
+ALTER TABLE `payment`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `student`
 --
 ALTER TABLE `student`
@@ -318,19 +356,25 @@ ALTER TABLE `contactus`
 -- AUTO_INCREMENT for table `course_list`
 --
 ALTER TABLE `course_list`
-  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `course_request`
 --
 ALTER TABLE `course_request`
-  MODIFY `id` int(6) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(6) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `inquiries`
 --
 ALTER TABLE `inquiries`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `payment`
+--
+ALTER TABLE `payment`
+  MODIFY `id` int(6) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `student`

@@ -110,7 +110,7 @@ include("../php/database.php");
                                     <?php
                                     $student_id = $row['id'];
 
-                                    $sql2 = $conn->query("SELECT * FROM course_request WHERE student_id = '$student_id' && status = '1'");
+                                    $sql2 = $conn->query("SELECT * FROM course_request WHERE student_id = '$student_id' && status = '1' && delete_flag =0 && delete_courses =0");
                                     $result = mysqli_num_rows($sql2) > 0;
                                     // $row2 = $sql2->fetch_assoc();
                                     if ($result) {

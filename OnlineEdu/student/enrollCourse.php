@@ -51,13 +51,14 @@ if (isset($_POST['enroll'])) {
     // echo $tutor_id;
 
     $sql3 = "INSERT INTO course_request(tutor_id,course_id,course_name,student_id,student_userName,status,delete_flag) VALUES('$tutor_id','$course_id','$course_name','$student_id','$student_userName','0','0')";
-    // $sql4 = "INSERT INTO payment(cardname,cardnumber,expiry,cvv,add,city,state,pin,course_id,student_id,tutor_id) values('$cardname','$cardnumber','$expiry','$cvv','$add','$city','$state','$pin','$course_id','$student_id','$tutor_id')";
+    $sql4 = "INSERT INTO payment(name,cardnumber,expiry,cvv,address,city,state,pincode,course_id,student_id,tutor_id) values('$cardname','$cardnumber','$expiry','$cvv','$add','$city','$state','$pin','$course_id','$student_id','$tutor_id')";
 
     if ($conn->query($sql3)) {
-        // echo "done karo mee";
-        header("location:student-courses.php");
+        if ($conn->query($sql4)) {
+            // echo "done karo mee";
+            header("location:student-courses.php");
+        }
     }
-
 } else if (isset($_POST['cancel'])) {
     // echo "Cancelled";
     header("Location:student-courses.php");
@@ -98,6 +99,15 @@ if (isset($_POST['enroll'])) {
                         </div>
                         <div class="modal-footer justify-content-center">
                             <form action="" method="post">
+                                <input type="hidden" name=cardname value=" <?PHP echo $_POST['cardname'] ?>">
+                                <input type="hidden" name=cardnumber value=" <?PHP echo $_POST['cardnumber'] ?>">
+                                <input type="hidden" name=expiry value=" <?PHP echo $_POST['expiry']; ?>">
+                                <input type="hidden" name=cvv value=" <?PHP echo $_POST['cvv']; ?>">
+                                <input type="hidden" name=add value=" <?PHP echo $_POST['add']; ?>">
+                                <input type="hidden" name=city value=" <?PHP echo $_POST['city']; ?>">
+                                <input type="hidden" name=state value=" <?PHP echo $_POST['state']; ?>">
+                                <input type="hidden" name=pin value=" <?PHP echo $_POST['pin']; ?>">
+
                                 <button type="submit" class="btn btn-secondary" name="cancel"
                                     data-dismiss="modal">Cancel</button>
                                 <button type="submit" class="btn btn-danger" name="enroll">Enroll</button>

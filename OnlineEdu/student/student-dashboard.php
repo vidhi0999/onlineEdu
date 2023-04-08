@@ -65,7 +65,7 @@ if (empty($currentUser)) {
                         <h3>
                             <?php
                             $count = 0;
-                            $inquiry = $conn->query("SELECT * FROM course_request where delete_flag = 0 and `status` = 0  and student_userName = '$currentUser'");
+                            $inquiry = $conn->query("SELECT * FROM course_request where delete_flag = 0 and delete_courses = 0 and `status` = 0  and student_userName = '$currentUser'");
                             if ($inquiry->num_rows > 0) {
                                 while ($row = $inquiry->fetch_assoc()) {
                                     $count = $count + 1;

@@ -7,6 +7,10 @@ if (isset($_GET['id'])) {
 
 
     $update = mysqli_query($conn, "UPDATE course_list SET status = 1 where id='$course_id'");
+    $sql = $conn->query("Update course_request set delete_flag ='0' where course_id=$course_id");
+
+    // $update2 = mysqli_query($conn, "UPDATE course_request SET delete_flag = 0 where course_id='$course_id'");
+
 }
 header('location:../admin/course-list.php');
 

@@ -73,7 +73,7 @@ if (empty($adminuser)) {
                     <tbody>
                         <?php
                         $i = 1;
-                        $qry = $conn->query("SELECT * FROM course_request WHERE status = '0' AND delete_flag = '0'");
+                        $qry = $conn->query("SELECT * FROM course_request WHERE status = '0' AND delete_flag = '0' AND delete_courses = 0");
                         while ($row = $qry->fetch_assoc()):
                             $course_id = $row['course_id'];
                             $qry2 = $conn->query("SELECT * FROM course_list WHERE id = $course_id AND delete_flag = '0'");
@@ -90,12 +90,12 @@ if (empty($adminuser)) {
                                 $avtar = $row4['filename'];
                             }
                             ?>
-                            <tr>
-                                <td class="text-center">
-                                    <?php echo $i++; ?>
-                                </td>
-                                <td>
-                                    <?php
+                        <tr>
+                            <td class="text-center">
+                                <?php echo $i++; ?>
+                            </td>
+                            <td>
+                                <?php
                                     if ($avtar == "") {
                                         echo "<img src='../images/student/default.png'>";
                                     } else {
@@ -103,35 +103,35 @@ if (empty($adminuser)) {
                                     }
                                     ?>
 
-                                </td>
-                                <td>
-                                    <?php echo $row['student_userName']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $row['course_name'] ?>
-                                </td>
-                                <td>
-                                    <?php echo $row['name'] ?>
-                                </td>
+                            </td>
+                            <td>
+                                <?php echo $row['student_userName']; ?>
+                            </td>
+                            <td>
+                                <?php echo $row['course_name'] ?>
+                            </td>
+                            <td>
+                                <?php echo $row['name'] ?>
+                            </td>
 
-                                <td>
+                            <td>
 
-                                    <?php if ($row['status'] == 0): ?>
-                                        <form method="POST">
-                                            <input type="text" name="courseId" value="<?php echo $row['id'] ?>" hidden>
-                                            <button class="accept" class="btn" title="Accept"
-                                                data-id="<?php echo $row['id']; ?>" data-target=" #view" name="accept">
-                                                Accept
-                                            </button>
-                                            <button class="cancel" class="btn" title="Cancel" id="view"
-                                                data-id="<?php echo $row['id']; ?>" data-target=" #view" name="cancel">
-                                                Cancel
-                                            </button>
-                                        </form>
-                                    <?php endif; ?>
+                                <?php if ($row['status'] == 0): ?>
+                                <form method="POST">
+                                    <input type="text" name="courseId" value="<?php echo $row['id'] ?>" hidden>
+                                    <button class="accept" class="btn" title="Accept"
+                                        data-id="<?php echo $row['id']; ?>" data-target=" #view" name="accept">
+                                        Accept
+                                    </button>
+                                    <button class="cancel" class="btn" title="Cancel" id="view"
+                                        data-id="<?php echo $row['id']; ?>" data-target=" #view" name="cancel">
+                                        Cancel
+                                    </button>
+                                </form>
+                                <?php endif; ?>
 
-                                </td>
-                            </tr>
+                            </td>
+                        </tr>
                         <?php endwhile; ?>
                     </tbody>
                 </table>
@@ -189,9 +189,9 @@ if(isset($_POST['cancel'])){
                 window.location = 'course-request.php';
             });
             </script>";
-    
+
         }else{
-            echo "<script>
+        echo "<script>
             swal({
                 title: 'Error!',
                 text: 'Something went wrong!',
@@ -201,6 +201,6 @@ if(isset($_POST['cancel'])){
                 window.location = 'course-request.php';
             });
             </script>";
-        }
+    }
 }
 ?>
