@@ -155,3 +155,7 @@ body {
   display: inline-block;
   margin: 100px auto;
 }
+.text-uppercase {
+    text-transform: uppercase!important;
+    font-weight: bold;
+}
