@@ -1,4 +1,10 @@
 <!-- SIDEBAR -->
+<html>
+    <head>
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+    <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"> -->
+    <!-- <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script> -->
+    </head>
 <section id="sidebar">
     <div class="brand">
 
@@ -26,6 +32,12 @@
             <a href="course-request.php">
                 <i class="fa fa-file-text"></i>
                 <span class="text">Course Request</span>
+            </a>
+        </li>
+        <li>
+            <a href="course-attachment.php">
+            <i class="fa fa-th-large"></i>
+                <span class="text">Course attachment</span>
             </a>
         </li>
         <li>
@@ -90,3 +102,4 @@
 
 <script src="../js/script.js">
 </script>
+</html>

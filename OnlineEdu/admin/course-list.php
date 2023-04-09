@@ -65,7 +65,7 @@ if (empty($adminuser)) {
                                         <div class="form-group">
                                             <label for="TutorName">Tutor Name</label>
                                             <select name="tutorname" id="">
-                                                <option value="#">-- Select Course --</option>
+                                                <option value="#">-- Select Tutor --</option>
                                                 <?php
                                                 $sql = "SELECT * from tutor_list where status='1' AND delete_flag='0'";
                                                 $gotResults = mysqli_query($conn, $sql);
