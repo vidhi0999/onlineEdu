@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 10, 2023 at 06:45 PM
+-- Generation Time: Apr 10, 2023 at 07:16 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -44,7 +44,8 @@ CREATE TABLE `course_attachment` (
 
 INSERT INTO `course_attachment` (`id`, `course_id`, `course_name`, `ch_name`, `ch_description`, `filename`, `tutor_id`, `status`) VALUES
 (2, 1, 'PHP', 'Introduction', 'PHP', 'Data mining.pdf', 3, 1),
-(3, 4, 'Data Structure', 'Introduction', 'Data Structure', 'Data mining.pdf', 2, 1);
+(3, 4, 'Data Structure', 'Introduction', 'Data Structure', 'Data mining.pdf', 2, 1),
+(4, 4, 'Data Structure', 'Details', 'Data Structure', 'database connectivity.pdf', 2, 1);
 
 --
 -- Indexes for dumped tables
@@ -64,7 +65,7 @@ ALTER TABLE `course_attachment`
 -- AUTO_INCREMENT for table `course_attachment`
 --
 ALTER TABLE `course_attachment`
-  MODIFY `id` int(6) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(6) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

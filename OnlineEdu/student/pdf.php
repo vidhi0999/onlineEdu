@@ -45,6 +45,24 @@ $row = mysqli_fetch_array($result);
                 </div>
             </div>
             <hr>
+            <?php 
+                // $chapter = 1;
+                // $course_id = $_GET['id'];
+                // $sql = "SELECT * FROM course_attachment WHERE course_id = '$course_id'";
+                // $result = mysqli_query($conn,$sql);
+                // while($row = mysqli_fetch_array($result)){
+                //     $pdf_src = "../course-pdf/".$row['filename']
+                //     ?>
+                     <!-- <br>
+                     <embed src='<?php echo $pdf_src;?>' type="application/pdf" width="500" height="500">
+                     <h2>Chapter: <?php echo $chapter ." " .$row['ch_name'];?></h2>
+                      <p>Description: <?php echo $row['ch_description'];?></p>
+                      <br>
+                      <hr> -->
+                     <?php
+                //     $chapter++;
+                // }
+            ?>
         </main>
 
     </section>
