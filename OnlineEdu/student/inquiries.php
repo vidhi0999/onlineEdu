@@ -46,7 +46,7 @@ $row = mysqli_fetch_array($gotResults);
                             <!-- <input type="hidden" name="studentid"> -->
                             <input type="hidden" name="studentid" value="<?php echo $row['id'] ?>">
 
-                            <span class="details">Name</span>
+                            <span class="details">Username</span>
                             <input type="text" name="name" value="<?php echo $currentUser ?>"
                                 placeholder="Enter your name" required>
                         </div>
@@ -111,7 +111,7 @@ if (isset($_POST['submit'])) {
         $tutor_id = $row['tutor_id'];
         $message = $_POST['message'];
         $CreatedDate = date("Y-m-d");
-        $sql3 = "INSERT into inquiries(student_id,username,email,course_id,course_name,tutor_id,message,delete_flag,date_created) VALUES('$studentid ','$name','$email','$course_id','$coursename','$tutor_id','$message','0','$CreatedDate')";
+        $sql3 = "INSERT into inquiries(student_id,username,email,course_id,course_name,tutor_id,message,delete_flag,date_created,status) VALUES('$studentid ','$name','$email','$course_id','$coursename','$tutor_id','$message','0','$CreatedDate','1')";
         $success2 = $conn->query($sql3);
         if ($success2) {
             echo "<script>

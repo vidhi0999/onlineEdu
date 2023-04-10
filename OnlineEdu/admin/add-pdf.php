@@ -13,6 +13,7 @@ $sql2 = $conn->query("SELECT * FROM tutor_list WHERE id = '$tutor_id'");
 $row2 = $sql2->fetch_assoc();
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,6 +25,7 @@ $row2 = $sql2->fetch_assoc();
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/sweetalert.min.js"></script>
     <!-- My CSS -->
     <link rel="stylesheet" href="../css/dashboard.css">
     <title>Admin</title>
@@ -62,14 +64,14 @@ $row2 = $sql2->fetch_assoc();
                                     </a>
                                 </div>
 
-                                <form action="code.php" method="POST" enctype="multipart/form-data">
+                                <form method="POST" enctype="multipart/form-data">
                                     <div class="modal-body">
                                         <!-- COURSSE NAME -->
                                         <!-- CHAPTER NAME, -->
                                         <!-- DESCRIPTION,  -->
-                                        PDF / VIDEO
+                                        <!-- PDF / VIDEO -->
                                         <div class="form-group">
-                                            <input type="text" value="<?php echo "$course_id";?>" hidden>
+                                            <input type="text" name="course_id" value="<?php echo "$course_id";?>" hidden>
                                         </div>
                                         <div class="form-group">
                                             <label for="CourseName">Course Name</label>
@@ -78,17 +80,17 @@ $row2 = $sql2->fetch_assoc();
                                         </div>
                                         <div class="form-group">
                                             <label for="desc">Chapter Name</label>
-                                            <input type="text" name="ch-name" class="form-control" id="desc" required>
+                                            <input type="text" name="ch-name" class="form-control" id="desc" >
                                         </div>
                                         <div class="form-group">
                                             <label for="desc">Chapter Description</label>
-                                            <input type="text" name="ch-description" class="form-control" id="desc" required>
+                                            <input type="text" name="ch-description" class="form-control" id="desc" >
                                         </div>
                                         
                                         <div class="form-group">
-                                            <label for="courseImg">Course's Logo</label>
-                                            <input type="file" name="course_image" id="course_image"
-                                                class="form-control" required>
+                                            <label for="courseImg">PDF</label>
+                                            <input type="file" name="file" id="file"
+                                                class="form-control" >
                                         </div>
                                     </div>
                                     <div class="modal-footer border-top-0 d-flex justify-content-center">
@@ -101,7 +103,63 @@ $row2 = $sql2->fetch_assoc();
                 </div>
             </div>
 
+            <?php 
 
+
+if(isset($_POST['save_course'])){
+    $course_id = $_POST['course_id'];
+    // $sql = "SELECT * FROM course_list WHERE id='$course_id'";
+    // $result = mysqli_query($conn,$sql);
+    // $row = mysqli_fetch_array($result);
+    $tutor_id = $row['tutor_id'];
+    $course_name = $_POST['course_name'];
+    $ch_name = $_POST['ch-name'];
+    $ch_description = $_POST['ch-description'];
+    // $course_pdf = $_POST['course_pdf'];
+    $fileName = $_FILES['file'];
+
+    // File upload path
+    $targetDir = "../course-pdf/";
+    $fileName = basename($_FILES["file"]["name"]);
+    $targetFilePath = $targetDir.$fileName;
+    $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
+
+    // Check if image file is a actual image or fake image
+    // Allow certain file formats
+    $allowTypes = array('pdf');
+    if (in_array($fileType, $allowTypes)) {
+        // echo "Done karo nee1, ";
+        // Upload file to server
+        if (move_uploaded_file($_FILES["file"]["tmp_name"], $targetFilePath)) {
+            // echo "Done karo nee2, ";
+            $sql3 = "INSERT into course_attachment(course_id,course_name,ch_name,ch_description,filename,tutor_id,status) VALUES('$course_id','$course_name','$ch_name','$ch_description','$fileName','$tutor_id','1')";
+            $success2 = $conn->query($sql3);
+            if ($success2) {
+                // echo "Done karo nee3, ";
+                echo "<script>
+                swal({
+                    title: 'Success!',
+                    text: 'PDF Added!',
+                    icon: 'success',
+                    button: 'Ok',
+                }).then(function() {
+                    window.location = 'course-attachment.php';
+                });
+                </script>";
+                // header('location:course-attachment.php');
+        //         // $statusMsg = "The file " . $fileName . " has been uploaded successfully.";
+            } else {
+                $statusMsg = "File upload failed, please try again.";
+            }
+        } else {
+            $statusMsg = "Sorry, there was an error uploading your file.";
+        }
+    } else {
+        $statusMsg = 'Sorry, only JPG, JPEG, PNG, GIF, & PDF files are allowed to upload.';
+    }
+} 
+   
+?>
         </main>
         <!-- MAIN -->
     </section>
