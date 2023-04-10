@@ -97,18 +97,18 @@ $row = mysqli_fetch_array($query);
                 <?php
                 if ($result['filename'] == "") {
                     ?>
-                <img src="../images/student/default.png">
-                <?php
+                    <img src="../images/student/default.png">
+                    <?php
                 } else {
                     ?>
-                <?php
+                    <?php
                     //  echo $result['filename'];
                     ?>
-                <img src='../images/student/<?php echo $result['filename']; ?>'>
+                    <img src='../images/student/<?php echo $result['filename']; ?>'>
 
 
 
-                <?php
+                    <?php
                 }
                 ?>
 

@@ -139,7 +139,7 @@ if (empty($currentUser)) {
                                             <span class="fa fa-star"></span>
                                             <p class="card-text"><b>₹449</b></p>
 
-                                            <a href="./enrolled-course.php">
+                                            <a href="./videos.php">
                                                 <button class="enrollNow" value="" class="btn" title="View" id="view"
                                                     data-toggle="modal" data-id="<?php echo $row['id']; ?>" data-target=" #view"
                                                     name="enrollNow">
