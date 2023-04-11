@@ -117,39 +117,38 @@ if (empty($currentUser)) {
                                 // $query = mysqli_query($conn, $sql2);
                                 // $result = mysqli_fetch_assoc($query);
                                 ?>
-                                <div class="col-md-4 mt-3">
-                                    <div class="card">
-                                        <img src="../images/courses/<?php echo $row3['logo']; ?>" class="card-img-top"
-                                            width="200px" height="240px" alt="Course images">
-                                        <div class="card-body">
-                                            <h2 class="card-title">
-                                                <?php echo $row['course_name']; ?>
-                                            </h2>
-                                            <h7 class="card-title">
-                                                <?php echo $descip ?>
-                                            </h7>
-                                            <hr>
-                                            <h6 style="color: rgba(0, 0, 0, 0.350);">
-                                                <?php echo $row1['lastname'] . ", " . $row1['firstname'] . " " . $row1['middlename'] ?>
-                                            </h6>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star"></span>
-                                            <span class="fa fa-star"></span>
-                                            <p class="card-text"><b>₹449</b></p>
+                        <div class="col-md-4 mt-3">
+                            <div class="card">
+                                <img src="../images/courses/<?php echo $row3['logo']; ?>" class="card-img-top"
+                                    width="200px" height="240px" alt="Course images">
+                                <div class="card-body">
+                                    <h2 class="card-title">
+                                        <?php echo $row['course_name']; ?>
+                                    </h2>
+                                    <h7 class="card-title">
+                                        <?php echo $descip ?>
+                                    </h7>
+                                    <hr>
+                                    <h6 style="color: rgba(0, 0, 0, 0.350);">
+                                        <?php echo $row1['lastname'] . ", " . $row1['firstname'] . " " . $row1['middlename'] ?>
+                                    </h6>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star"></span>
+                                    <p class="card-text"><b>₹449</b></p>
 
-                                            <a href="./pdf.php?id=<?php echo $row3['id'];?>">
-                                                <button class="enrollNow" value="" class="btn" title="View" id="view"
-                                                     data-id="<?php echo $row['id']; ?>" 
-                                                    name="enrollNow">
-                                                    View Details
-                                                </button>
-                                            </a>
-                                        </div>
-                                    </div>
+                                    <a href="./enrolled-course.php?id=<?php echo $row3['id'];?>">
+                                        <button class="enrollNow" value="" class="btn" title="View" id="view"
+                                            data-id="<?php echo $row['id']; ?>" name="enrollNow">
+                                            View Details
+                                        </button>
+                                    </a>
                                 </div>
-                                <?php
+                            </div>
+                        </div>
+                        <?php
                             }
                         } else {
                             echo "No courses found";

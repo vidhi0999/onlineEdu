@@ -52,91 +52,90 @@ $row2 = $sql2->fetch_assoc();
                 </div>
 
                 <hr>
-                <div  id="form" tabindex="-1" role="dialog" >
-                        <div class="modal-dialog modal-dialog-centered" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header border-bottom-0">
-                                    <h5 class="modal-title" id="exampleModalLabel">New attachment</h5>
-                                    <a href="./course-attachment.php">
+                <div id="form" tabindex="-1" role="dialog">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header border-bottom-0">
+                                <h5 class="modal-title" id="exampleModalLabel">New attachment</h5>
+                                <a href="./course-attachment.php">
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
-                                    </a>
-                                </div>
-
-                                <form method="POST" enctype="multipart/form-data">
-                                    <div class="modal-body">
-                                        <!-- COURSSE NAME -->
-                                        <!-- CHAPTER NAME, -->
-                                        <!-- DESCRIPTION,  -->
-                                        <!-- PDF / VIDEO -->
-                                        <div class="form-group">
-                                            <input type="text" name="course_id" value="<?php echo "$course_id";?>" hidden>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="CourseName">Course Name</label>
-                                            <input type="text" value="<?php echo $row['name'];?>" name="course_name" class="form-control" id="courseName"
-                                                required>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="desc">Chapter Name</label>
-                                            <input type="text" name="ch-name" class="form-control" id="desc" >
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="desc">Chapter Description</label>
-                                            <input type="text" name="ch-description" class="form-control" id="desc" >
-                                        </div>
-                                        
-                                        <div class="form-group">
-                                            <label for="courseImg">PDF</label>
-                                            <input type="file" name="file" id="file"
-                                                class="form-control" >
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer border-top-0 d-flex justify-content-center">
-                                        <button type="submit" name="save_course" class="btn btn-success">Submit</button>
-                                    </div>
-                                </form>
+                                </a>
                             </div>
+
+                            <form method="POST" enctype="multipart/form-data">
+                                <div class="modal-body">
+                                    <!-- COURSSE NAME -->
+                                    <!-- CHAPTER NAME, -->
+                                    <!-- DESCRIPTION,  -->
+                                    <!-- PDF / VIDEO -->
+                                    <div class="form-group">
+                                        <input type="text" name="course_id" value="<?php echo "$course_id"; ?>" hidden>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="CourseName">Course Name</label>
+                                        <input type="text" value="<?php echo $row['name']; ?>" name="course_name"
+                                            class="form-control" id="courseName" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="desc">Chapter Name</label>
+                                        <input type="text" name="ch-name" class="form-control" id="desc">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="desc">Chapter Description</label>
+                                        <input type="text" name="ch-description" class="form-control" id="desc">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="courseImg">PDF</label>
+                                        <input type="file" name="file" id="file" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="modal-footer border-top-0 d-flex justify-content-center">
+                                    <button type="submit" name="save_course" class="btn btn-success">Submit</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
+            </div>
 
-            <?php 
+            <?php
 
 
-if(isset($_POST['save_course'])){
-    $course_id = $_POST['course_id'];
-    // $sql = "SELECT * FROM course_list WHERE id='$course_id'";
-    // $result = mysqli_query($conn,$sql);
-    // $row = mysqli_fetch_array($result);
-    $tutor_id = $row['tutor_id'];
-    $course_name = $_POST['course_name'];
-    $ch_name = $_POST['ch-name'];
-    $ch_description = $_POST['ch-description'];
-    // $course_pdf = $_POST['course_pdf'];
-    $fileName = $_FILES['file'];
+            if (isset($_POST['save_course'])) {
+                $course_id = $_POST['course_id'];
+                // $sql = "SELECT * FROM course_list WHERE id='$course_id'";
+                // $result = mysqli_query($conn,$sql);
+                // $row = mysqli_fetch_array($result);
+                $tutor_id = $row['tutor_id'];
+                $course_name = $_POST['course_name'];
+                $ch_name = $_POST['ch-name'];
+                $ch_description = $_POST['ch-description'];
+                // $course_pdf = $_POST['course_pdf'];
+                $fileName = $_FILES['file'];
 
-    // File upload path
-    $targetDir = "../course-pdf/";
-    $fileName = basename($_FILES["file"]["name"]);
-    $targetFilePath = $targetDir.$fileName;
-    $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
+                // File upload path
+                $targetDir = "../course-pdf/";
+                $fileName = basename($_FILES["file"]["name"]);
+                $targetFilePath = $targetDir . $fileName;
+                $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
 
-    // Check if image file is a actual image or fake image
-    // Allow certain file formats
-    $allowTypes = array('pdf');
-    if (in_array($fileType, $allowTypes)) {
-        // echo "Done karo nee1, ";
-        // Upload file to server
-        if (move_uploaded_file($_FILES["file"]["tmp_name"], $targetFilePath)) {
-            // echo "Done karo nee2, ";
-            $sql3 = "INSERT into course_attachment(course_id,course_name,ch_name,ch_description,filename,tutor_id,status) VALUES('$course_id','$course_name','$ch_name','$ch_description','$fileName','$tutor_id','1')";
-            $success2 = $conn->query($sql3);
-            if ($success2) {
-                // echo "Done karo nee3, ";
-                echo "<script>
+                // Check if image file is a actual image or fake image
+                // Allow certain file formats
+                $allowTypes = array('pdf');
+                if (in_array($fileType, $allowTypes)) {
+                    // echo "Done karo nee1, ";
+                    // Upload file to server
+                    if (move_uploaded_file($_FILES["file"]["tmp_name"], $targetFilePath)) {
+                        // echo "Done karo nee2, ";
+                        $sql3 = "INSERT into course_attachment(course_id,course_name,ch_name,ch_description,filename,tutor_id,status) VALUES('$course_id','$course_name','$ch_name','$ch_description','$fileName','$tutor_id','1')";
+                        $success2 = $conn->query($sql3);
+                        if ($success2) {
+                            // echo "Done karo nee3, ";
+                            echo "<script>
                 swal({
                     title: 'Success!',
                     text: 'PDF Added!',
@@ -146,20 +145,31 @@ if(isset($_POST['save_course'])){
                     window.location = 'course-attachment.php';
                 });
                 </script>";
-                // header('location:course-attachment.php');
-        //         // $statusMsg = "The file " . $fileName . " has been uploaded successfully.";
-            } else {
-                $statusMsg = "File upload failed, please try again.";
+                            // header('location:course-attachment.php');
+                            //         // $statusMsg = "The file " . $fileName . " has been uploaded successfully.";
+                        } else {
+                            $statusMsg = "File upload failed, please try again.";
+                        }
+                    } else {
+                        $statusMsg = "Sorry, there was an error uploading your file.";
+                    }
+                } else {
+
+                    echo "<script>
+            swal({
+                title: 'Error!',
+                 text: 'only pdf can be subbmiteed!',
+                icon: 'error',
+                button: 'Ok',
+            }).then(function() {
+                window.location = 'add-pdf.php';
+            });
+            </script>";
+
+                }
             }
-        } else {
-            $statusMsg = "Sorry, there was an error uploading your file.";
-        }
-    } else {
-        $statusMsg = 'Sorry, only JPG, JPEG, PNG, GIF, & PDF files are allowed to upload.';
-    }
-} 
-   
-?>
+
+            ?>
         </main>
         <!-- MAIN -->
     </section>
