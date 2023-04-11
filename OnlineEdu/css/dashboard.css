@@ -625,6 +625,9 @@ table.table td i {
 .checked {
   color: orange;
 }
+.card{
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15) !important;
+}
 /* .card{
   border-radius: 50px;
 }

@@ -18,16 +18,17 @@
             <div class="line"></div>
             <p>OnlineEdu</p>
         </div>
-        <div class="logo-space">
-        </div>
+        <!-- <div class="logo-space">
+        </div> -->
     </header>
-    <br>
+    <!-- <br> -->
+    <div class="container-main">
+
     <div class="main-container">
         <center>
             <h1>Popular Courses<h1>
         </center>
         <hr>
-
     </div>
     <section>
         <main>
@@ -56,7 +57,7 @@
                             <div class="col-md-4 mt-3">
                                 <div class="card">
                                     <img src="../images/courses/<?php echo $row['logo']; ?>" class="card-img-top" width="200px"
-                                        height="240px" alt="Faculty images">
+                                        height="240px" alt="Course images">
                                     <div class="card-body">
                                         <h2 class="card-title">
                                             <?php echo $row['name']; ?>
@@ -96,6 +97,8 @@
             </div>
         </main>
     </section>
+    </div>
+
     <script src="../js/script.js"></script>
 </body>
 

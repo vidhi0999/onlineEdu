@@ -120,7 +120,7 @@ if (empty($currentUser)) {
                                 <div class="col-md-4 mt-3">
                                     <div class="card">
                                         <img src="../images/courses/<?php echo $row3['logo']; ?>" class="card-img-top"
-                                            width="200px" height="240px" alt="Faculty images">
+                                            width="200px" height="240px" alt="Course images">
                                         <div class="card-body">
                                             <h2 class="card-title">
                                                 <?php echo $row['course_name']; ?>
