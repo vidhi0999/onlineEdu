@@ -50,7 +50,7 @@ if (isset($_POST['enroll'])) {
     // echo $student_id;
     // echo $tutor_id;
 
-    $sql3 = "INSERT INTO course_request(tutor_id,course_id,course_name,student_id,student_userName,status,delete_flag) VALUES('$tutor_id','$course_id','$course_name','$student_id','$student_userName','0','0')";
+    $sql3 = "INSERT INTO course_request(tutor_id,course_id,course_name,student_id,student_userName,status,delete_flag,delete_courses) VALUES('$tutor_id','$course_id','$course_name','$student_id','$student_userName','0','0','0')";
     $sql4 = "INSERT INTO payment(name,cardnumber,expiry,cvv,address,city,state,pincode,course_id,student_id,tutor_id) values('$cardname','$cardnumber','$expiry','$cvv','$add','$city','$state','$pin','$course_id','$student_id','$tutor_id')";
 
     if ($conn->query($sql3)) {
