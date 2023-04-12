@@ -69,7 +69,7 @@ $row = mysqli_fetch_array($result);
                         <article class=" article">
                             <!-- <div class="image"> -->
                             <embed src='<?php echo $pdf_src; ?>' type="application/pdf" border-radius="20px" width="100%"
-                                height="350">
+                                height="450">
                             <!-- </div> -->
                         </article>
 
