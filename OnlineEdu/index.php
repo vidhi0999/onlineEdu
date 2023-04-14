@@ -8,7 +8,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/indexsty.css">
-    <!-- maulik-->
+
 </head>
 
 <body>
@@ -23,7 +23,7 @@
         <div class="logo-space">
         </div>
     </header>
-    <!-- hgshbaaa -->
+
     <!-- main section -->
 
     <div class="main-container">
@@ -33,20 +33,11 @@
                     <h1>Portal</h1>
                 </div>
                 <div class="portals">
-                    <!-- <div class="portal1">
-                        <a href="">
-                            <h1>Admin</h1>
-                        </a>
-                        <a href=""><i class='fas fa-user-cog' style='font-size:9rem'></i></a>
-                        <a href="login.php">
-                            <p style="font-style: italic;">click here to Login</p>
-                        </a>
-                    </div> -->
                     <div class="portal1">
                         <a href="./php/viewcourses.php">
-                            <h1>Faculty</h1>
+                            <h1>Courses</h1>
                         </a>
-                        <a href="./php/viewcourses.php"><i class='fas fa-user-tie' style='font-size:9rem'></i></a>
+                        <a href="./php/viewcourses.php"><i class='fas fa-book-open' style='font-size:9rem'></i></a>
                         <a href="./php/viewcourses.php">
                             <p style="font-style: italic;">click here to view our courses </p>
                         </a>
