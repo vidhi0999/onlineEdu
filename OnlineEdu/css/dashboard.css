@@ -634,3 +634,57 @@ table.table td i {
 .card-img,.card-img-top{
   border-radius: 50px;
 } */
+
+ .gender-details .gender-title{
+  font-size: 20px;
+  font-weight: 500;
+ }
+ 
+ form .category{
+  display: flex;
+  width: 80%;
+  margin: 14px 0 ;
+  justify-content: space-between;
+}
+form .category label{
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  /* padding-right: 200px; */
+}
+form .category label .dot{
+ height: 18px;
+ width: 18px;
+ border-radius: 50%;
+ margin-right: 10px;
+ background: #d9d9d9;
+ border: 5px solid transparent;
+ transition: all 0.3s ease;
+}
+#dot-1:checked ~ .category label .one,
+#dot-2:checked ~ .category label .two{
+  background: #9b59b6;
+  border-color: #d9d9d9;
+}
+#videoLink{
+  display: none;
+}
+#dot1:checked ~ #videoLink {
+  display: block;
+}
+
+
+
+#dvtext {
+  display: none;
+}
+#chkYes:checked ~ #dvtext {
+  display: block;
+}
+#dvtext2{
+  display: none;
+}
+#chkNo:checked ~ #dvtext2{
+  display: block;
+}
+

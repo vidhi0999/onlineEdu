@@ -86,11 +86,47 @@ $row2 = $sql2->fetch_assoc();
                                         <label for="desc">Chapter Description</label>
                                         <input type="text" name="ch-description" class="form-control" id="desc">
                                     </div>
+                                    
+                                    <!-- <div class="gender-details">
+                                        <input type="radio" name="gender"  value="Male" id="dot-1 chkYes" required hidden>
+                                        <input type="radio" name="gender"  value="Female" id="dot-2 chkNo" required hidden>
+                        <input type="radio" name="gender" id="dot-3">
+                                        <span class="gender-title">Gender</span>
+                                        <div class="category">
+                                            <label for="dot-1">
+                                                <span class="dot one"></span>
+                                                <span class="gender">PDF</span>
+                                        </label>
+                                        <label for="dot-2">
+                                            <span class="dot two"></span>
+                                            <span class="gender">Video link</span>
+                                        </label>
+                                    </div>
+                                </div> -->
 
-                                    <div class="form-group">
+    <input type="radio" id="chkYes" name="chk" />
+    <label for="chkYes">Video Link</label>
+    
+    <input type="radio" id="chkNo" name="chk" />
+    <label for="chkNo">PDF</label>
+<!-- </div> -->
+<div id="dvtext">
+<label for="desc">Video Link</label>
+<input type="text" name="video_link" class="form-control" id="desc">
+    <!-- <input type="text" id="txtBox" /> -->
+</div>
+<div id="dvtext2">
+<label for="courseImg">PDF</label>
+<input type="file" name="file" id="file" class="form-control">
+
+                                <!-- <div class="form-group videoLink " id="dvtext">
+                                        <label for="desc">Video Link</label>
+                                        <input type="text" name="video_link" class="form-control" id="desc">
+                                    </div> -->
+                                    <!-- <div class="form-group">
                                         <label for="courseImg">PDF</label>
                                         <input type="file" name="file" id="file" class="form-control">
-                                    </div>
+                                    </div> -->
                                 </div>
                                 <div class="modal-footer border-top-0 d-flex justify-content-center">
                                     <button type="submit" name="save_course" class="btn btn-success">Submit</button>
