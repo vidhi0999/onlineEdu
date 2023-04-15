@@ -48,71 +48,71 @@ if (empty($adminuser)) {
                         </div>
                     </button> -->
 
-                    
-                <hr>
 
-                <table class="table">
-                    <colgroup>
-                        <col width="5%">
-                        <col width="17.5%">
-                        <col width="10%">
-                        <col width="25.5%">
-                        <col width="19%">
-                        <col width="15%">
-                        <!-- <col width="11%"> -->
-                    </colgroup>
+                    <hr>
+
+                    <table class="table">
+                        <colgroup>
+                            <col width="5%">
+                            <col width="17.5%">
+                            <col width="10%">
+                            <col width="25.5%">
+                            <col width="19%">
+                            <col width="15%">
+                            <!-- <col width="11%"> -->
+                        </colgroup>
 
 
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Date Created<i class="fa fa-sort"></i></th>
-                            <th>Image</th>
-                            <th>Tutor<i class="fa fa-sort"></i></th>
-                            <th>Name<i class="fa fa-sort"></i></th>
-                            <th>Add<i class="fa fa-sort"></i></th>
-                            <!-- <th>Action</th> -->
-                        </tr>
-                    </thead>
-                    <tbody>
-
-                        <?php
-                        $i = 1;
-                        $qry = $conn->query("SELECT c.*, concat(t.lastname,', ', t.firstname, COALESCE(concat(' ', t.middlename),'')) as `tutor` from `course_list` c inner join `tutor_list` t on c.tutor_id = t.id where c.delete_flag = 0 and t.status=1  order by c.`id` asc");
-                        while ($row = $qry->fetch_assoc()):
-                            ?>
+                        <thead>
                             <tr>
-                                <td class="text-center">
-                                    <?php echo $i++; ?>
-                                </td>
-                                <td>
-                                    <?php echo date("Y-m-d ", strtotime($row['date_created'])) ?>
-                                </td>
-                                <td>
-                                    <img src="../images/courses/<?php echo $row['logo']; ?>">
-
-                                </td>
-                                <td>
-                                    <?php echo $row['tutor'] ?>
-                                </td>
-                                <td>
-                                    <?php echo $row['name'] ?>
-                                </td>
-
-                                <td>
-                                    <a href="./add-pdf.php?id=<?php echo $row['id'];?>">
-                                    <button type="button" class="btn" data-toggle="modal" data-target="#form">
-                                        <div class="right-plus" data-toggle="modal" data-target="#form">
-                                            <i class=" fa fa-plus"></i> Add File
-                                        </div>
-                                    </button>
-                                    </a>
-                                </td>
+                                <th>#</th>
+                                <th>Date Created<i class="fa fa-sort"></i></th>
+                                <th>Image</th>
+                                <th>Tutor<i class="fa fa-sort"></i></th>
+                                <th>Name<i class="fa fa-sort"></i></th>
+                                <th>Add<i class="fa fa-sort"></i></th>
+                                <!-- <th>Action</th> -->
                             </tr>
-                        <?php endwhile; ?>
-                    </tbody>
-                </table>
-            </div>
+                        </thead>
+                        <tbody>
+
+                            <?php
+                            $i = 1;
+                            $qry = $conn->query("SELECT c.*, concat(t.lastname,', ', t.firstname, COALESCE(concat(' ', t.middlename),'')) as `tutor` from `course_list` c inner join `tutor_list` t on c.tutor_id = t.id where c.delete_flag = 0 and t.status=1 and c.status = 1 and t.delete_flag =0  order by c.`id` asc");
+                            while ($row = $qry->fetch_assoc()):
+                                ?>
+                                <tr>
+                                    <td class="text-center">
+                                        <?php echo $i++; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo date("Y-m-d ", strtotime($row['date_created'])) ?>
+                                    </td>
+                                    <td>
+                                        <img src="../images/courses/<?php echo $row['logo']; ?>">
+
+                                    </td>
+                                    <td>
+                                        <?php echo $row['tutor'] ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $row['name'] ?>
+                                    </td>
+
+                                    <td>
+                                        <a href="./add-pdf.php?id=<?php echo $row['id']; ?>">
+                                            <button type="button" class="btn" data-toggle="modal" data-target="#form">
+                                                <div class="right-plus" data-toggle="modal" data-target="#form">
+                                                    <i class=" fa fa-plus"></i> Add File
+                                                </div>
+                                            </button>
+                                        </a>
+                                    </td>
+                                </tr>
+                            <?php endwhile; ?>
+                        </tbody>
+                    </table>
+                </div>
         </main>
         <!-- MAIN -->
     </section>
@@ -120,4 +120,5 @@ if (empty($adminuser)) {
     <script src="../js/script.js">
     </script>
 </body>
+
 </html>
