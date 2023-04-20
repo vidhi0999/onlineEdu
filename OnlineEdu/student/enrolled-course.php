@@ -58,7 +58,7 @@ $row = mysqli_fetch_array($result);
                 $course_id = $_GET['id'];
                 $_SESSION['course_id'] = $_GET['id'];
                 $courseID = $_SESSION['course_id'];
-                $sql = "SELECT * FROM course_attachment WHERE course_id = '$courseID'";
+                $sql = "SELECT * FROM course_attachment WHERE course_id = '$courseID' and store='0'";
                 $result = mysqli_query($conn, $sql);
 
                 while ($row = mysqli_fetch_array($result)) {
@@ -94,7 +94,7 @@ $row = mysqli_fetch_array($result);
 
                 }
                 ?>
-                </div>
+                <!-- </div> -->
             </section>
             <br>
             <br>
@@ -112,16 +112,52 @@ $row = mysqli_fetch_array($result);
                 <hr>
                 <br>
 
-                <div class="archive">
-                    <article class="article">
-                        <div class="image">
-                        </div>
-                    </article>
+                <?php
 
-                    <article class="article">
-                    </article>
-                </div>
+                $chapter = 1;
+                $course_id = $_GET['id'];
+                $_SESSION['course_id'] = $_GET['id'];
+                $courseID = $_SESSION['course_id'];
+                $sql = "SELECT * FROM course_attachment WHERE course_id = '$courseID' and store='1'";
+                $result = mysqli_query($conn, $sql);
 
+                while ($row = mysqli_fetch_array($result)) {
+                    $link = $row['link']
+                        ?>
+                    <div class="archive">
+                        <article class="article">
+                            <iframe width="100%" height="450" src="<?php echo $link ?>" title="YouTube video player"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                allowfullscreen>
+                            </iframe>
+                            <!-- <iframe width="100%" height="450" src="https://www.youtube.com/embed/aPUVUrS2oC0"
+                            title="YouTube video player" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowfullscreen></iframe> -->
+                        </article>
+
+                        <article class="article">
+
+                            <h2 style="margin-top:10px">Chapter:
+                                <?php echo $chapter . " " . $row['ch_name']; ?>
+                            </h2>
+                            <br>
+                            <hr>
+
+                            <br>
+                            <p>Description:
+                                <?php echo $row['ch_description']; ?>
+                            </p>
+                        </article>
+                    </div>
+
+                    <?php
+                    $chapter++;
+
+                }
+                ?>
+                <!-- </div> -->
                 <!-- </main> -->
             </section>
 

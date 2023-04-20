@@ -86,51 +86,27 @@ $row2 = $sql2->fetch_assoc();
                                         <label for="desc">Chapter Description</label>
                                         <input type="text" name="ch-description" class="form-control" id="desc">
                                     </div>
-                                    
-                                    <!-- <div class="gender-details">
-                                        <input type="radio" name="gender"  value="Male" id="dot-1 chkYes" required hidden>
-                                        <input type="radio" name="gender"  value="Female" id="dot-2 chkNo" required hidden>
-                        <input type="radio" name="gender" id="dot-3">
-                                        <span class="gender-title">Gender</span>
-                                        <div class="category">
-                                            <label for="dot-1">
-                                                <span class="dot one"></span>
-                                                <span class="gender">PDF</span>
-                                        </label>
-                                        <label for="dot-2">
-                                            <span class="dot two"></span>
-                                            <span class="gender">Video link</span>
-                                        </label>
-                                    </div>
-                                </div> -->
 
-    <input type="radio" id="chkYes" name="chk" />
-    <label for="chkYes">Video Link</label>
-    
-    <input type="radio" id="chkNo" name="chk" />
-    <label for="chkNo">PDF</label>
-<!-- </div> -->
-<div id="dvtext">
-<label for="desc">Video Link</label>
-<input type="text" name="video_link" class="form-control" id="desc">
-    <!-- <input type="text" id="txtBox" /> -->
-</div>
-<div id="dvtext2">
-<label for="courseImg">PDF</label>
-<input type="file" name="file" id="file" class="form-control">
 
-                                <!-- <div class="form-group videoLink " id="dvtext">
+
+                                    <input type="radio" id="chkYes" name="chk" />
+                                    <label for="chkYes">Video Link</label>
+
+                                    <input type="radio" id="chkNo" name="chk" />
+                                    <label for="chkNo">PDF</label>
+                                    <!-- </div> -->
+                                    <div id="dvtext">
                                         <label for="desc">Video Link</label>
                                         <input type="text" name="video_link" class="form-control" id="desc">
-                                    </div> -->
-                                    <!-- <div class="form-group">
+                                        <!-- <input type="text" id="txtBox" /> -->
+                                    </div>
+                                    <div id="dvtext2">
                                         <label for="courseImg">PDF</label>
                                         <input type="file" name="file" id="file" class="form-control">
-                                    </div> -->
-                                </div>
-                                <div class="modal-footer border-top-0 d-flex justify-content-center">
-                                    <button type="submit" name="save_course" class="btn btn-success">Submit</button>
-                                </div>
+                                    </div>
+                                    <div class="modal-footer border-top-0 d-flex justify-content-center">
+                                        <button type="submit" name="save_course" class="btn btn-success">Submit</button>
+                                    </div>
                             </form>
                         </div>
                     </div>
@@ -152,6 +128,7 @@ $row2 = $sql2->fetch_assoc();
                 $ch_description = $_POST['ch-description'];
                 // $course_pdf = $_POST['course_pdf'];
                 $fileName = $_FILES['file'];
+                $link = $_POST["video_link"];
 
                 // File upload path
                 $targetDir = "../course-pdf/";
@@ -167,41 +144,46 @@ $row2 = $sql2->fetch_assoc();
                     // Upload file to server
                     if (move_uploaded_file($_FILES["file"]["tmp_name"], $targetFilePath)) {
                         // echo "Done karo nee2, ";
-                        $sql3 = "INSERT into course_attachment(course_id,course_name,ch_name,ch_description,filename,tutor_id,status) VALUES('$course_id','$course_name','$ch_name','$ch_description','$fileName','$tutor_id','1')";
+                        $sql3 = "INSERT into course_attachment(course_id,course_name,ch_name,ch_description,filename,tutor_id,status,store) VALUES('$course_id','$course_name','$ch_name','$ch_description','$fileName','$tutor_id','1',0)";
                         $success2 = $conn->query($sql3);
                         if ($success2) {
                             // echo "Done karo nee3, ";
                             echo "<script>
-                swal({
-                    title: 'Success!',
-                    text: 'PDF Added!',
-                    icon: 'success',
-                    button: 'Ok',
-                }).then(function() {
-                    window.location = 'course-attachment.php';
-                });
-                </script>";
+                                swal({
+                                    title: 'Success!',
+                                    text: 'PDF Added!',
+                                    icon: 'success',
+                                    button: 'Ok',
+                                }).then(function() {
+                                    window.location = 'course-attachment.php';
+                                });
+                                </script>";
                             // header('location:course-attachment.php');
                             //         // $statusMsg = "The file " . $fileName . " has been uploaded successfully.";
                         } else {
                             $statusMsg = "File upload failed, please try again.";
                         }
                     } else {
+
                         $statusMsg = "Sorry, there was an error uploading your file.";
                     }
                 } else {
 
-                    echo "<script>
-            swal({
-                title: 'Error!',
-                 text: 'only pdf can be subbmiteed!',
-                icon: 'error',
-                button: 'Ok',
-            }).then(function() {
-                window.location = 'add-pdf.php';
-            });
-            </script>";
 
+                    $sql4 = "INSERT into course_attachment(course_id,course_name,ch_name,ch_description,link,tutor_id,status,store) VALUES('$course_id','$course_name','$ch_name','$ch_description','$link','$tutor_id','1',1)";
+                    $success3 = $conn->query($sql4);
+                    if ($success3) {
+                        echo "<script>
+                                swal({
+                                    title: 'Success!',
+                                    text: 'Video Added!',
+                                    icon: 'success',
+                                    button: 'Ok',
+                                }).then(function() {
+                                    window.location = 'course-attachment.php';
+                                });
+                                </script>";
+                    }
                 }
             }
 
