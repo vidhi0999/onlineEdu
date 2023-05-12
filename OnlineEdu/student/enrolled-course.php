@@ -82,9 +82,12 @@ $row = mysqli_fetch_array($result);
                             <hr>
 
                             <br>
-                            <p>Description:
+                            <!-- <center> -->
+                            <h4>Description:</h4>
+                            <p style="text-align:justify; padding :15px">
                                 <?php echo $row['ch_description']; ?>
                             </p>
+                            <!-- </center> -->
                         </article>
 
 
@@ -114,7 +117,7 @@ $row = mysqli_fetch_array($result);
 
                 <?php
 
-                $chapter = 1;
+                $chapter2 = 1;
                 $course_id = $_GET['id'];
                 $_SESSION['course_id'] = $_GET['id'];
                 $courseID = $_SESSION['course_id'];
@@ -140,20 +143,21 @@ $row = mysqli_fetch_array($result);
                         <article class="article">
 
                             <h2 style="margin-top:10px">Chapter:
-                                <?php echo $chapter . " " . $row['ch_name']; ?>
+                                <?php echo $chapter2 . " " . $row['ch_name']; ?>
                             </h2>
                             <br>
                             <hr>
 
                             <br>
-                            <p>Description:
+                            <h4>Description:</h4>
+                            <p style="text-align:justify; padding :15px">
                                 <?php echo $row['ch_description']; ?>
                             </p>
                         </article>
                     </div>
 
                     <?php
-                    $chapter++;
+                    $chapter2++;
 
                 }
                 ?>
